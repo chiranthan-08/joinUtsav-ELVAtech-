@@ -71,24 +71,24 @@ export const FloatingChatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 max-w-[calc(100vw-1.5rem)]">
       {/* Floating Toggle Button (when closed) */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-saffron-500 via-rose-500 to-amber-500 text-white font-bold text-xs shadow-2xl shadow-saffron-500/40 hover:scale-105 active:scale-95 transition-all"
+          className="group flex items-center gap-2 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-saffron-500 via-rose-500 to-amber-500 text-white font-bold text-xs shadow-2xl shadow-saffron-500/40 hover:scale-105 active:scale-95 transition-all"
           title="Chat with UtsavMitra AI"
         >
-          <span className="text-lg group-hover:rotate-12 transition-transform">🪔</span>
-          <span>Ask Utsav AI</span>
+          <span className="text-base sm:text-lg group-hover:rotate-12 transition-transform">🪔</span>
+          <span className="text-xs">Ask Utsav AI</span>
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
         </button>
       )}
 
       {/* Floating Chat Modal (when open) */}
       {isOpen && (
-        <div className={`bg-slate-900 border border-saffron-500/40 rounded-3xl shadow-2xl overflow-hidden flex flex-col transition-all duration-300 ${
-          isMinimized ? 'w-80 h-16' : 'w-96 sm:w-[420px] h-[550px]'
+        <div className={`bg-slate-900 border border-saffron-500/40 rounded-3xl shadow-2xl overflow-hidden flex flex-col transition-all duration-300 w-[calc(100vw-1.5rem)] sm:w-[420px] max-w-[420px] ${
+          isMinimized ? 'h-16' : 'h-[500px] sm:h-[550px] max-h-[82vh]'
         }`}>
           {/* Header */}
           <div className="p-3.5 bg-gradient-to-r from-slate-950 via-saffron-950/40 to-slate-950 border-b border-slate-800 flex items-center justify-between">

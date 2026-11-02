@@ -97,6 +97,20 @@
       "status": "active",
       "createdAt": "2026-07-20T16:30:00Z",
       "lastLogin": "2026-11-02T13:40:00Z"
+    },
+    {
+      "_id": "usr_1793623045815ty3f",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=praphu",
+      "status": "active",
+      "createdAt": "2026-11-02T12:37:25.815Z",
+      "lastLogin": "2026-11-02T12:37:25.815Z",
+      "name": "praphu",
+      "email": "prabhu@gmail.com",
+      "password": "$2a$10$4Ix31XOkJRUFbatI//wO4etk5xaWxuivKSzI3l.bhZ9CEiy885FZW",
+      "role": "user",
+      "phone": "+919035049264",
+      "city": "tmk",
+      "organization": ""
     }
   ],
   "events": [
@@ -1703,6 +1717,22 @@
   ],
   "invitations": [
     {
+      "_id": "inv_1793623079729pd4c",
+      "slug": "aarav-priya-s-royal-sangeet-785",
+      "rsvpList": [],
+      "createdAt": "2026-11-02T12:37:59.729Z",
+      "title": "Aarav & Priya’s Royal Sangeet",
+      "hostName": "The Sharma & Patel Families",
+      "eventType": "Wedding & Sangeet",
+      "eventDate": "2026-11-28",
+      "eventTime": "06:30 PM onwards",
+      "venue": "Chomu Palace Heritage Courtyard, Jaipur",
+      "theme": "royal-marigold",
+      "coverImage": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+      "customMessage": "Together with our families, we joyfully invite you to celebrate music, dance, and love.",
+      "createdBy": "usr_1793623045815ty3f"
+    },
+    {
       "_id": "inv_01",
       "title": "Aarav & Priya’s Shahi Sangeet Celebration",
       "hostName": "The Sharma & Patel Families",
@@ -1739,6 +1769,30 @@
     }
   ],
   "auditLogs": [
+    {
+      "_id": "aud_17936230797485gq",
+      "actorId": "usr_1793623045815ty3f",
+      "actorName": "praphu",
+      "actorRole": "user",
+      "action": "INVITATION_CREATED",
+      "targetType": "INVITATION",
+      "targetId": "inv_1793623079729pd4c",
+      "details": "Created e-invite: Aarav & Priya’s Royal Sangeet",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-02T12:37:59.749Z"
+    },
+    {
+      "_id": "aud_1793623045817kq3",
+      "actorId": "usr_1793623045815ty3f",
+      "actorName": "praphu",
+      "actorRole": "user",
+      "action": "USER_REGISTERED",
+      "targetType": "USER",
+      "targetId": "usr_1793623045815ty3f",
+      "details": "Registered as user",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-02T12:37:25.818Z"
+    },
     {
       "_id": "aud_01",
       "actorId": "usr_superadmin_01",

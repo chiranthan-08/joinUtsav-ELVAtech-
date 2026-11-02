@@ -41,11 +41,11 @@ export function App() {
       <AuthProvider>
         <Router>
           <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-saffron-500 selection:text-white">
-            {/* Top Interactive Role Switcher Banner */}
-            <RoleSwitcherBanner />
-
-            {/* Main Navbar */}
-            <Navbar />
+            {/* Unified Sticky Header Container */}
+            <header className="sticky top-0 z-40 shadow-xl backdrop-blur-md">
+              <RoleSwitcherBanner />
+              <Navbar />
+            </header>
 
             {/* App Body Content */}
             <main className="flex-1">

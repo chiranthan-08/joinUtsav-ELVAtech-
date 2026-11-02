@@ -27,7 +27,7 @@ export const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="bg-slate-900/90 border-b border-slate-800 sticky top-9 z-30 backdrop-blur-md">
+    <nav className="bg-slate-900/95 border-b border-slate-800 relative z-10 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}

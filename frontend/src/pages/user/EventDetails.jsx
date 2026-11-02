@@ -279,7 +279,7 @@ export const EventDetails = () => {
 
         {/* Right Column: Ticket Selection & Razorpay Booking Box */}
         <div className="space-y-6">
-          <div className="bg-slate-900 border border-saffron-500/30 rounded-3xl p-6 shadow-2xl sticky top-28 space-y-6">
+          <div className="bg-slate-900 border border-saffron-500/30 rounded-3xl p-6 shadow-2xl lg:sticky lg:top-24 space-y-6">
             <div className="border-b border-slate-800 pb-4">
               <div className="flex items-center gap-2 text-xs font-semibold text-saffron-400 uppercase tracking-wider">
                 <Ticket className="w-4 h-4" />
