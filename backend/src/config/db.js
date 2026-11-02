@@ -22,3 +22,4 @@ const connectDB = async () => {
 const getMongoStatus = () => isMongoConnected;
 
 module.exports = { connectDB, getMongoStatus };
+

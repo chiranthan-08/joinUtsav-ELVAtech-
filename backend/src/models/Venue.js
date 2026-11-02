@@ -36,3 +36,4 @@ const VenueSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.models.Venue || mongoose.model('Venue', VenueSchema);
+

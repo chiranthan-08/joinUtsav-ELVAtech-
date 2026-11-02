@@ -100,6 +100,20 @@
       "status": "active",
       "createdAt": "2026-07-20T16:30:00Z",
       "lastLogin": "2026-11-02T13:40:00Z"
+    },
+    {
+      "_id": "usr_1793620533441tpll",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Chiranthan%20siddu%20K%20S",
+      "status": "active",
+      "createdAt": "2026-11-02T11:55:33.441Z",
+      "lastLogin": "2026-11-02T11:55:33.441Z",
+      "name": "Chiranthan siddu K S",
+      "email": "chiranthansiddhu@hotmail.com",
+      "password": "$2a$10$f3H9f27YKvFyDd/tCVy0VuuFlJ92qJAK8vmdAPpttNZ.K4VQ8CMwa",
+      "role": "user",
+      "phone": "9025049264",
+      "city": "bangalore",
+      "organization": ""
     }
   ],
   "events": [
@@ -744,6 +758,18 @@
     }
   ],
   "auditLogs": [
+    {
+      "_id": "aud_17936205334440r5",
+      "actorId": "usr_1793620533441tpll",
+      "actorName": "Chiranthan siddu K S",
+      "actorRole": "user",
+      "action": "USER_REGISTERED",
+      "targetType": "USER",
+      "targetId": "usr_1793620533441tpll",
+      "details": "Registered as user",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-02T11:55:33.444Z"
+    },
     {
       "_id": "aud_1793617605844e4h",
       "actorId": "usr_superadmin_01",

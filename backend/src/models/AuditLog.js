@@ -28,3 +28,4 @@ const AuditLog = mongoose.models.AuditLog || mongoose.model('AuditLog', AuditLog
 const SystemSetting = mongoose.models.SystemSetting || mongoose.model('SystemSetting', SystemSettingSchema);
 
 module.exports = { AuditLog, SystemSetting };
+

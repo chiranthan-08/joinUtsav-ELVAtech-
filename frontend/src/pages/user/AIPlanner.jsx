@@ -141,12 +141,16 @@ export const AIPlanner = () => {
     if (!chatInput.trim() || loadingChat) return;
 
     const userPrompt = chatInput.trim();
-    setChatMessages((prev) => [...prev, { role: 'user', content: userPrompt }]);
+    const updatedHistory = [...chatMessages, { role: 'user', content: userPrompt }];
+    setChatMessages(updatedHistory);
     setChatInput('');
     setLoadingChat(true);
 
     try {
-      const res = await api.post('/ai/chat', { prompt: userPrompt });
+      const res = await api.post('/ai/chat', { 
+        prompt: userPrompt, 
+        history: updatedHistory.slice(-6) 
+      });
       if (res.success) {
         setChatMessages((prev) => [...prev, { role: 'assistant', content: res.reply }]);
       }
@@ -775,3 +779,4 @@ export const AIPlanner = () => {
     </div>
   );
 };
+

@@ -9,3 +9,4 @@ router.post('/catering', aiController.generateCateringMenu);
 router.post('/chat', aiController.chatAssistant);
 
 module.exports = router;
+

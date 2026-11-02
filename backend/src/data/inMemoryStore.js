@@ -273,3 +273,4 @@ class Store {
 
 const storeInstance = new Store();
 module.exports = storeInstance;
+

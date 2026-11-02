@@ -37,3 +37,4 @@ export const api = {
   patch: (endpoint, body, options) => apiClient(endpoint, { method: 'PATCH', body: JSON.stringify(body), ...options }),
   delete: (endpoint, options) => apiClient(endpoint, { method: 'DELETE', ...options })
 };
+

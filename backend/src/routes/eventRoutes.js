@@ -12,3 +12,4 @@ router.put('/:id', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_
 router.delete('/:id', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_admin']), eventController.deleteEvent);
 
 module.exports = router;
+

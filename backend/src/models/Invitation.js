@@ -30,3 +30,4 @@ const InvitationSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.models.Invitation || mongoose.model('Invitation', InvitationSchema);
+

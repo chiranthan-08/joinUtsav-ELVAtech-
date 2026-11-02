@@ -9,3 +9,4 @@ router.get('/:slug', inviteController.getInvitationBySlug);
 router.post('/:slug/rsvp', inviteController.submitRSVP);
 
 module.exports = router;
+

@@ -1,12 +1,155 @@
-// AI-Powered Event Assistant Engine for Indian Traditional & Modern Celebrations
+const OpenAI = require('openai');
 
+const openaiApiKey = process.env.OPENAI_API_KEY || '';
+const openai = openaiApiKey ? new OpenAI({ apiKey: openaiApiKey }) : null;
+
+// System prompt defining UtsavMitra persona
+const UTSAV_SYSTEM_PROMPT = `
+You are UtsavMitra AI (उत्सवमित्र), an intelligent, culturally knowledgeable, and warm Indian Event Management Consultant & Celebration Planner.
+You specialize in planning both traditional Indian celebrations and modern events:
+- Weddings (Shaadi, Sangeet, Mehendi, Haldi, Varmala, Reception, Pheras)
+- Navratri Garba & Dandiya Raas
+- College Cultural, Dramatics & Technical Fests (Hackathons, Battle of the Bands, Starlight Pro-Nites)
+- Religious & Temple Mahotsavs (Phoolon Ki Holi, Ganesh Utsav, Diwali Melas)
+- Corporate Galas, Culinary Carnivals, Birthdays, and Anniversaries.
+
+You provide actionable guidance on auspicious muhurats, traditional rituals, venue setup, multi-course Indian catering menus (North Indian, South Indian, Gujarati, Jain), line-item budgeting in INR (₹), and how UtsavMitra's QR-code ticketing, digital invitations, and Razorpay checkout streamline events.
+Maintain an enthusiastic, respectful, and polite tone. Use relevant festive emojis (🪔, 🌸, 💍, 🪘, ✨) and structured markdown where helpful.
+`.trim();
+
+// Local intelligent heuristics fallback
+const getLocalIntelligentReply = (prompt) => {
+  const query = prompt.toLowerCase();
+
+  if (query.includes('haldi') || query.includes('ubtan')) {
+    return '💛 **Haldi Ceremony Planning Guide**:\n\n' +
+      '• **Decor Theme**: Bright marigold (Genda Phool) floral backdrop with vintage brass urlis and floral umbrellas.\n' +
+      '• **Attire**: Shades of yellow, mustard, and kesari for both bride/groom and guests.\n' +
+      '• **Organic Turmeric**: Mix pure Kasturi turmeric with cold-pressed rosewater, sandalwood paste, and milk.\n' +
+      '• **Music Playlist**: High-energy folk beats ("Galla Goriyan", "Mahi Ve", "Gud Naal Ishq") with live Punjabi dholak.\n' +
+      '• **Beverages**: Chilled Aam Panna, Thandai, and Fresh Sugarcane juice.\n\n' +
+      '🪔 *Pro Tip*: Use UtsavMitra to send custom Haldi e-invites with RSVP tracking!';
+  } else if (query.includes('qr') || query.includes('ticket') || query.includes('attendance') || query.includes('pass') || query.includes('check-in')) {
+    return '🎟️ **UtsavMitra QR Ticketing & Gate Verification System**:\n\n' +
+      '1. **Encrypted Pass**: When a user books passes, the platform issues an encrypted digital badge with a unique Pass ID (e.g. `UM-PASS-8841`) and high-res QR token.\n' +
+      '2. **Camera Check-In**: At the entry gates, event organizers launch the "Live QR Scanner" on their phone or laptop camera.\n' +
+      '3. **Anti-Duplicate Fraud Protection**: Scanning marks the guest as checked-in with the exact timestamp. Any duplicate entry attempts immediately trigger a red warning badge with the previous check-in details!\n' +
+      '4. **Offline Roster**: Organizers can also view and print the live attendee register at any time.';
+  } else if (query.includes('budget') || query.includes('cost') || query.includes('expense') || query.includes('price')) {
+    return '💰 **Indian Event Budget Allocation (Rule of Thumb)**:\n\n' +
+      '• **Catering & Royal Sweets (35-40%)**: Live Chaat gali, welcome mocktails, main course gravies, and hot desserts (Rabdi Jalebi/Gulab Jamun).\n' +
+      '• **Venue & Floral Decor (30%)**: Mandap architecture, fairy lighting, entrance arches, and seating shamiana.\n' +
+      '• **Photography & Drone (10-12%)**: Candid pre-wedding shoot, cinematic highlight teaser, and 4K ceremony coverage.\n' +
+      '• **DJ, Sound & Dhol (8-10%)**: Professional sound system, LED video walls, Punjabi dhol squad, and choreographer.\n' +
+      '• **Gifts & Shagun (5%)**: Return favors, Bandhani safas/turbans for Baratis.\n' +
+      '• **Contingency & Panditji (3-5%)**: Vedic Samagri, municipal permissions, and generator backup.\n\n' +
+      '💡 *Try our "AI Budget Planner" in the top bar for precise rupee calculations!*';
+  } else if (query.includes('muhurat') || query.includes('timing') || query.includes('timeline') || query.includes('schedule')) {
+    return '⏰ **Ideal Wedding Day Muhurat & Timeline Flow**:\n\n' +
+      '• **04:30 PM**: Safa (Turban) Bandhai & High Tea for Baratis.\n' +
+      '• **05:45 PM**: Baraat Procession assembly with brass band & dhol.\n' +
+      '• **06:45 PM**: Shahi Gateway Swagat & Aarti Milni ceremony.\n' +
+      '• **07:30 PM**: Twilight Varmala exchange with cold pyrotechnics & rose petal shower.\n' +
+      '• **08:15 PM**: Royal Dinner Buffet opens with live classical instrumental music.\n' +
+      '• **11:00 PM**: Auspicious Lagna Muhurat & Sacred Pheras around Agni Devta.';
+  } else if (query.includes('sangeet') || query.includes('dance') || query.includes('music')) {
+    return '💃 **Grand Sangeet Night Essentials**:\n\n' +
+      '• **Staging**: 24x16 ft stage with LED backdrop showing couple visuals.\n' +
+      '• **Flow**: Welcome flashmob by cousins ➔ Bride & Groom romantic ballad ➔ Friendly competition between Bride & Groom sides ➔ Open DJ dance floor.\n' +
+      '• **Props**: LED glowsticks, custom sunglasses, and dry-ice fog effect for the couple performance.\n' +
+      '• **Midnight Snacks**: Keema pav / Pav bhaji counters, hot cutting chai, and churros.';
+  } else if (query.includes('college') || query.includes('fest') || query.includes('hackathon')) {
+    return '🎸 **College Cultural & Tech Fest Planning Blueprint**:\n\n' +
+      '• **Crowd Flow**: Set up dedicated multi-lane UtsavMitra QR scanner checkpoints to check in 1,000+ students per hour without queues.\n' +
+      '• **Daytime Competitions**: 24-hr Hackathon, Battle of the Bands, Street Play (Nukkad Natak), Western Dance clash.\n' +
+      '• **Star Pro-Nite**: High-output line-array audio, moving beam trusses, artist hospitality riders, and perimeter barricading.\n' +
+      '• **Safety**: On-site medical booth, verified campus badges, and digital ticketing tiers.';
+  } else if (query.includes('venue') || query.includes('hall') || query.includes('palace') || query.includes('lawn')) {
+    return '🏰 **Venue Selection Advice**:\n\n' +
+      '• **Heritage Palaces (Jaipur/Udaipur)**: Perfect for regal destination weddings. Look for authentic fresco courtyards, guest accommodations of 50+ rooms, and shehnai welcome areas.\n' +
+      '• **Seaside Lawns (Kerala/Goa)**: Breathtaking for sunset pheras. Ensure sound permits are obtained up to 10 PM.\n' +
+      '• **Convention Ballrooms (Delhi/Mumbai)**: Ideal for large receptions & corporate galas. Check for pillarless ceilings, central AC, and green rooms.\n\n' +
+      '🌟 *Browse our "Venues" tab to request direct quotes from top venues!*';
+  } else {
+    return `Namaste! 🙏 I am your **UtsavMitra AI Celebration Consultant**.\n\n` +
+      `I can help you coordinate every aspect of your event:\n` +
+      `• **Ritual Guides**: Planning Haldi, Mehendi, Sangeet, Pheras, or Dandiya Raas.\n` +
+      `• **Budget Allocation**: Accurate percentage and Rupee calculations for catering, decor, and photography.\n` +
+      `• **Auspicious Timelines**: Scheduling wedding evenings, college fest pro-nites, and cultural melas.\n` +
+      `• **UtsavMitra Features**: Creating digital invitations, QR-pass ticketing, and Razorpay payment setup.\n\n` +
+      `*How can I assist your celebration planning today?*`;
+  }
+};
+
+exports.chatAssistant = async (req, res) => {
+  try {
+    const { prompt, history = [] } = req.body;
+    if (!prompt) {
+      return res.status(400).json({ success: false, message: 'Prompt query is required.' });
+    }
+
+    // Try OpenAI API if client is configured
+    if (openai && openaiApiKey) {
+      try {
+        const messages = [
+          { role: 'system', content: UTSAV_SYSTEM_PROMPT }
+        ];
+
+        // Append recent conversational history
+        if (Array.isArray(history) && history.length > 0) {
+          const recent = history.slice(-6);
+          for (const msg of recent) {
+            if (msg.role && msg.content) {
+              messages.push({
+                role: msg.role === 'assistant' ? 'assistant' : 'user',
+                content: String(msg.content)
+              });
+            }
+          }
+        }
+
+        messages.push({ role: 'user', content: prompt });
+
+        const completion = await openai.chat.completions.create({
+          model: 'gpt-4o-mini',
+          messages,
+          max_tokens: 650,
+          temperature: 0.7
+        });
+
+        const reply = completion.choices?.[0]?.message?.content;
+        if (reply) {
+          return res.status(200).json({
+            success: true,
+            reply,
+            source: 'openai'
+          });
+        }
+      } catch (openAiError) {
+        console.warn(`[OpenAI Notice]: ${openAiError.message} - Using UtsavMitra intelligent celebration assistant.`);
+      }
+    }
+
+    // High quality intelligent heuristic fallback
+    const fallbackReply = getLocalIntelligentReply(prompt);
+    return res.status(200).json({
+      success: true,
+      reply: fallbackReply,
+      source: 'smart_fallback'
+    });
+  } catch (error) {
+    console.error('chatAssistant error:', error);
+    return res.status(500).json({ success: false, message: 'AI Assistant error.' });
+  }
+};
+
+// AI Budget Plan Generator
 exports.generateBudgetPlan = async (req, res) => {
   try {
     const { eventType = 'Wedding', guestCount = 300, totalBudget = 1000000, city = 'Jaipur' } = req.body;
     const budget = Number(totalBudget);
     const guests = Number(guestCount);
 
-    // Dynamic ratios based on event type
     let breakdown = [];
     let tips = [];
 
@@ -38,7 +181,7 @@ exports.generateBudgetPlan = async (req, res) => {
           percentage: 10,
           amount: Math.round(budget * 0.10),
           perGuest: Math.round((budget * 0.10) / guests),
-          items: ['Live Punajbi Dholak & Tasha', 'Professional DJ Setup & LED Wall', 'Sangeet Choreographer (5 sessions)', 'Anchor / Emcee']
+          items: ['Live Punjabi Dholak & Tasha', 'Professional DJ Setup & LED Wall', 'Sangeet Choreographer (5 sessions)', 'Anchor / Emcee']
         },
         {
           category: 'Bridal Make-up, Safa/Turban & Shagun Gifts',
@@ -102,7 +245,6 @@ exports.generateBudgetPlan = async (req, res) => {
         'Run college band preliminaries online to lower daytime stage usage and acoustic hiring costs.'
       ];
     } else {
-      // General celebrations / Birthdays / Cultural
       breakdown = [
         { category: 'Catering & Beverages', percentage: 42, amount: Math.round(budget * 0.42), items: ['Buffet & Live Counters', 'Mocktail Bar', 'Custom Celebration Cake'] },
         { category: 'Venue & Ambient Decor', percentage: 28, amount: Math.round(budget * 0.28), items: ['Theme Backdrop', 'Balloon & Floral Arch', 'LED Ambient Lighting'] },
@@ -132,6 +274,7 @@ exports.generateBudgetPlan = async (req, res) => {
   }
 };
 
+// AI Itinerary Generator
 exports.generateItinerary = async (req, res) => {
   try {
     const { eventType = 'Wedding', days = 1, startTime = '10:00 AM' } = req.body;
@@ -179,6 +322,7 @@ exports.generateItinerary = async (req, res) => {
   }
 };
 
+// AI Bilingual Invitation Poetry
 exports.generateInvitationPoetry = async (req, res) => {
   try {
     const { hostNames = 'The Sharma Family', honoree = 'Aarav & Priya', eventType = 'Wedding', date = '15th November 2026', venue = 'Chomu Palace, Jaipur', style = 'royal' } = req.body;
@@ -224,6 +368,7 @@ Venue: ${venue}
   }
 };
 
+// AI Catering Menu Planner
 exports.generateCateringMenu = async (req, res) => {
   try {
     const { cuisine = 'North Indian Royal', preference = 'Pure Veg', guestCount = 250 } = req.body;
@@ -247,36 +392,5 @@ exports.generateCateringMenu = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: 'Failed to generate catering menu.' });
-  }
-};
-
-exports.chatAssistant = async (req, res) => {
-  try {
-    const { prompt } = req.body;
-    if (!prompt) {
-      return res.status(400).json({ success: false, message: 'Prompt query is required.' });
-    }
-
-    const query = prompt.toLowerCase();
-    let reply = '';
-
-    if (query.includes('haldi') || query.includes('ubtan')) {
-      reply = 'For a vibrant Haldi ceremony, plan: 1) Marigold (Genda phool) backdrop with brass urlis for floral bath. 2) Yellow attire for both family and guests. 3) Organic turmeric paste infused with rose water and sandalwood. 4) Upbeat folk tracks like "Galla Goriyan" and "Mahi Ve" with live dholak artists. 5) Refreshing drinks like Aam Panna and chilled Nimbu Pani.';
-    } else if (query.includes('qr') || query.includes('ticket') || query.includes('attendance') || query.includes('pass')) {
-      reply = 'UtsavMitra handles end-to-end QR ticketing: 1) Upon booking, guests receive an encrypted digital pass with a unique Pass ID. 2) At the venue gate, organizers simply open the "QR Scanner" tab on mobile or laptop. 3) Pointing the camera at the guest pass instantly validates tickets and records entry time, preventing duplicate entry attempts!';
-    } else if (query.includes('budget') || query.includes('cost')) {
-      reply = 'In typical Indian events, allocate 35–40% to catering, 30% to venue and decor, 12% to photography/videography, 10% to entertainment/DJ, and keep 5–8% as contingency. Use UtsavMitra’s "AI Budget Planner" in the top bar to get exact line-item estimates in rupees!';
-    } else if (query.includes('muhurat') || query.includes('timing') || query.includes('timeline')) {
-      reply = 'Timings are crucial in Indian festivities! Standard wedding evening flow: Baraat assembly at 5:30 PM, Milni & Gateway welcome at 6:30 PM, Grand Varmala at 7:30 PM under twilight, Dinner from 8:00 PM to 10:30 PM, and sacred Pheras at the auspicious midnight/Lagna muhurat.';
-    } else {
-      reply = `Namaste! As your UtsavMitra AI Event Companion, I can assist you with traditional rituals, modern stage production, venue discovery across Indian cities, automated digital invitations, and real-time QR attendance management. Feel free to ask about specific ceremonies (Sangeet, Haldi, Reception), budgeting advice, or custom catering menus!`;
-    }
-
-    return res.status(200).json({
-      success: true,
-      reply
-    });
-  } catch (error) {
-    return res.status(500).json({ success: false, message: 'AI Assistant error.' });
   }
 };

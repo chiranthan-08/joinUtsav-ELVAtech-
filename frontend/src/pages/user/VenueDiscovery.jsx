@@ -278,3 +278,4 @@ export const VenueDiscovery = () => {
     </div>
   );
 };
+

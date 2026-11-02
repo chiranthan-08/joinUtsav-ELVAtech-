@@ -6,6 +6,7 @@ import { RoleSwitcherBanner } from './components/RoleSwitcherBanner';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { FloatingChatbot } from './components/FloatingChatbot';
 
 // Pages
 import { Home } from './pages/user/Home';
@@ -129,6 +130,9 @@ export function App() {
 
             {/* Festive Footer */}
             <Footer />
+
+            {/* Global Floating AI Chatbot Widget */}
+            <FloatingChatbot />
           </div>
         </Router>
       </AuthProvider>
@@ -137,3 +141,4 @@ export function App() {
 }
 
 export default App;
+

@@ -10,3 +10,4 @@ router.put('/profile', authMiddleware, authController.updateProfile);
 router.post('/switch-persona', authController.quickSwitchPersona);
 
 module.exports = router;
+

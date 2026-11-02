@@ -11,3 +11,4 @@ router.post('/check-in', authMiddleware, roleMiddleware(['organizer', 'admin', '
 router.get('/event/:eventId/attendees', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_admin']), bookingController.getEventAttendees);
 
 module.exports = router;
+

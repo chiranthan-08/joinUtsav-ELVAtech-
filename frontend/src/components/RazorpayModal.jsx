@@ -181,3 +181,4 @@ export const RazorpayModal = ({ isOpen, onClose, event, selectedTier, quantity, 
     </div>
   );
 };
+

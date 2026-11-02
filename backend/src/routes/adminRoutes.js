@@ -13,3 +13,4 @@ router.patch('/events/:id/status', adminController.updateEventStatus);
 router.patch('/users/:id/status', adminController.updateUserStatus);
 
 module.exports = router;
+

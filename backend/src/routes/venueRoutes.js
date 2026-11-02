@@ -10,3 +10,4 @@ router.post('/:id/inquire', optionalAuthMiddleware, venueController.submitInquir
 router.post('/', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_admin']), venueController.createVenue);
 
 module.exports = router;
+

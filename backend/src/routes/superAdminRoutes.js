@@ -15,3 +15,4 @@ router.get('/audit-logs', superAdminController.getAuditLogs);
 router.post('/reset-seed', superAdminController.resetToSeedData);
 
 module.exports = router;
+
