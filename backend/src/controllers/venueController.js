@@ -1,4 +1,5 @@
 const store = require('../data/inMemoryStore');
+const { expandSearchQuery, normalizeCity } = require('../utils/searchHelper');
 
 exports.getAllVenues = async (req, res) => {
   try {
@@ -6,26 +7,54 @@ exports.getAllVenues = async (req, res) => {
     const { city, type, search } = req.query;
 
     if (city && city !== 'All') {
-      venues = venues.filter(v => v.city.toLowerCase() === city.toLowerCase());
+      const normTarget = normalizeCity(city).toLowerCase();
+      venues = venues.filter(v => {
+        const normCity = normalizeCity(v.city).toLowerCase();
+        return normCity === normTarget || 
+               v.city.toLowerCase().includes(city.toLowerCase()) || 
+               city.toLowerCase().includes(v.city.toLowerCase());
+      });
     }
 
     if (type && type !== 'All') {
       venues = venues.filter(v => v.type.toLowerCase() === type.toLowerCase());
     }
 
-    if (search) {
-      const q = search.toLowerCase();
-      venues = venues.filter(v => 
-        v.name.toLowerCase().includes(q) ||
-        v.city.toLowerCase().includes(q) ||
-        v.address.toLowerCase().includes(q)
-      );
+    let searchMetadata = null;
+    if (search && search.trim()) {
+      const expansion = expandSearchQuery(search.trim());
+      const { expandedTerms, matchedCities, originalQuery } = expansion;
+
+      venues = venues.filter(v => {
+        const vCity = (v.city || '').toLowerCase();
+        const vNormCity = normalizeCity(v.city).toLowerCase();
+        const vBlob = `${v.name} ${v.city} ${v.state || ''} ${v.address} ${v.type} ${(v.amenities || []).join(' ')} ${v.description || ''}`.toLowerCase();
+
+        // City match
+        if (matchedCities.some(mc => mc.toLowerCase() === vCity || mc.toLowerCase() === vNormCity)) {
+          return true;
+        }
+
+        // Substring / expanded terms match
+        if (expandedTerms.some(term => term.length >= 2 && vBlob.includes(term))) {
+          return true;
+        }
+
+        return vBlob.includes(originalQuery);
+      });
+
+      searchMetadata = {
+        originalQuery: search.trim(),
+        matchedCities: expansion.matchedCities,
+        explanation: expansion.explanation
+      };
     }
 
     return res.status(200).json({
       success: true,
       count: venues.length,
-      venues
+      venues,
+      searchMetadata
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: 'Failed to retrieve venues.' });

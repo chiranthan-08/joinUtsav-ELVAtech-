@@ -907,6 +907,118 @@ const getSeedData = () => {
       totalCapacity: 500,
       viewsCount: 3200,
       createdAt: '2026-10-31T14:00:00Z'
+    },
+    {
+      _id: 'evt_15',
+      title: 'Tumakuru Folk Heritage & Gubbi Veeranna Rangotsav 2026',
+      tagline: 'Celebrating Karnataka’s Folk Theatre, Yakshagana & Gubbi Cultural Legacy',
+      description: 'A grand 3-day cultural extravaganza honoring Karnataka’s rich theatrical heritage, Gubbi Veeranna Nataka legacy, live coastal Yakshagana ballets, Dollu Kunitha folk percussions, and local culinary delicacies. Gathering classical theatre troupes, Kannada folk artists, and drama lovers across Tumkur district.',
+      category: 'Cultural Program',
+      date: '2026-11-26',
+      time: '05:30 PM',
+      endDate: '2026-11-28',
+      endTime: '10:30 PM',
+      venueName: 'Gubbi Veeranna Kalakshetra & Rangamandira Grounds',
+      venueAddress: 'B.H. Road, Gubbi Taluk, Tumakuru District, Karnataka 572216',
+      city: 'Tumkur',
+      state: 'Karnataka',
+      organizerId: 'usr_organizer_02',
+      organizerName: 'Karnataka Janapada & Rangabhoomi Parishat',
+      organizerEmail: 'rangotsav@gubbi.org',
+      bannerUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_gubbi_free',
+          name: 'Janapada General Admission',
+          price: 0,
+          totalSeats: 1200,
+          bookedSeats: 580,
+          description: 'Free public pass for evening Yakshagana ballets, drama shows, and traditional crafts expo',
+          perks: ['Open Amphitheater Seating', 'Free Entry', 'Folk Exhibition Access']
+        },
+        {
+          id: 'tier_gubbi_vip',
+          name: 'Kalakshetra VIP Front Row Pass',
+          price: 299,
+          totalSeats: 300,
+          bookedSeats: 145,
+          description: 'Reserved auditorium cushioned front rows with complimentary traditional Karnataka sweet hamper and festival brochure',
+          perks: ['Reserved Front Rows', 'Festive Sweet Box', 'Fast-Track Gate Entry']
+        }
+      ],
+      dressCode: 'Traditional South Indian / Mysore Peta & Silk Shawls Encouraged',
+      highlights: [
+        'Live Gubbi Veeranna Style Historic Mythological Drama',
+        'Tenkutittu & Badagutittu Yakshagana All-Night Performances',
+        'Authentic Tumakuru Thatte Idli & Rural Food Bazaar',
+        'Folk Art Demonstrations by National Awardee Artists'
+      ],
+      schedule: [
+        { time: '05:30 PM', activity: 'Inaugural Nadaswaram & Dollu Kunitha Procession', description: 'Festive welcome from Gubbi Gate to Rangamandira.' },
+        { time: '07:00 PM', activity: 'Gubbi Veeranna Memorial Nataka Presentation', description: 'Grand staging of classic Kannada historical drama.' },
+        { time: '09:00 PM', activity: 'Yakshagana Prasanga & Folk Feast', description: 'Vibrant costumed Yakshagana ballet with live chande rhythms.' }
+      ],
+      status: 'approved',
+      isFeatured: true,
+      totalCapacity: 1500,
+      viewsCount: 2850,
+      createdAt: '2026-10-31T15:00:00Z'
+    },
+    {
+      _id: 'evt_16',
+      title: 'Siddaganga Youth Tech Carnivale & Pro-Nite 2026 (Tumkur)',
+      tagline: 'Tumakuru’s Premier Inter-Collegiate AI Hackathon, Robotics & Indie Music Bash',
+      description: 'The mega annual youth festival bringing together students from SIT Tumkur, Bangalore tech colleges, and universities across Karnataka. Experience 24-hr IoT & Agentic AI coding sprints, battle of the college indie bands, street dance battles, and a high-voltage open-air pro-nite concert under the stars.',
+      category: 'College Fest',
+      date: '2026-12-18',
+      time: '09:30 AM',
+      endDate: '2026-12-19',
+      endTime: '11:00 PM',
+      venueName: 'Siddaganga Silver Jubilee Open Air Grounds',
+      venueAddress: 'B.H. Road, Kyatsandra, Tumakuru, Karnataka 572103',
+      city: 'Tumkur',
+      state: 'Karnataka',
+      organizerId: 'usr_organizer_03',
+      organizerName: 'Siddaganga Youth Council & Tech Forum',
+      organizerEmail: 'youthfest@sit.ac.in',
+      bannerUrl: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_student_pass',
+          name: 'Student Day Pass',
+          price: 199,
+          totalSeats: 2500,
+          bookedSeats: 1240,
+          description: 'Access to all daytime events, coding tracks, gaming arena, and food truck alley',
+          perks: ['Hackathon Participation', 'College Kit & Badges', 'Food Alley Access']
+        },
+        {
+          id: 'tier_vip_pronite',
+          name: 'Pro-Nite Music VIP Pit',
+          price: 499,
+          totalSeats: 800,
+          bookedSeats: 480,
+          description: 'Front concert stage fan pit access for the headline Kannada indie rock & Bollywood fusion band',
+          perks: ['VIP Concert Pit Access', 'Commemorative Fest T-Shirt', 'Fast QR Gate Check-in']
+        }
+      ],
+      dressCode: 'College Casual / Band Merchandise',
+      highlights: [
+        'National 24-Hour AI & IoT Hackathon with ₹2 Lakh Cash Prizes',
+        'Battle of the Bands featuring 20+ Top Campus Rock Groups',
+        'Starlight Pro-Nite Live Band Concert with Laser Lighting',
+        'Automotive & Robotics Showcase Expo'
+      ],
+      schedule: [
+        { time: '09:30 AM', activity: 'Hackathon Coding Kickoff', description: 'Sprint teams begin problem solution designs.' },
+        { time: '02:00 PM', activity: 'Inter-College Street Play & Dance Clash', description: 'Cultural competitions on open amphitheater stage.' },
+        { time: '07:30 PM', activity: 'Starlight Pro-Nite Rock & Fusion Concert', description: 'Headline band performance with stadium sound & pyros.' }
+      ],
+      status: 'approved',
+      isFeatured: true,
+      totalCapacity: 3300,
+      viewsCount: 4100,
+      createdAt: '2026-10-31T16:00:00Z'
     }
   ];
 
@@ -1162,6 +1274,29 @@ const getSeedData = () => {
       rating: 4.8,
       reviewsCount: 220,
       description: 'Iconic Bangalore venue renowned for mega wedding receptions, cultural carnivals, and live concerts surrounded by historic royal trees.',
+      inquiries: [],
+      status: 'available'
+    },
+    {
+      _id: 'ven_07',
+      name: 'Gubbi Veeranna Heritage Kalakshetra & Convention Grounds',
+      city: 'Tumkur',
+      state: 'Karnataka',
+      address: 'Near Town Hall, B.H. Road, Gubbi Taluk, Tumakuru, Karnataka 572216',
+      capacity: 2500,
+      pricePerDay: 180000,
+      type: 'Banquet Hall / Convention Grounds',
+      amenities: ['Historic Proscenium Theatre Stage', 'Acoustic Sound Treatment', 'Open-Air Lawn Pavilions', 'Spacious Green Rooms', 'Green Dining Courtyard', 'Ample Parking for 400 Vehicles'],
+      images: [
+        'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80',
+        'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80'
+      ],
+      contactPerson: 'Shivakumar Swamy',
+      contactPhone: '+91 98450 77112',
+      contactEmail: 'kalakshetra@gubbi.org',
+      rating: 4.8,
+      reviewsCount: 94,
+      description: 'Iconic heritage cultural venue in Gubbi, Tumakuru district, renowned for large traditional weddings, Yakshagana plays, and community conventions.',
       inquiries: [],
       status: 'available'
     }

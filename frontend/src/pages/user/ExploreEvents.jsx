@@ -8,13 +8,23 @@ export const ExploreEvents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchMetadata, setSearchMetadata] = useState(null);
 
   const [category, setCategory] = useState(searchParams.get('category') || 'All');
   const [city, setCity] = useState(searchParams.get('city') || 'All');
   const [search, setSearch] = useState(searchParams.get('search') || '');
 
   const categories = ['All', 'Wedding', 'Cultural Program', 'College Fest', 'Concert', 'Birthday', 'Religious', 'Corporate'];
-  const cities = ['All', 'Bangalore', 'Mumbai', 'New Delhi', 'Jaipur', 'Ahmedabad', 'Goa', 'Kolkata', 'Udaipur', 'Mathura'];
+  const cities = ['All', 'Bangalore', 'Tumkur', 'Mumbai', 'New Delhi', 'Jaipur', 'Ahmedabad', 'Goa', 'Kolkata', 'Udaipur', 'Mathura'];
+
+  const quickAliases = [
+    { label: 'blr', hint: 'Bangalore' },
+    { label: 'tmk', hint: 'Tumkur' },
+    { label: 'gubbi', hint: 'Gubbi' },
+    { label: 'kokothe', hint: 'Kolkata' },
+    { label: 'bom', hint: 'Mumbai' },
+    { label: 'del', hint: 'Delhi' }
+  ];
 
   const fetchEvents = async () => {
     setLoading(true);
@@ -27,6 +37,7 @@ export const ExploreEvents = () => {
       const res = await api.get(`/events?${query.toString()}`);
       if (res.success) {
         setEvents(res.events || []);
+        setSearchMetadata(res.searchMetadata || null);
       }
     } catch (err) {
       console.error('Failed to fetch events:', err);
@@ -43,6 +54,7 @@ export const ExploreEvents = () => {
     setCategory('All');
     setCity('All');
     setSearch('');
+    setSearchMetadata(null);
     setSearchParams({});
   };
 
@@ -52,23 +64,23 @@ export const ExploreEvents = () => {
       <div>
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-saffron-500/10 text-saffron-400 border border-saffron-500/20 text-xs font-semibold mb-2">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Discover Traditions &amp; Celebrations</span>
+          <span>Smart Cultural &amp; City Discovery</span>
         </div>
         <h1 className="text-3xl font-bold text-white font-serif">Explore Events</h1>
         <p className="text-sm text-slate-400 mt-1">
-          Search across royal wedding expos, live concerts, birthday galas, dandiya nights, college youth carnivals, and cultural festivals across India.
+          Search across royal wedding expos, live concerts, birthday galas, college youth carnivals, and cultural festivals across India.
         </p>
       </div>
 
       {/* Filter and Search Bar */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur-md space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {/* Search Input */}
+          {/* Search Input with Smart Alias Engine */}
           <div className="relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
             <input
               type="text"
-              placeholder="Search by event title, artist, or venue..."
+              placeholder="Search by title, city, or slang (e.g., tmk, blr, gubbi, kokothe)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-saffron-500 transition-colors"
@@ -106,10 +118,41 @@ export const ExploreEvents = () => {
           </div>
         </div>
 
-        {/* Quick category pills */}
-        <div className="flex items-center justify-between pt-2 border-t border-slate-800/60 flex-wrap gap-2 text-xs">
+        {/* Smart Query Interpretation Banner */}
+        {searchMetadata?.explanation && (
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-saffron-500/15 border border-saffron-500/30 text-saffron-300 text-xs">
+            <Sparkles className="w-4 h-4 text-saffron-400 shrink-0" />
+            <span>
+              <strong>Smart Match:</strong> {searchMetadata.explanation}
+              {searchMetadata.matchedCities?.length > 0 && ` (${searchMetadata.matchedCities.join(', ')})`}
+            </span>
+          </div>
+        )}
+
+        {/* Quick Alias Pills & Category Pick */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-2 border-t border-slate-800/60 gap-3 text-xs">
+          {/* Quick Slang / City Shortcuts */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
-            <span className="text-slate-400 font-medium">Quick Pick:</span>
+            <span className="text-slate-400 font-medium whitespace-nowrap">Try Slang:</span>
+            {quickAliases.map((q) => (
+              <button
+                key={q.label}
+                onClick={() => setSearch(q.label)}
+                title={`Search for ${q.hint}`}
+                className={`px-2 py-0.5 rounded-md font-mono text-[11px] transition-colors border ${
+                  search.toLowerCase() === q.label
+                    ? 'bg-saffron-500 text-slate-950 font-bold border-saffron-400'
+                    : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700'
+                }`}
+              >
+                {q.label} <span className="opacity-60 text-[10px]">({q.hint})</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Quick Category Pick */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+            <span className="text-slate-400 font-medium whitespace-nowrap">Category:</span>
             {categories.slice(1).map((c) => (
               <button
                 key={c}
@@ -123,17 +166,17 @@ export const ExploreEvents = () => {
                 {c}
               </button>
             ))}
-          </div>
 
-          {(category !== 'All' || city !== 'All' || search) && (
-            <button
-              onClick={resetFilters}
-              className="text-slate-400 hover:text-rose-400 flex items-center gap-1 transition-colors font-medium ml-auto"
-            >
-              <X className="w-3.5 h-3.5" />
-              Reset Filters
-            </button>
-          )}
+            {(category !== 'All' || city !== 'All' || search) && (
+              <button
+                onClick={resetFilters}
+                className="text-slate-400 hover:text-rose-400 flex items-center gap-1 transition-colors font-medium ml-2 whitespace-nowrap"
+              >
+                <X className="w-3.5 h-3.5" />
+                Reset
+              </button>
+            )}
+          </div>
         </div>
       </div>
 

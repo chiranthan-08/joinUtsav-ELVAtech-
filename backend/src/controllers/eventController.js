@@ -1,17 +1,5 @@
 const store = require('../data/inMemoryStore');
-
-// Helper to normalize Indian city aliases
-const normalizeCity = (c) => {
-  if (!c) return '';
-  const s = c.toLowerCase().trim();
-  if (s === 'bangalore' || s === 'bengaluru') return 'bengaluru';
-  if (s === 'delhi' || s === 'new delhi') return 'delhi';
-  if (s === 'mumbai' || s === 'bombay') return 'mumbai';
-  if (s === 'kolkata' || s === 'calcutta') return 'kolkata';
-  if (s === 'chennai' || s === 'madras') return 'chennai';
-  if (s === 'gurgaon' || s === 'gurugram') return 'gurgaon';
-  return s;
-};
+const { expandSearchQuery, normalizeCity, eventMatchesQuery } = require('../utils/searchHelper');
 
 exports.getAllEvents = async (req, res) => {
   try {
@@ -30,31 +18,32 @@ exports.getAllEvents = async (req, res) => {
     }
 
     if (city && city !== 'All') {
-      const targetNorm = normalizeCity(city);
+      const targetNorm = normalizeCity(city).toLowerCase();
       events = events.filter(e => {
-        const eventNorm = normalizeCity(e.city);
+        const eventNorm = normalizeCity(e.city).toLowerCase();
         return eventNorm === targetNorm || 
                e.city.toLowerCase().includes(city.toLowerCase()) || 
                city.toLowerCase().includes(e.city.toLowerCase());
       });
     }
 
-    if (search) {
-      const q = search.toLowerCase();
-      events = events.filter(e => 
-        e.title.toLowerCase().includes(q) ||
-        (e.tagline && e.tagline.toLowerCase().includes(q)) ||
-        e.description.toLowerCase().includes(q) ||
-        e.venueName.toLowerCase().includes(q) ||
-        e.city.toLowerCase().includes(q) ||
-        (e.category && e.category.toLowerCase().includes(q))
-      );
+    let searchMetadata = null;
+    if (search && search.trim()) {
+      const queryExpansion = expandSearchQuery(search.trim());
+      events = events.filter(e => eventMatchesQuery(e, queryExpansion));
+      searchMetadata = {
+        originalQuery: search.trim(),
+        matchedCities: queryExpansion.matchedCities,
+        expandedTerms: queryExpansion.expandedTerms,
+        explanation: queryExpansion.explanation
+      };
     }
 
     return res.status(200).json({
       success: true,
       count: events.length,
-      events
+      events,
+      searchMetadata
     });
   } catch (error) {
     console.error('getAllEvents error:', error);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../../api/client';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
-import { MapPin, Users, Star, IndianRupee, Sparkles, Check, Send, Phone, Mail } from 'lucide-react';
+import { MapPin, Users, Star, IndianRupee, Sparkles, Check, Send, Phone, Mail, Search, X } from 'lucide-react';
 
 export const VenueDiscovery = () => {
   const { user } = useAuth();
@@ -11,6 +11,8 @@ export const VenueDiscovery = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCity, setSelectedCity] = useState('All');
   const [selectedType, setSelectedType] = useState('All');
+  const [search, setSearch] = useState('');
+  const [searchExplanation, setSearchExplanation] = useState(null);
 
   // Inquiry modal state
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
@@ -27,10 +29,17 @@ export const VenueDiscovery = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const fetchVenues = async () => {
+    setLoading(true);
     try {
-      const res = await api.get('/venues');
+      const query = new URLSearchParams();
+      if (selectedCity !== 'All') query.append('city', selectedCity);
+      if (selectedType !== 'All') query.append('type', selectedType);
+      if (search.trim()) query.append('search', search.trim());
+
+      const res = await api.get(`/venues?${query.toString()}`);
       if (res.success) {
         setVenues(res.venues || []);
+        setSearchExplanation(res.searchMetadata?.explanation || null);
       }
     } catch (err) {
       console.error('Failed to load venues:', err);
@@ -41,7 +50,7 @@ export const VenueDiscovery = () => {
 
   useEffect(() => {
     fetchVenues();
-  }, []);
+  }, [selectedCity, selectedType, search]);
 
   const openInquiry = (venue) => {
     setActiveVenue(venue);
@@ -65,11 +74,7 @@ export const VenueDiscovery = () => {
     }
   };
 
-  const filteredVenues = venues.filter((v) => {
-    const matchCity = selectedCity === 'All' || v.city.toLowerCase() === selectedCity.toLowerCase();
-    const matchType = selectedType === 'All' || v.type.toLowerCase() === selectedType.toLowerCase();
-    return matchCity && matchType;
-  });
+  const filteredVenues = venues;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
@@ -85,31 +90,101 @@ export const VenueDiscovery = () => {
         </p>
       </div>
 
-      {/* Filter Bars */}
-      <div className="flex flex-wrap items-center gap-3">
-        <select
-          value={selectedCity}
-          onChange={(e) => setSelectedCity(e.target.value)}
-          aria-label="Filter Venues by City"
-          className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-teal-500"
-        >
-          <option value="All">All Indian Cities</option>
-          <option value="Jaipur">Jaipur (Rajasthan)</option>
-          <option value="Thiruvananthapuram">Kovalam / Kerala</option>
-          <option value="New Delhi">New Delhi NCR</option>
-        </select>
+      {/* Filter and Search Bar */}
+      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur-md space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {/* Search Input */}
+          <div className="relative">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+            <input
+              type="text"
+              placeholder="Search venues by city, name, or slang (e.g. blr, tmk, gubbi)..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 transition-colors"
+            />
+          </div>
 
-        <select
-          value={selectedType}
-          onChange={(e) => setSelectedType(e.target.value)}
-          aria-label="Filter Venues by Venue Type"
-          className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-teal-500"
-        >
-          <option value="All">All Venue Types</option>
-          <option value="Palace / Heritage">Palace / Heritage</option>
-          <option value="Lawn / Resort">Lawn / Resort</option>
-          <option value="Banquet Hall">Banquet Hall</option>
-        </select>
+          {/* City Selector */}
+          <div className="relative">
+            <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+            <select
+              value={selectedCity}
+              onChange={(e) => setSelectedCity(e.target.value)}
+              aria-label="Filter Venues by City"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500 transition-colors appearance-none cursor-pointer"
+            >
+              <option value="All">All Indian Cities</option>
+              <option value="Bangalore">Bangalore / Bengaluru</option>
+              <option value="Tumkur">Tumkur / Gubbi</option>
+              <option value="Jaipur">Jaipur (Rajasthan)</option>
+              <option value="New Delhi">New Delhi NCR</option>
+              <option value="Thiruvananthapuram">Kovalam / Kerala</option>
+            </select>
+          </div>
+
+          {/* Venue Type Selector */}
+          <div className="relative">
+            <Sparkles className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+            <select
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}
+              aria-label="Filter Venues by Venue Type"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500 transition-colors appearance-none cursor-pointer"
+            >
+              <option value="All">All Venue Types</option>
+              <option value="Palace / Heritage">Palace / Heritage</option>
+              <option value="Lawn / Resort">Lawn / Resort</option>
+              <option value="Banquet Hall">Banquet Hall</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Smart Query Interpretation Banner */}
+        {searchExplanation && (
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-teal-500/15 border border-teal-500/30 text-teal-300 text-xs">
+            <Sparkles className="w-4 h-4 text-teal-400 shrink-0" />
+            <span>
+              <strong>Smart Match:</strong> {searchExplanation}
+            </span>
+          </div>
+        )}
+
+        {/* Quick Slang Pills */}
+        <div className="flex items-center justify-between pt-2 border-t border-slate-800/60 flex-wrap gap-2 text-xs">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+            <span className="text-slate-400 font-medium whitespace-nowrap">Try Slangs:</span>
+            {[
+              { label: 'blr', hint: 'Bangalore' },
+              { label: 'tmk', hint: 'Tumkur' },
+              { label: 'gubbi', hint: 'Gubbi' },
+              { label: 'del', hint: 'Delhi' },
+              { label: 'jai', hint: 'Jaipur' }
+            ].map((q) => (
+              <button
+                key={q.label}
+                onClick={() => setSearch(q.label)}
+                className={`px-2 py-0.5 rounded-md font-mono text-[11px] transition-colors border ${
+                  search.toLowerCase() === q.label
+                    ? 'bg-teal-500 text-slate-950 font-bold border-teal-400'
+                    : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700'
+                }`}
+              >
+                {q.label} <span className="opacity-60 text-[10px]">({q.hint})</span>
+              </button>
+            ))}
+          </div>
+
+          {(selectedCity !== 'All' || selectedType !== 'All' || search) && (
+            <button
+              onClick={() => { setSelectedCity('All'); setSelectedType('All'); setSearch(''); }}
+              className="text-slate-400 hover:text-rose-400 flex items-center gap-1 transition-colors font-medium ml-auto"
+            >
+              <X className="w-3.5 h-3.5" />
+              Reset Filters
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Venues Grid */}

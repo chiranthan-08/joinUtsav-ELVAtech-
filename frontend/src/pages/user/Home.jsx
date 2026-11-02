@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../api/client';
 import { EventCard } from '../../components/EventCard';
 import { 
@@ -11,6 +11,7 @@ import {
   Mail, 
   Calendar, 
   ArrowRight,
+  Search,
   Music,
   HeartHandshake,
   Users,
@@ -18,6 +19,7 @@ import {
 } from 'lucide-react';
 
 export const Home = () => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -74,6 +76,52 @@ export const Home = () => {
           <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
             From regal Rajasthani weddings and Navratri Dandiya nights to mega college fests and cultural galas. Discover events, generate instant QR passes, plan with AI, and manage attendance seamlessly.
           </p>
+
+          {/* Smart Hero Search Bar */}
+          <div className="max-w-2xl mx-auto pt-2">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const input = e.target.elements.homeSearch?.value.trim();
+                if (input) navigate(`/events?search=${encodeURIComponent(input)}`);
+                else navigate('/events');
+              }}
+              className="relative flex items-center shadow-2xl rounded-2xl bg-slate-900/90 border border-slate-700/80 p-2 backdrop-blur-md group hover:border-saffron-500/50 transition-colors"
+            >
+              <Search className="w-5 h-5 text-slate-400 ml-3 shrink-0 group-focus-within:text-saffron-400" />
+              <input
+                name="homeSearch"
+                type="text"
+                placeholder="Search celebrations, cities or slangs (e.g. blr, tmk, gubbi, kokothe)..."
+                className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder-slate-400 focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="px-5 py-2.5 rounded-xl font-semibold text-xs bg-gradient-to-r from-saffron-500 to-rose-500 hover:from-saffron-600 hover:to-rose-600 text-white shrink-0 shadow-md shadow-saffron-500/20 transition-all flex items-center gap-1.5"
+              >
+                <span>Search</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </form>
+            <div className="flex items-center justify-center gap-1.5 mt-2.5 text-[11px] text-slate-400 flex-wrap">
+              <span className="font-medium text-slate-400">Quick Slangs:</span>
+              {[
+                { term: 'blr', label: 'Bangalore' },
+                { term: 'tmk', label: 'Tumkur' },
+                { term: 'gubbi', label: 'Gubbi' },
+                { term: 'kokothe', label: 'Kolkata' },
+                { term: 'Concert', label: 'Concerts' }
+              ].map(s => (
+                <Link
+                  key={s.term}
+                  to={`/events?search=${encodeURIComponent(s.term)}`}
+                  className="px-2 py-0.5 rounded-md bg-slate-900/70 border border-slate-800 text-slate-400 hover:text-saffron-300 hover:border-saffron-500/40 transition-colors font-mono"
+                >
+                  {s.term} <span className="opacity-60 text-[10px]">({s.label})</span>
+                </Link>
+              ))}
+            </div>
+          </div>
 
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">

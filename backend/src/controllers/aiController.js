@@ -88,8 +88,65 @@ const CITY_VENUES_DATABASE = {
       { name: 'Amaara Farms', location: 'Chattarpur, Delhi', type: 'Boutique Farmhouse & Glasshouse Lawn', capacity: '500 – 1,500 guests', priceRange: '₹5 Lakh – ₹9 Lakh rental', highlights: 'Balinese architecture, dramatic Buddha sculptures, glass canopy dining pavilion.' }
     ],
     tips: ['Chattarpur and NH8 venues have high demand in November-December; plan traffic and valet logistics early.']
+  },
+  tumkur: {
+    city: 'Tumkur / Tumakuru (including Gubbi)',
+    venues: [
+      {
+        name: 'Gubbi Veeranna Heritage Kalakshetra & Convention Grounds',
+        location: 'Near Town Hall, B.H. Road, Gubbi Taluk, Tumakuru',
+        type: 'Historic Cultural Convention Grounds & Auditorium',
+        capacity: '1,000 – 2,500 guests',
+        priceRange: '₹1.5 Lakh – ₹3.5 Lakh rental / ₹450 – ₹950 per plate',
+        highlights: 'Traditional Karnataka theatre stage, open-air lawn pavilion, authentic South Indian wedding atmosphere, and ample parking on B.H. Road.'
+      },
+      {
+        name: 'Siddaganga Silver Jubilee Kalakshetra & Lawns',
+        location: 'Kyatsandra, B.H. Road, Tumakuru',
+        type: 'Sprawling Convention Grounds & Open-Air Pavilions',
+        capacity: '1,500 – 4,000 guests',
+        priceRange: '₹2 Lakh – ₹4.5 Lakh rental / ₹400 – ₹850 per plate',
+        highlights: 'Serene spiritual campus atmosphere near historic Siddaganga Hill, grand banquet halls with traditional pure-vegetarian catering setup.'
+      },
+      {
+        name: 'Vedic Village Heritage Retreat & Lawns',
+        location: 'Kunigal - Tumkur Highway',
+        type: 'Eco-Resort & Poolside Wedding Lawns',
+        capacity: '500 – 1,200 guests',
+        priceRange: '₹2.5 Lakh – ₹5 Lakh rental / ₹800 – ₹1,400 per plate',
+        highlights: 'Rustic stone pavilions, lush coconut grove setting, perfect for haldi, sangeet, and traditional south Indian muhurats.'
+      }
+    ],
+    tips: [
+      'Tumkur is conveniently connected to Bangalore via the 6-lane NH-48 Express corridor (under 75 minutes from Yeshwantpur/Peenya).',
+      'For wedding feasts, Tumkur is famous for traditional Karnataka banana-leaf meals with hot Kyatsandra Thatte Idli live breakfast counters!'
+    ]
+  },
+  kolkata: {
+    city: 'Kolkata (Calcutta)',
+    venues: [
+      {
+        name: 'ITC Sonar & Royal Bengal',
+        location: 'JBS Haldane Avenue, EM Bypass, Kolkata',
+        type: 'Luxury 5-Star Hotel & Water Garden Lawns',
+        capacity: '800 – 2,500 guests',
+        priceRange: '₹3,000 – ₹5,500 per plate',
+        highlights: 'Bagan-style water reflection pavilions, column-free pillarless ballrooms, signature Awadhi and Bengali wedding menus.'
+      },
+      {
+        name: 'The Rajbari Bawali',
+        location: 'Bawali, 24 Parganas (Near Kolkata)',
+        type: '300-Year-Old Aristocratic Zamindari Palace',
+        capacity: '400 – 1,000 guests',
+        priceRange: '₹5 Lakh – ₹12 Lakh rental / Bespoke regal tariff',
+        highlights: 'Ancient Corinthian columns, grand courtyard pheras, traditional Dhunuchi and Shehnai welcome ceremonies.'
+      }
+    ],
+    tips: ['November to February is the most pleasant winter wedding season in Kolkata.']
   }
 };
+
+const { expandSearchQuery } = require('../utils/searchHelper');
 
 // Generates an intelligent, comprehensive, human-like response when OpenAI API has quota issues
 function generateIntelligentContextualReply(prompt, history = []) {
@@ -98,19 +155,20 @@ function generateIntelligentContextualReply(prompt, history = []) {
   // Combine query with recent history to understand ongoing context
   const fullContext = history.map(h => (h.content || '')).join(' ').toLowerCase() + ' ' + query;
 
-  // 1. Detect City
+  // 1. Detect City with Smart Alias Matcher
   let detectedCityKey = null;
-  if (fullContext.includes('bangalore') || fullContext.includes('bengaluru')) detectedCityKey = 'bangalore';
-  else if (fullContext.includes('mumbai') || fullContext.includes('bombay')) detectedCityKey = 'mumbai';
-  else if (fullContext.includes('jaipur') || fullContext.includes('rajasthan')) detectedCityKey = 'jaipur';
-  else if (fullContext.includes('udaipur')) detectedCityKey = 'udaipur';
-  else if (fullContext.includes('delhi') || fullContext.includes('ncr') || fullContext.includes('gurgaon') || fullContext.includes('noida')) detectedCityKey = 'delhi';
-  else if (fullContext.includes('ahmedabad') || fullContext.includes('gujarat')) detectedCityKey = 'ahmedabad';
-  else if (fullContext.includes('goa')) detectedCityKey = 'goa';
-  else if (fullContext.includes('hyderabad')) detectedCityKey = 'hyderabad';
-  else if (fullContext.includes('chennai')) detectedCityKey = 'chennai';
-  else if (fullContext.includes('kolkata')) detectedCityKey = 'kolkata';
-  else if (fullContext.includes('pune')) detectedCityKey = 'pune';
+  const expansion = expandSearchQuery(fullContext);
+
+  if (expansion.matchedCities.includes('Tumkur')) detectedCityKey = 'tumkur';
+  else if (expansion.matchedCities.includes('Bangalore')) detectedCityKey = 'bangalore';
+  else if (expansion.matchedCities.includes('Kolkata')) detectedCityKey = 'kolkata';
+  else if (expansion.matchedCities.includes('Mumbai')) detectedCityKey = 'mumbai';
+  else if (expansion.matchedCities.includes('New Delhi')) detectedCityKey = 'delhi';
+  else if (expansion.matchedCities.includes('Jaipur')) detectedCityKey = 'jaipur';
+  else if (expansion.matchedCities.includes('Ahmedabad')) detectedCityKey = 'ahmedabad';
+  else if (expansion.matchedCities.includes('Goa')) detectedCityKey = 'goa';
+  else if (expansion.matchedCities.includes('Udaipur')) detectedCityKey = 'udaipur';
+  else if (expansion.matchedCities.includes('Mathura')) detectedCityKey = 'mathura';
 
   // 2. Detect Intent: Venues
   const isVenueQuery = query.includes('venue') || query.includes('marriage') || query.includes('wedding') || query.includes('hall') || query.includes('place') || query.includes('lawn') || query.includes('palace') || query.includes('resort') || query.includes('ground') || query.includes('where to');
