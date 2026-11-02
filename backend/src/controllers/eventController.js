@@ -1,5 +1,18 @@
 const store = require('../data/inMemoryStore');
 
+// Helper to normalize Indian city aliases
+const normalizeCity = (c) => {
+  if (!c) return '';
+  const s = c.toLowerCase().trim();
+  if (s === 'bangalore' || s === 'bengaluru') return 'bengaluru';
+  if (s === 'delhi' || s === 'new delhi') return 'delhi';
+  if (s === 'mumbai' || s === 'bombay') return 'mumbai';
+  if (s === 'kolkata' || s === 'calcutta') return 'kolkata';
+  if (s === 'chennai' || s === 'madras') return 'chennai';
+  if (s === 'gurgaon' || s === 'gurugram') return 'gurgaon';
+  return s;
+};
+
 exports.getAllEvents = async (req, res) => {
   try {
     let events = store.getEvents();
@@ -17,7 +30,13 @@ exports.getAllEvents = async (req, res) => {
     }
 
     if (city && city !== 'All') {
-      events = events.filter(e => e.city.toLowerCase() === city.toLowerCase());
+      const targetNorm = normalizeCity(city);
+      events = events.filter(e => {
+        const eventNorm = normalizeCity(e.city);
+        return eventNorm === targetNorm || 
+               e.city.toLowerCase().includes(city.toLowerCase()) || 
+               city.toLowerCase().includes(e.city.toLowerCase());
+      });
     }
 
     if (search) {
@@ -27,7 +46,8 @@ exports.getAllEvents = async (req, res) => {
         (e.tagline && e.tagline.toLowerCase().includes(q)) ||
         e.description.toLowerCase().includes(q) ||
         e.venueName.toLowerCase().includes(q) ||
-        e.city.toLowerCase().includes(q)
+        e.city.toLowerCase().includes(q) ||
+        (e.category && e.category.toLowerCase().includes(q))
       );
     }
 

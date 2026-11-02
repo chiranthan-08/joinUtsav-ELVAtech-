@@ -43,6 +43,8 @@ export const Home = () => {
     { name: 'Wedding', icon: '💍' },
     { name: 'Cultural Program', icon: '🪘' },
     { name: 'College Fest', icon: '🎸' },
+    { name: 'Concert', icon: '🎤' },
+    { name: 'Birthday', icon: '🎂' },
     { name: 'Religious', icon: '🌸' },
     { name: 'Corporate', icon: '🥂' }
   ];

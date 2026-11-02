@@ -13,8 +13,8 @@ export const ExploreEvents = () => {
   const [city, setCity] = useState(searchParams.get('city') || 'All');
   const [search, setSearch] = useState(searchParams.get('search') || '');
 
-  const categories = ['All', 'Wedding', 'Cultural Program', 'College Fest', 'Religious', 'Corporate', 'Concert', 'Birthday'];
-  const cities = ['All', 'Jaipur', 'Ahmedabad', 'Mumbai', 'Mathura', 'Bengaluru', 'New Delhi', 'Udaipur'];
+  const categories = ['All', 'Wedding', 'Cultural Program', 'College Fest', 'Concert', 'Birthday', 'Religious', 'Corporate'];
+  const cities = ['All', 'Bangalore', 'Mumbai', 'New Delhi', 'Jaipur', 'Ahmedabad', 'Goa', 'Kolkata', 'Udaipur', 'Mathura'];
 
   const fetchEvents = async () => {
     setLoading(true);
@@ -56,7 +56,7 @@ export const ExploreEvents = () => {
         </div>
         <h1 className="text-3xl font-bold text-white font-serif">Explore Events</h1>
         <p className="text-sm text-slate-400 mt-1">
-          Search across royal wedding expos, dandiya nights, college youth carnivals, and cultural festivals across India.
+          Search across royal wedding expos, live concerts, birthday galas, dandiya nights, college youth carnivals, and cultural festivals across India.
         </p>
       </div>
 
@@ -110,11 +110,11 @@ export const ExploreEvents = () => {
         <div className="flex items-center justify-between pt-2 border-t border-slate-800/60 flex-wrap gap-2 text-xs">
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
             <span className="text-slate-400 font-medium">Quick Pick:</span>
-            {categories.slice(1, 6).map((c) => (
+            {categories.slice(1).map((c) => (
               <button
                 key={c}
                 onClick={() => setCategory(c)}
-                className={`px-2.5 py-1 rounded-lg transition-colors ${
+                className={`px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${
                   category === c
                     ? 'bg-saffron-500/20 text-saffron-300 border border-saffron-500/30 font-semibold'
                     : 'text-slate-400 hover:text-white bg-slate-950/60'
@@ -128,7 +128,7 @@ export const ExploreEvents = () => {
           {(category !== 'All' || city !== 'All' || search) && (
             <button
               onClick={resetFilters}
-              className="text-slate-400 hover:text-rose-400 flex items-center gap-1 transition-colors font-medium"
+              className="text-slate-400 hover:text-rose-400 flex items-center gap-1 transition-colors font-medium ml-auto"
             >
               <X className="w-3.5 h-3.5" />
               Reset Filters

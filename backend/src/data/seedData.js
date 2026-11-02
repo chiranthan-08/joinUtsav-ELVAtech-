@@ -355,8 +355,8 @@ const getSeedData = () => {
       endDate: '2026-12-25',
       endTime: '10:30 PM',
       venueName: 'Jaymahal Palace Lawns',
-      venueAddress: 'Near Cantonment Railway Station, Bengaluru, Karnataka',
-      city: 'Bengaluru',
+      venueAddress: 'Near Cantonment Railway Station, Jayamahal, Bengaluru 560046',
+      city: 'Bangalore',
       state: 'Karnataka',
       organizerId: 'usr_organizer_02',
       organizerName: 'Aamchi Mumbai Utsav Mandali',
@@ -400,6 +400,513 @@ const getSeedData = () => {
       totalCapacity: 1500,
       viewsCount: 1890,
       createdAt: '2026-10-20T16:00:00Z'
+    },
+    // --- NEW DIVERSE CELEBRATIONS ACROSS ALL CATEGORIES ---
+    {
+      _id: 'evt_06',
+      title: 'Arijit Singh Symphony & Bollywood Pro-Nite Live 2026',
+      tagline: 'Live 60-Piece Grand Symphony & Bollywood Melodies Under the Stars',
+      description: 'Experience an unforgettable musical evening in the Silicon Valley of India! The King of Romance, Arijit Singh, accompanied by a 60-piece international symphony orchestra performing his timeless chartbusters. Multi-tiered stadium seating, world-class acoustic engineering, and synchronized wristband light displays.',
+      category: 'Concert',
+      date: '2026-12-12',
+      time: '06:30 PM',
+      endDate: '2026-12-12',
+      endTime: '11:00 PM',
+      venueName: 'Palace Grounds, Gayathri Vihar',
+      venueAddress: 'Bellary Road, Near Sadashivanagar, Bangalore, Karnataka 560080',
+      city: 'Bangalore',
+      state: 'Karnataka',
+      organizerId: 'usr_organizer_02',
+      organizerName: 'Aamchi Mumbai Utsav Mandali',
+      organizerEmail: 'organizer@mumbaiculture.in',
+      bannerUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_concert_silver',
+          name: 'Silver Grandstand Pass',
+          price: 999,
+          totalSeats: 3000,
+          bookedSeats: 1820,
+          description: 'Tiered bleacher seating with direct view of main stage and LED audio towers',
+          perks: ['Grandstand Access', 'LED Glow Wristband', 'Food Court Access']
+        },
+        {
+          id: 'tier_concert_gold',
+          name: 'Gold Fan Pit',
+          price: 2499,
+          totalSeats: 1000,
+          bookedSeats: 740,
+          description: 'Standing arena directly in front of main stage thrust for hardcore music enthusiasts',
+          perks: ['Front Fan Pit Access', 'Dedicated Fast-Track QR Lane', 'Concert Tour Lanyard']
+        },
+        {
+          id: 'tier_concert_vip',
+          name: 'Royal VIP Lounge with Hospitality',
+          price: 5499,
+          totalSeats: 250,
+          bookedSeats: 190,
+          description: 'Elevated luxury deck with plush lounge seating, unlimited premium catering buffet and bar service',
+          perks: ['Elevated Private Deck', 'Unlimited Gourmet Food & Beverages', 'VIP Valet Parking', 'Artist Meet & Greet Raffle']
+        }
+      ],
+      dressCode: 'Concert Chic / Glam Casuals',
+      highlights: [
+        '60-Piece Live International Classical & Bollywood Symphony Orchestra',
+        'State-of-the-Art L-Acoustics K1 Stadium Sound System',
+        'Over 3 Hours of Non-stop Soul-stirring Melodies',
+        'Over 50 Curated Food & Beverage Counters'
+      ],
+      schedule: [
+        { time: '05:00 PM', activity: 'Gate Opening & QR Fast-Scan', description: 'Attendees scan digital QR tickets at designated lanes.' },
+        { time: '06:30 PM', activity: 'Opening Acoustic Fusion Set', description: 'Showcase by rising indie folk and classical sitar-fusion artists.' },
+        { time: '07:45 PM', activity: 'Arijit Singh & Symphony Grand Entry', description: 'Massive opening sequence featuring full 60-piece orchestra.' },
+        { time: '10:45 PM', activity: 'Grand Finale & Confetti Shower', description: 'Spectacular fireworks and laser display closing the musical night.' }
+      ],
+      status: 'approved',
+      isFeatured: true,
+      totalCapacity: 5000,
+      viewsCount: 6800,
+      createdAt: '2026-10-22T10:00:00Z'
+    },
+    {
+      _id: 'evt_07',
+      title: 'Sunburn Arena Goa Sunset Beach Bash 2026',
+      tagline: 'Asia’s Biggest Open-Air Beach EDM & Sunset Electronic Music Festival',
+      description: 'Dance on the sun-kissed sands of Vagator as world-renowned DJs spin high-octane electronic, progressive house, and trance tracks. Experience massive kinetic stage designs, flame projectors, laser visual shows, and beachside bohemian flea markets.',
+      category: 'Concert',
+      date: '2026-12-28',
+      time: '04:00 PM',
+      endDate: '2026-12-29',
+      endTime: '02:00 AM',
+      venueName: 'Vagator Hilltop Beach Arena',
+      venueAddress: 'Ozran Beach Road, Vagator, Goa 403509',
+      city: 'Goa',
+      state: 'Goa',
+      organizerId: 'usr_organizer_03',
+      organizerName: 'IIT Fest Council & Youth Wing',
+      organizerEmail: 'fest@iitb.ac.in',
+      bannerUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_goa_early',
+          name: 'Sunburn Beach Pass',
+          price: 1499,
+          totalSeats: 2500,
+          bookedSeats: 1420,
+          description: 'Full day access to beach dance arena, sunset chill-out zone, and food court',
+          perks: ['Beach Arena Access', 'Welcome Beer/Mocktail', 'Eco Wristband']
+        },
+        {
+          id: 'tier_goa_vip',
+          name: 'VIP Shaded Cabana Deck',
+          price: 3499,
+          totalSeats: 300,
+          bookedSeats: 240,
+          description: 'Elevated wooden deck overlooking the Arabian Sea sunset with private bar service and air-cooled cabanas',
+          perks: ['Private Cabana Table', 'Finger Foods Tasting Platter', 'Express QR Check-in', 'Private Restrooms']
+        }
+      ],
+      dressCode: 'Beach Bohemian / Tropical Festival Fits',
+      highlights: [
+        'Top Global & Indian EDM Headliners',
+        'Epic Sunset over the Arabian Sea with Fire Dancers',
+        'Water Sports & Sunset Volleyball Courts',
+        'Beach BBQ and Cocktail Shacks'
+      ],
+      schedule: [
+        { time: '04:00 PM', activity: 'Sundowner Deep House Set', description: 'Relaxed grooves as the golden hour sun sets into the sea.' },
+        { time: '07:00 PM', activity: 'Bass & Pyro Stage Activation', description: 'High tempo electronic and bass drops with flame throwers.' },
+        { time: '09:30 PM', activity: 'International Headliner Main Act', description: 'Spectacular 2-hour headline set with synchronized laser beams.' }
+      ],
+      status: 'approved',
+      isFeatured: true,
+      totalCapacity: 3000,
+      viewsCount: 4100,
+      createdAt: '2026-10-24T12:00:00Z'
+    },
+    {
+      _id: 'evt_08',
+      title: 'Royal Rajwada 50th Golden Jubilee Birthday & Shahi Dawat',
+      tagline: 'Regal Rajasthani Birthday Celebration with Ghazals, Royal Darbar & 56-Bhog',
+      description: 'Celebrate a milestone 50th birthday fit for an emperor! Set in a frescoed heritage courtyard with traditional Nagada salutations, personalized turban tying for all guests, a mesmerizing live evening of Mehdi Hassan ghazals, and an elaborate candlelit royal dinner.',
+      category: 'Birthday',
+      date: '2026-12-08',
+      time: '06:30 PM',
+      endDate: '2026-12-08',
+      endTime: '11:45 PM',
+      venueName: 'Chomu Palace Heritage Courtyard',
+      venueAddress: 'Chomu Fort, Sikar Road, Jaipur, Rajasthan 303702',
+      city: 'Jaipur',
+      state: 'Rajasthan',
+      organizerId: 'usr_organizer_01',
+      organizerName: 'Royal Rajputana Weddings & Events',
+      organizerEmail: 'organizer@jaipurfest.com',
+      bannerUrl: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_bday_guest',
+          name: 'Shahi Birthday Guest Pass',
+          price: 999,
+          totalSeats: 200,
+          bookedSeats: 110,
+          description: 'Includes royal garland greeting, Ghazal recital seating, and full 5-course banquet',
+          perks: ['Ghazal Evening Access', 'Royal Rajasthani Buffet', 'Celebration Cake Slice', 'Custom Souvenir']
+        },
+        {
+          id: 'tier_bday_family',
+          name: 'Kutumb Family Table (4 Guests)',
+          price: 3499,
+          totalSeats: 30,
+          bookedSeats: 22,
+          description: 'Reserved family round table with dedicated royal butler service and personalized silver gift memento',
+          perks: ['Reserved Front Table', 'Personalized Butler Service', 'Silver Memento Box', 'Valet Parking']
+        }
+      ],
+      dressCode: 'Royal Indian Ethnic (Bandhgala, Kurta-Churidar, Silk Sarees)',
+      highlights: [
+        'Live Ghazal & Sufi Ensemble under illuminated palace arches',
+        'Spectacular 5-tier Royal Pistachio & Saffron Celebration Cake',
+        'Traditional Aarti & Marwar Turban tying ceremony for all attendees',
+        'Authentic 56-Bhog Royal Thali banquet'
+      ],
+      schedule: [
+        { time: '06:30 PM', activity: 'Shahi Swagat & Turban Tying', description: 'Guests welcomed with rose water sprinkling and Bandhani safas.' },
+        { time: '07:30 PM', activity: 'Ghazal Mehfil & Family Tributes', description: 'Soulful live ghazals and nostalgic family audiovisual journey.' },
+        { time: '09:00 PM', activity: 'Royal Cake Cutting & Fireworks', description: 'Sparklers and celebratory toasts in the central courtyard.' },
+        { time: '09:30 PM', activity: 'Shahi Dawat Banquet Opens', description: 'Authentic Daal Baati Churma, Ker Sangri, and royal halwas.' }
+      ],
+      status: 'approved',
+      isFeatured: false,
+      totalCapacity: 350,
+      viewsCount: 1540,
+      createdAt: '2026-10-25T11:00:00Z'
+    },
+    {
+      _id: 'evt_09',
+      title: 'Neon Glow Sky-Lounge 18th Milestone Birthday Bash',
+      tagline: 'Electrifying Neon Light Party with Celebrity DJ, Mocktail Bar & Photobooth',
+      description: 'The ultimate coming-of-age celebration! A rooftop high-energy party drenched in blacklight UV neon glows, glow-in-the-dark face artists, unlimited gourmet sliders & woodfired pizzas, and live mixes by Mumbai’s favorite club DJs.',
+      category: 'Birthday',
+      date: '2026-12-19',
+      time: '07:00 PM',
+      endDate: '2026-12-20',
+      endTime: '01:00 AM',
+      venueName: 'Skyline Rooftop Club & Lounge',
+      venueAddress: 'Dr. Annie Besant Road, Worli, Mumbai 400018',
+      city: 'Mumbai',
+      state: 'Maharashtra',
+      organizerId: 'usr_organizer_02',
+      organizerName: 'Aamchi Mumbai Utsav Mandali',
+      organizerEmail: 'organizer@mumbaiculture.in',
+      bannerUrl: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_neon_party',
+          name: 'Neon Party Pass',
+          price: 799,
+          totalSeats: 300,
+          bookedSeats: 195,
+          description: 'Includes neon glow accessories, UV body painting, mocktail coupon, and open dance floor',
+          perks: ['Glow Kit & Glasses', '2 Signature Mocktails', 'Dance Floor Access']
+        },
+        {
+          id: 'tier_neon_vip',
+          name: 'VIP Rooftop Cabana (Group of 5)',
+          price: 3499,
+          totalSeats: 25,
+          bookedSeats: 18,
+          description: 'Private shaded rooftop cabana with dedicated server, chef snack platters, and 360-degree skyline views',
+          perks: ['Private Cabana Seating', 'Gourmet Tapas Platter', 'Priority DJ Song Requests', 'Fast-Track QR Entry']
+        }
+      ],
+      dressCode: 'Neon Brights / White (Glows under Blacklight)',
+      highlights: [
+        'Live UV Blacklight Art Studio for face and wrist designs',
+        'Resident Celebrity Club DJ spinning Hip-Hop, Pop & Bollywood Remixes',
+        'Custom 360-Degree Video Photobooth for TikTok & Instagram reels',
+        'Unlimited Mocktail Smoke Bar and Dessert Fondue Fountain'
+      ],
+      schedule: [
+        { time: '07:00 PM', activity: 'Glow Station Open & Mocktails', description: 'Guests get custom neon paint and glow bands upon arrival.' },
+        { time: '08:30 PM', activity: 'Grand Cake Reveal & Lightshow', description: 'Illuminated neon birthday cake cutting with cold sparkler fountains.' },
+        { time: '09:00 PM', activity: 'DJ Club Set & Open Dance Floor', description: 'High tempo party hits on the open-air rooftop deck.' }
+      ],
+      status: 'approved',
+      isFeatured: false,
+      totalCapacity: 450,
+      viewsCount: 2300,
+      createdAt: '2026-10-26T14:00:00Z'
+    },
+    {
+      _id: 'evt_10',
+      title: 'South Indian Sacred Kalyana Mandapam & Bridal Showcase',
+      tagline: 'Traditional Nadaswaram, Kanjivaram Bridal Runway & Authentic Elai Sappadu Feast',
+      description: 'Immerse yourself in timeless Dravidian wedding heritage! Featuring master Nadaswaram and Thavil artists from Thanjavur, authentic handwoven Kanjivaram silk bridal showcases, sacred floral Mandap inspirations crafted from jasmine and banana leaves, and an authentic 24-item traditional plantain leaf banquet.',
+      category: 'Wedding',
+      date: '2026-12-21',
+      time: '08:00 AM',
+      endDate: '2026-12-21',
+      endTime: '04:00 PM',
+      venueName: 'The Tamarind Tree Courtyard',
+      venueAddress: 'Kanakapura Road, Avalahalli, Bangalore, Karnataka 560062',
+      city: 'Bangalore',
+      state: 'Karnataka',
+      organizerId: 'usr_organizer_01',
+      organizerName: 'Royal Rajputana Weddings & Events',
+      organizerEmail: 'organizer@jaipurfest.com',
+      bannerUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_kalyana_visitor',
+          name: 'General Exhibition Pass',
+          price: 0,
+          totalSeats: 500,
+          bookedSeats: 260,
+          description: 'Free entrance to bridal pavilions, wedding vendor stalls, and classical Nadaswaram concerts',
+          perks: ['Free Entry', 'Filter Coffee Welcome', 'Wedding Planning Directory']
+        },
+        {
+          id: 'tier_elai_sappadu',
+          name: 'Elai Sappadu Royal Feast Pass',
+          price: 899,
+          totalSeats: 300,
+          bookedSeats: 185,
+          description: 'Reserved traditional seated lunch banquet served on banana leaves with 24 authentic South Indian delicacies',
+          perks: ['Authentic 24-Item Sadhya/Elai Feast', 'Front Seating for Bridal Show', 'Gift Pack of Mysore Pak']
+        }
+      ],
+      dressCode: 'Traditional South Indian (Pattu Sarees, Silk Dhotis with Angavastram)',
+      highlights: [
+        'Live Temple Nadaswaram & Thavil Maestros from Tamil Nadu',
+        'Authentic 24-Dish Traditional Kalyana Sappadu on Banana Leaves',
+        'Exhibition of 40+ Certified Kanjivaram & Temple Jewellery Artisans',
+        'Live Temple Kolam & Fresh Jasmine Floral Mandap Workshops'
+      ],
+      schedule: [
+        { time: '08:00 AM', activity: 'Mangala Nadaswaram & Filter Coffee', description: 'Sacred morning musical awakening with piping hot Kumbakonam degree coffee.' },
+        { time: '10:00 AM', activity: 'Kanjivaram Silk & Gold Jewelry Runway', description: 'Showcasing heirloom bridal drapes and traditional Temple jewelry sets.' },
+        { time: '12:30 PM', activity: 'Royal Kalyana Elai Sappadu Banquet', description: 'Traditional plantain leaf feast featuring Bisibelebath, Avial, Payasam & Poli.' }
+      ],
+      status: 'approved',
+      isFeatured: true,
+      totalCapacity: 800,
+      viewsCount: 2900,
+      createdAt: '2026-10-27T09:00:00Z'
+    },
+    {
+      _id: 'evt_11',
+      title: 'Lakeside Royal Destination Wedding & Sufi Sangeet Night',
+      tagline: 'Romantic Lake Pichola Twilight Celebrations with Sufi Troupes & Candlelit Mandap',
+      description: 'Set against the shimmering waters of Lake Pichola with the illuminated City Palace as backdrop. Featuring arrival by illuminated royal barges, evening Sufi Qawwali night by renowned Nizami Brothers, and an unforgettable waterfront royal feast.',
+      category: 'Wedding',
+      date: '2026-12-22',
+      time: '05:00 PM',
+      endDate: '2026-12-23',
+      endTime: '01:00 AM',
+      venueName: 'Radisson Blu Waterfront Lawn',
+      venueAddress: 'Near Fateh Sagar Lake, Ambamata, Udaipur, Rajasthan 313001',
+      city: 'Udaipur',
+      state: 'Rajasthan',
+      organizerId: 'usr_organizer_01',
+      organizerName: 'Royal Rajputana Weddings & Events',
+      organizerEmail: 'organizer@jaipurfest.com',
+      bannerUrl: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_udaipur_sufi',
+          name: 'Lakeside Sufi Delegate Pass',
+          price: 1899,
+          totalSeats: 250,
+          bookedSeats: 160,
+          description: 'Includes royal barge transfer across the lake, Sufi mehfil front seating, and Mewari dinner banquet',
+          perks: ['Lake Boat Transfer', 'Live Sufi Mehfil', 'Mewari Royal Buffet', 'Welcome Garland']
+        }
+      ],
+      dressCode: 'Royal Destination Ethnic (Sherwanis, Anarkalis, Regal Bandhgalas)',
+      highlights: [
+        'Illuminated Royal Boat Transfer across Lake Pichola',
+        'Live Sufi Qawwali by Celebrated Nizami Troupe',
+        'Floating Diya Ceremony & Lakefront Pyrotechnics',
+        'Mewari Royal Culinary Feast'
+      ],
+      schedule: [
+        { time: '05:00 PM', activity: 'Sunset Royal Boat Procession', description: 'Baratis arrive via fairy-lit boats accompanied by live shehnai.' },
+        { time: '07:00 PM', activity: 'Lakefront Sufi Mehfil', description: 'Soulful acoustic Sufi musical poetry on the waterfront deck.' },
+        { time: '09:30 PM', activity: 'Mewari Royal Dinner Buffet', description: 'Gourmet Laal Maas, Dal Baati, and Ghevar dessert counters.' }
+      ],
+      status: 'approved',
+      isFeatured: false,
+      totalCapacity: 400,
+      viewsCount: 2100,
+      createdAt: '2026-10-28T15:00:00Z'
+    },
+    {
+      _id: 'evt_12',
+      title: 'Dilli Haat Grand Diwali Deepotsav & Craft Mela',
+      tagline: '100,000 Handcrafted Diyas, Terracotta Artisans & Chandni Chowk Food Street',
+      description: 'Delhi’s largest traditional Diwali carnival celebrating the victory of light! Over 200 master craftsmen from 18 states showcasing handcrafted earthen lamps, brass idols, Zari textiles, and handloom gifts. Savor authentic Old Delhi street food with live folk dance and puppet shows.',
+      category: 'Cultural Program',
+      date: '2026-11-12',
+      time: '11:00 AM',
+      endDate: '2026-11-14',
+      endTime: '10:00 PM',
+      venueName: 'Dilli Haat Open Amphitheater',
+      venueAddress: 'INA Colony, Kidwai Nagar West, New Delhi 110023',
+      city: 'New Delhi',
+      state: 'Delhi',
+      organizerId: 'usr_organizer_02',
+      organizerName: 'Aamchi Mumbai Utsav Mandali',
+      organizerEmail: 'organizer@mumbaiculture.in',
+      bannerUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_diwali_entry',
+          name: 'Festival Day Pass',
+          price: 150,
+          totalSeats: 3000,
+          bookedSeats: 1950,
+          description: 'Full day entrance to all craft stalls, folk performances, and Diwali light displays',
+          perks: ['General Admission', 'Set of 4 Handcrafted Terracotta Diyas', 'Flea Market Access']
+        },
+        {
+          id: 'tier_diwali_family',
+          name: 'Diwali Festive Hamper Pass (4 Guests)',
+          price: 750,
+          totalSeats: 400,
+          bookedSeats: 310,
+          description: 'Entrance for 4 family members plus exclusive artisan Diwali gift box with assorted dry fruits and brass diya',
+          perks: ['4x Entry Passes', 'Artisan Brass Diya & Sweets Box', 'Reserved Evening Concert Seating']
+        }
+      ],
+      dressCode: 'Bright Indian Festive Wear (Kurtas, Sarees, Dupattas)',
+      highlights: [
+        '100,000 Earthen Lamps lit synchronously at twilight',
+        '200+ Master Craftsmen from Rajasthan, Bengal, Kashmir & Gujarat',
+        'Authentic Chandni Chowk Jalebi, Rabdi & Dahi Bhalla food lane',
+        'Puppet Shows, Kalbelia Folk Dancers & Fire Acrobats'
+      ],
+      schedule: [
+        { time: '11:00 AM', activity: 'Craft Bazaar & Food Street Opens', description: 'Explore handloom stalls and savor regional snacks.' },
+        { time: '06:00 PM', activity: 'Maha Deepotsav Light-Up', description: 'Lighting of 100,000 diyas with live Vedic chants.' },
+        { time: '08:00 PM', activity: 'Sufi & Folk Music Showcase', description: 'Celebrated Rajasthani Manganiyar and Qawwali musical groups.' }
+      ],
+      status: 'approved',
+      isFeatured: false,
+      totalCapacity: 4000,
+      viewsCount: 3800,
+      createdAt: '2026-10-29T10:00:00Z'
+    },
+    {
+      _id: 'evt_13',
+      title: 'Durga Puja Dhunuchi Naach & Grand Maha Aarti Mahotsav',
+      tagline: 'Traditional Sindoor Khela, Ecstatic Dhaak Beats & Authentic Bengali Khichuri Bhog',
+      description: 'Experience the divine devotion and grand cultural fervor of Kolkata’s celebrated Durga Utsav! Featuring majestic hand-carved pandals, 108 lotus flower pushpanjali, mesmerizing Dhunuchi dance competitions with live Dhaakis, and traditional community Bhog.',
+      category: 'Cultural Program',
+      date: '2026-10-18',
+      time: '07:00 AM',
+      endDate: '2026-10-21',
+      endTime: '11:30 PM',
+      venueName: 'Salt Lake Stadium Central Lawns',
+      venueAddress: 'JB Block, Sector III, Bidhannagar, Kolkata, West Bengal 700098',
+      city: 'Kolkata',
+      state: 'West Bengal',
+      organizerId: 'usr_organizer_02',
+      organizerName: 'Aamchi Mumbai Utsav Mandali',
+      organizerEmail: 'organizer@mumbaiculture.in',
+      bannerUrl: 'https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_pandal_free',
+          name: 'General Pandal Darshan',
+          price: 0,
+          totalSeats: 5000,
+          bookedSeats: 3200,
+          description: 'Free visitor pass for Maa Durga Pandal Darshan and evening cultural stage shows',
+          perks: ['Free Entry', 'Pushpanjali Access', 'Cultural Shows']
+        },
+        {
+          id: 'tier_bhog_pass',
+          name: 'Maha Bhog & Aarti Pass',
+          price: 450,
+          totalSeats: 800,
+          bookedSeats: 620,
+          description: 'Includes consecrated traditional Khichuri, Labra, Chutney & Payesh Mahaprasad seated luncheon',
+          perks: ['Mahaprasad Bhog Luncheon', 'VIP Pushpanjali Lane', 'Rosogolla Box']
+        }
+      ],
+      dressCode: 'Traditional Bengali Attire (Red & White Garad Sarees, Kurta-Dhoti)',
+      highlights: [
+        'Mesmerizing Dhunuchi Dance Competition with 50+ Dhaakis',
+        'Consecrated Authentic Bengali Khichuri Bhog feast',
+        'Evening Rabindra Sangeet & Baul Folk Music concerts',
+        'Spectacular Eco-Friendly Idol Immersion Procession'
+      ],
+      schedule: [
+        { time: '07:00 AM', activity: 'Mahashtami Pushpanjali & Aarti', description: 'Offering of 108 lotuses and holy chants to Maa Durga.' },
+        { time: '01:00 PM', activity: 'Community Maha Bhog Distribution', description: 'Traditional sit-down feast served to all registered delegates.' },
+        { time: '06:30 PM', activity: 'Sandhya Aarti & Dhunuchi Naach Clash', description: 'High-energy clay pot incense dance accompanied by ecstatic dhaak rhythms.' }
+      ],
+      status: 'approved',
+      isFeatured: false,
+      totalCapacity: 6000,
+      viewsCount: 4700,
+      createdAt: '2026-10-30T11:00:00Z'
+    },
+    {
+      _id: 'evt_14',
+      title: 'India AI & Tech Founders Gala Night 2026',
+      tagline: 'High-Table Executive Dinner, Fireside Keynotes & Networking for 800+ Leaders',
+      description: 'The definitive annual conclave uniting India’s visionary startup founders, AI researchers, and tech pioneers in the Silicon Valley of Asia. An evening of intellectual fireside debates, 5-course gourmet dining, and private deal-room lounges.',
+      category: 'Corporate',
+      date: '2026-12-16',
+      time: '06:00 PM',
+      endDate: '2026-12-16',
+      endTime: '11:00 PM',
+      venueName: 'The Leela Palace Grand Ballroom',
+      venueAddress: 'Old Airport Road, Kodihalli, Bangalore, Karnataka 560008',
+      city: 'Bangalore',
+      state: 'Karnataka',
+      organizerId: 'usr_organizer_03',
+      organizerName: 'IIT Fest Council & Youth Wing',
+      organizerEmail: 'fest@iitb.ac.in',
+      bannerUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80',
+      ticketTiers: [
+        {
+          id: 'tier_founder_pass',
+          name: 'Founder Delegate Pass',
+          price: 2999,
+          totalSeats: 400,
+          bookedSeats: 280,
+          description: 'Full access to keynote stages, interactive AI debate panels, networking cocktails & 5-course dinner',
+          perks: ['Keynote & Panel Access', 'Cocktail Networking', 'Executive Dinner Banquet', 'Attendee Directory App']
+        },
+        {
+          id: 'tier_cxo_vip',
+          name: 'CXO & Investor Lounge Pass',
+          price: 6499,
+          totalSeats: 100,
+          bookedSeats: 82,
+          description: 'Private deal-making lounge with table service, pre-dinner investor roundtable, and valet parking',
+          perks: ['Private Investor Lounge', '1-on-1 Deal Rooms', 'Top-Shelf Dining', 'Dedicated Concierge']
+        }
+      ],
+      dressCode: 'Business Formal / Smart Executive Western',
+      highlights: [
+        'Keynote Panels with Top Unicorn Founders & AI Lab Directors',
+        'Gourmet 5-Course Plated Banquet by MasterChefs',
+        'Curated 1-on-1 Networking Deal Rooms',
+        'Annual UtsavMitra Tech Innovator Awards'
+      ],
+      schedule: [
+        { time: '06:00 PM', activity: 'Executive Registration & Cocktails', description: 'Fast QR badge pickup and networking over artisanal mocktails and hors d\'oeuvres.' },
+        { time: '07:15 PM', activity: 'Keynote Panel: The Future of Agentic AI', description: 'Fireside discussion with leading Indian AI founders.' },
+        { time: '08:45 PM', activity: 'Awards Presentation & High-Table Dinner', description: 'Honoring top innovators followed by multi-course plated dinner.' }
+      ],
+      status: 'approved',
+      isFeatured: false,
+      totalCapacity: 500,
+      viewsCount: 3200,
+      createdAt: '2026-10-31T14:00:00Z'
     }
   ];
 
@@ -423,7 +930,7 @@ const getSeedData = () => {
       paymentMethod: 'razorpay',
       razorpayPaymentId: 'pay_RZP_JaipurRoyal_8841',
       razorpayOrderId: 'order_ORD_JaipurRoyal_101',
-      qrCodeDataUrl: '', // Will be generated automatically
+      qrCodeDataUrl: '',
       attendanceStatus: 'checked_in',
       checkedInAt: '2026-11-02T11:30:00Z',
       checkedInBy: 'usr_organizer_01',
@@ -449,9 +956,9 @@ const getSeedData = () => {
       razorpayPaymentId: 'pay_RZP_Navratri_9923',
       razorpayOrderId: 'order_ORD_Navratri_202',
       qrCodeDataUrl: '',
-      attendanceStatus: 'pending',
-      checkedInAt: null,
-      checkedInBy: null,
+      attendanceStatus: 'checked_in',
+      checkedInAt: '2026-11-02T11:45:00Z',
+      checkedInBy: 'usr_organizer_02',
       createdAt: '2026-10-28T09:15:00Z'
     },
     {
@@ -478,6 +985,31 @@ const getSeedData = () => {
       checkedInAt: null,
       checkedInBy: null,
       createdAt: '2026-10-29T18:40:00Z'
+    },
+    {
+      _id: 'bkg_04',
+      passId: 'UM-PASS-6612',
+      eventId: 'evt_06',
+      eventTitle: 'Arijit Singh Symphony & Bollywood Pro-Nite Live 2026',
+      eventDate: '2026-12-12',
+      eventVenue: 'Palace Grounds, Gayathri Vihar, Bangalore',
+      userId: 'usr_user_01',
+      userName: 'Aarav Sharma',
+      userEmail: 'aarav.sharma@gmail.com',
+      userPhone: '+91 98765 11223',
+      ticketTier: 'Gold Fan Pit',
+      quantity: 2,
+      unitPrice: 2499,
+      totalAmount: 4998,
+      paymentStatus: 'paid',
+      paymentMethod: 'razorpay',
+      razorpayPaymentId: 'pay_RZP_Arijit_6612',
+      razorpayOrderId: 'order_ORD_Arijit_404',
+      qrCodeDataUrl: '',
+      attendanceStatus: 'pending',
+      checkedInAt: null,
+      checkedInBy: null,
+      createdAt: '2026-10-30T12:00:00Z'
     }
   ];
 
@@ -561,6 +1093,75 @@ const getSeedData = () => {
       rating: 4.7,
       reviewsCount: 112,
       description: 'Lutyens Delhi premier address for corporate galas, high-profile wedding receptions, and celebrity concerts with cutting-edge production facilities.',
+      inquiries: [],
+      status: 'available'
+    },
+    {
+      _id: 'ven_04',
+      name: 'The Tamarind Tree Heritage Courtyard & Lawns',
+      city: 'Bangalore',
+      state: 'Karnataka',
+      address: 'Kanakapura Road, Avalahalli, Bangalore, Karnataka 560062',
+      capacity: 1200,
+      pricePerDay: 480000,
+      type: 'Lawn / Resort',
+      amenities: ['Ancient Banyan Courtyard', 'Stone Open-Air Amphitheater', 'Heritage Pavilions', 'Bridal Suite', 'Natural Pond', 'Green Rooms'],
+      images: [
+        'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80',
+        'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80'
+      ],
+      contactPerson: 'Meenakshi Sundaram',
+      contactPhone: '+91 98450 11998',
+      contactEmail: 'events@tamarindtree.in',
+      rating: 4.9,
+      reviewsCount: 145,
+      description: 'Enchanting Bangalore heritage venue with majestic trees, traditional stone mandaps, and serene lotus ponds perfect for South Indian and destination weddings.',
+      inquiries: [],
+      status: 'available'
+    },
+    {
+      _id: 'ven_05',
+      name: 'The Leela Palace Grand Ballroom & Royal Gardens',
+      city: 'Bangalore',
+      state: 'Karnataka',
+      address: '23, HAL Old Airport Rd, Kodihalli, Bengaluru, Karnataka 560008',
+      capacity: 900,
+      pricePerDay: 650000,
+      type: 'Palace / Heritage',
+      amenities: ['Vijayanagara Empire Inspired Architecture', 'Grand Crystal Ballroom', 'Outdoor Cascading Waterfalls', 'Michelin-Class Catering', 'Luxury Royal Suites', 'Valet Parking for 500 Cars'],
+      images: [
+        'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80',
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80'
+      ],
+      contactPerson: 'Kavitha Ramesh',
+      contactPhone: '+91 98800 24680',
+      contactEmail: 'weddings.bangalore@theleela.com',
+      rating: 5.0,
+      reviewsCount: 198,
+      description: 'Opulent palace hotel inspired by the grandeur of the Vijayanagara dynasty with ornate arches, gold leaf ceilings, and lush manicured gardens.',
+      inquiries: [],
+      status: 'available'
+    },
+    {
+      _id: 'ven_06',
+      name: 'Palace Grounds Princess Shrine & Regal Lawns',
+      city: 'Bangalore',
+      state: 'Karnataka',
+      address: 'Bellary Road, Jayamahal, Bengaluru, Karnataka 560006',
+      capacity: 3500,
+      pricePerDay: 750000,
+      type: 'Lawn / Resort',
+      amenities: ['Mega 40,000 sq.ft Open Lawn', 'Pillarless Covered German Hangar', 'Ample Parking for 1500 Vehicles', 'Royal Tudor-style Facade', 'Separate Dining Pavilions'],
+      images: [
+        'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+        'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80'
+      ],
+      contactPerson: 'Vinay Kumar',
+      contactPhone: '+91 98440 99112',
+      contactEmail: 'princessshrine@palacegrounds.com',
+      rating: 4.8,
+      reviewsCount: 220,
+      description: 'Iconic Bangalore venue renowned for mega wedding receptions, cultural carnivals, and live concerts surrounded by historic royal trees.',
       inquiries: [],
       status: 'available'
     }
@@ -659,4 +1260,3 @@ const getSeedData = () => {
 };
 
 module.exports = { getSeedData };
-
