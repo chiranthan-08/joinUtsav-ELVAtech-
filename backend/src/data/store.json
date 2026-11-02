@@ -722,6 +722,22 @@
   ],
   "invitations": [
     {
+      "_id": "inv_1793621348531qodk",
+      "slug": "aarav-priya-s-royal-sangeet-497",
+      "rsvpList": [],
+      "createdAt": "2026-11-02T12:09:08.531Z",
+      "title": "Aarav & Priya’s Royal Sangeet",
+      "hostName": "The Sharma & Patel Families",
+      "eventType": "Wedding & Sangeet",
+      "eventDate": "2026-11-28",
+      "eventTime": "06:30 PM onwards",
+      "venue": "Chomu Palace Heritage Courtyard, Jaipur",
+      "theme": "royal-marigold",
+      "coverImage": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+      "customMessage": "Together with our families, we joyfully invite you to celebrate music, dance, and love.",
+      "createdBy": "usr_1793620533441tpll"
+    },
+    {
       "_id": "inv_01",
       "title": "Aarav & Priya’s Shahi Sangeet Celebration",
       "hostName": "The Sharma & Patel Families",
@@ -758,6 +774,18 @@
     }
   ],
   "auditLogs": [
+    {
+      "_id": "aud_1793621348545hm7",
+      "actorId": "usr_1793620533441tpll",
+      "actorName": "Chiranthan siddu K S",
+      "actorRole": "user",
+      "action": "INVITATION_CREATED",
+      "targetType": "INVITATION",
+      "targetId": "inv_1793621348531qodk",
+      "details": "Created e-invite: Aarav & Priya’s Royal Sangeet",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-02T12:09:08.546Z"
+    },
     {
       "_id": "aud_17936205334440r5",
       "actorId": "usr_1793620533441tpll",

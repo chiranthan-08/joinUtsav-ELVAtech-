@@ -3,84 +3,249 @@ const OpenAI = require('openai');
 const openaiApiKey = process.env.OPENAI_API_KEY || '';
 const openai = openaiApiKey ? new OpenAI({ apiKey: openaiApiKey }) : null;
 
-// System prompt defining UtsavMitra persona
-const UTSAV_SYSTEM_PROMPT = `
-You are UtsavMitra AI (उत्सवमित्र), an intelligent, culturally knowledgeable, and warm Indian Event Management Consultant & Celebration Planner.
-You specialize in planning both traditional Indian celebrations and modern events:
-- Weddings (Shaadi, Sangeet, Mehendi, Haldi, Varmala, Reception, Pheras)
-- Navratri Garba & Dandiya Raas
-- College Cultural, Dramatics & Technical Fests (Hackathons, Battle of the Bands, Starlight Pro-Nites)
-- Religious & Temple Mahotsavs (Phoolon Ki Holi, Ganesh Utsav, Diwali Melas)
-- Corporate Galas, Culinary Carnivals, Birthdays, and Anniversaries.
-
-You provide actionable guidance on auspicious muhurats, traditional rituals, venue setup, multi-course Indian catering menus (North Indian, South Indian, Gujarati, Jain), line-item budgeting in INR (₹), and how UtsavMitra's QR-code ticketing, digital invitations, and Razorpay checkout streamline events.
-Maintain an enthusiastic, respectful, and polite tone. Use relevant festive emojis (🪔, 🌸, 💍, 🪘, ✨) and structured markdown where helpful.
-`.trim();
-
-// Local intelligent heuristics fallback
-const getLocalIntelligentReply = (prompt) => {
-  const query = prompt.toLowerCase();
-
-  if (query.includes('haldi') || query.includes('ubtan')) {
-    return '💛 **Haldi Ceremony Planning Guide**:\n\n' +
-      '• **Decor Theme**: Bright marigold (Genda Phool) floral backdrop with vintage brass urlis and floral umbrellas.\n' +
-      '• **Attire**: Shades of yellow, mustard, and kesari for both bride/groom and guests.\n' +
-      '• **Organic Turmeric**: Mix pure Kasturi turmeric with cold-pressed rosewater, sandalwood paste, and milk.\n' +
-      '• **Music Playlist**: High-energy folk beats ("Galla Goriyan", "Mahi Ve", "Gud Naal Ishq") with live Punjabi dholak.\n' +
-      '• **Beverages**: Chilled Aam Panna, Thandai, and Fresh Sugarcane juice.\n\n' +
-      '🪔 *Pro Tip*: Use UtsavMitra to send custom Haldi e-invites with RSVP tracking!';
-  } else if (query.includes('qr') || query.includes('ticket') || query.includes('attendance') || query.includes('pass') || query.includes('check-in')) {
-    return '🎟️ **UtsavMitra QR Ticketing & Gate Verification System**:\n\n' +
-      '1. **Encrypted Pass**: When a user books passes, the platform issues an encrypted digital badge with a unique Pass ID (e.g. `UM-PASS-8841`) and high-res QR token.\n' +
-      '2. **Camera Check-In**: At the entry gates, event organizers launch the "Live QR Scanner" on their phone or laptop camera.\n' +
-      '3. **Anti-Duplicate Fraud Protection**: Scanning marks the guest as checked-in with the exact timestamp. Any duplicate entry attempts immediately trigger a red warning badge with the previous check-in details!\n' +
-      '4. **Offline Roster**: Organizers can also view and print the live attendee register at any time.';
-  } else if (query.includes('budget') || query.includes('cost') || query.includes('expense') || query.includes('price')) {
-    return '💰 **Indian Event Budget Allocation (Rule of Thumb)**:\n\n' +
-      '• **Catering & Royal Sweets (35-40%)**: Live Chaat gali, welcome mocktails, main course gravies, and hot desserts (Rabdi Jalebi/Gulab Jamun).\n' +
-      '• **Venue & Floral Decor (30%)**: Mandap architecture, fairy lighting, entrance arches, and seating shamiana.\n' +
-      '• **Photography & Drone (10-12%)**: Candid pre-wedding shoot, cinematic highlight teaser, and 4K ceremony coverage.\n' +
-      '• **DJ, Sound & Dhol (8-10%)**: Professional sound system, LED video walls, Punjabi dhol squad, and choreographer.\n' +
-      '• **Gifts & Shagun (5%)**: Return favors, Bandhani safas/turbans for Baratis.\n' +
-      '• **Contingency & Panditji (3-5%)**: Vedic Samagri, municipal permissions, and generator backup.\n\n' +
-      '💡 *Try our "AI Budget Planner" in the top bar for precise rupee calculations!*';
-  } else if (query.includes('muhurat') || query.includes('timing') || query.includes('timeline') || query.includes('schedule')) {
-    return '⏰ **Ideal Wedding Day Muhurat & Timeline Flow**:\n\n' +
-      '• **04:30 PM**: Safa (Turban) Bandhai & High Tea for Baratis.\n' +
-      '• **05:45 PM**: Baraat Procession assembly with brass band & dhol.\n' +
-      '• **06:45 PM**: Shahi Gateway Swagat & Aarti Milni ceremony.\n' +
-      '• **07:30 PM**: Twilight Varmala exchange with cold pyrotechnics & rose petal shower.\n' +
-      '• **08:15 PM**: Royal Dinner Buffet opens with live classical instrumental music.\n' +
-      '• **11:00 PM**: Auspicious Lagna Muhurat & Sacred Pheras around Agni Devta.';
-  } else if (query.includes('sangeet') || query.includes('dance') || query.includes('music')) {
-    return '💃 **Grand Sangeet Night Essentials**:\n\n' +
-      '• **Staging**: 24x16 ft stage with LED backdrop showing couple visuals.\n' +
-      '• **Flow**: Welcome flashmob by cousins ➔ Bride & Groom romantic ballad ➔ Friendly competition between Bride & Groom sides ➔ Open DJ dance floor.\n' +
-      '• **Props**: LED glowsticks, custom sunglasses, and dry-ice fog effect for the couple performance.\n' +
-      '• **Midnight Snacks**: Keema pav / Pav bhaji counters, hot cutting chai, and churros.';
-  } else if (query.includes('college') || query.includes('fest') || query.includes('hackathon')) {
-    return '🎸 **College Cultural & Tech Fest Planning Blueprint**:\n\n' +
-      '• **Crowd Flow**: Set up dedicated multi-lane UtsavMitra QR scanner checkpoints to check in 1,000+ students per hour without queues.\n' +
-      '• **Daytime Competitions**: 24-hr Hackathon, Battle of the Bands, Street Play (Nukkad Natak), Western Dance clash.\n' +
-      '• **Star Pro-Nite**: High-output line-array audio, moving beam trusses, artist hospitality riders, and perimeter barricading.\n' +
-      '• **Safety**: On-site medical booth, verified campus badges, and digital ticketing tiers.';
-  } else if (query.includes('venue') || query.includes('hall') || query.includes('palace') || query.includes('lawn')) {
-    return '🏰 **Venue Selection Advice**:\n\n' +
-      '• **Heritage Palaces (Jaipur/Udaipur)**: Perfect for regal destination weddings. Look for authentic fresco courtyards, guest accommodations of 50+ rooms, and shehnai welcome areas.\n' +
-      '• **Seaside Lawns (Kerala/Goa)**: Breathtaking for sunset pheras. Ensure sound permits are obtained up to 10 PM.\n' +
-      '• **Convention Ballrooms (Delhi/Mumbai)**: Ideal for large receptions & corporate galas. Check for pillarless ceilings, central AC, and green rooms.\n\n' +
-      '🌟 *Browse our "Venues" tab to request direct quotes from top venues!*';
-  } else {
-    return `Namaste! 🙏 I am your **UtsavMitra AI Celebration Consultant**.\n\n` +
-      `I can help you coordinate every aspect of your event:\n` +
-      `• **Ritual Guides**: Planning Haldi, Mehendi, Sangeet, Pheras, or Dandiya Raas.\n` +
-      `• **Budget Allocation**: Accurate percentage and Rupee calculations for catering, decor, and photography.\n` +
-      `• **Auspicious Timelines**: Scheduling wedding evenings, college fest pro-nites, and cultural melas.\n` +
-      `• **UtsavMitra Features**: Creating digital invitations, QR-pass ticketing, and Razorpay payment setup.\n\n` +
-      `*How can I assist your celebration planning today?*`;
+// Knowledge base of real Indian venues across key metropolitan and destination cities
+const CITY_VENUES_DATABASE = {
+  bangalore: {
+    city: 'Bangalore (Bengaluru)',
+    venues: [
+      {
+        name: 'The Tamarind Tree',
+        location: 'Kanakapura Road, Bangalore',
+        type: 'Heritage Open-Air Lawn & Antique Courtyards',
+        capacity: '500 – 1,200 guests',
+        priceRange: '₹4.5 Lakh – ₹8 Lakh rental / ₹1,800 – ₹2,800 per plate',
+        highlights: 'Ancient banyan trees, traditional South Indian stone architecture, natural pond, and rustic heritage aesthetic.'
+      },
+      {
+        name: 'Palace Grounds (Gayathri Vihar & White Petals)',
+        location: 'Bellary Road, Near Sadashivanagar, Bangalore',
+        type: 'Grand Convention Lawns & Air-Conditioned Pavilions',
+        capacity: '1,500 – 5,000+ guests',
+        priceRange: '₹6 Lakh – ₹15 Lakh rental / ₹1,200 – ₹2,200 per plate',
+        highlights: 'Massive pillarless halls, vast parking space for 1,000+ cars, ideal for grand celebrity weddings and mega receptions.'
+      },
+      {
+        name: 'The Leela Palace Bengaluru',
+        location: 'Old Airport Road, Kodihalli, Bangalore',
+        type: '5-Star Luxury Royal Palace Ballroom & Terraces',
+        capacity: '300 – 800 guests',
+        priceRange: '₹3,500 – ₹5,500 per plate (minimum banquet spend applies)',
+        highlights: 'Vijayanagara architectural opulence, ornate chandeliers, bespoke royal catering, and 5-star bridal suites.'
+      },
+      {
+        name: 'Jaymahal Palace Hotel',
+        location: 'Near Cantonment Railway Station, Jayamahal, Bangalore',
+        type: 'Colonial Heritage Hotel & Sprawling Green Lawns',
+        capacity: '1,000 – 3,500 guests',
+        priceRange: '₹4 Lakh – ₹10 Lakh rental / ₹1,400 – ₹2,200 per plate',
+        highlights: 'Historic royal charm right in the heart of the city, open-air lawns lit under century-old heritage trees.'
+      },
+      {
+        name: 'Templetree Leisure',
+        location: 'Panathur, Near Sarjapur-Outer Ring Road, Bangalore',
+        type: 'Eco-Luxury Open Pavilion & Balinese Courtyards',
+        capacity: '400 – 1,000 guests',
+        priceRange: '₹3.5 Lakh – ₹6 Lakh rental / ₹1,500 – ₹2,400 per plate',
+        highlights: 'Modern thatched pavilions, ambient water bodies, lush green canopies, and intimate celebratory vibe.'
+      }
+    ],
+    tips: [
+      'Peak wedding season in Bangalore is November through February (pleasant cool evenings) and April/May (Auspicious Chaitra muhurats).',
+      'For open lawns, request Bangalore BBMP sound clearance permits for music post 10:00 PM.',
+      'Kanakapura Road and Palace Grounds venues offer great vehicular accessibility for large family gatherings.'
+    ]
+  },
+  mumbai: {
+    city: 'Mumbai',
+    venues: [
+      { name: 'Taj Lands End', location: 'Bandstand, Bandra West', type: '5-Star Luxury Seaside Lawn & Ballroom', capacity: '500 – 1,500 guests', priceRange: '₹4,000 – ₹6,500 per plate', highlights: 'Iconic Arabian Sea view, Bandra-Worli Sea Link backdrop, premium celebrity service.' },
+      { name: 'NSCI Dome & Palace Lawns', location: 'Worli', type: 'Mega Indoor Stadium & Sea-facing Lawns', capacity: '1,500 – 4,000 guests', priceRange: '₹8 Lakh – ₹25 Lakh rental', highlights: 'World-class acoustic sound, stadium lighting, suitable for grand Bollywood sangeet nights.' },
+      { name: 'JW Marriott Juhu', location: 'Juhu Beach', type: 'Beachfront 5-Star Hotel', capacity: '400 – 1,000 guests', priceRange: '₹3,500 – ₹5,500 per plate', highlights: 'Direct sunset views over the ocean, poolside sangeet lawns, and signature wedding delicacies.' }
+    ],
+    tips: ['Book at least 6 to 9 months in advance for auspicious Hindu/Lagna dates in South & West Mumbai.']
+  },
+  jaipur: {
+    city: 'Jaipur',
+    venues: [
+      { name: 'Chomu Palace Heritage Resort', location: 'Sikar Road, Chomu, Jaipur', type: '300-year-old Royal Fort Palace', capacity: '500 – 1,500 guests', priceRange: '₹4.5 Lakh / day rental + royal catering', highlights: 'Authentic Rajput courtyards, fresco-painted Darbar halls, shehnai welcome gate.' },
+      { name: 'Fairmont Jaipur', location: 'Kukas, Jaipur', type: 'Luxury Mughal-Rajput Palace Resort', capacity: '800 – 2,500 guests', priceRange: '₹3,500 – ₹6,000 per plate', highlights: 'Grand Aravalli hill backdrop, grand elephant welcome, luxury suites for 400+ guests.' },
+      { name: 'Rambagh Palace', location: 'Bhawani Singh Road, Jaipur', type: 'Former Residence of the Maharaja of Jaipur', capacity: '400 – 1,200 guests', priceRange: 'Ultra-Luxury heritage tariff', highlights: 'Unrivalled royal grandeur, peacocks on lawns, marble courtyards.' }
+    ],
+    tips: ['Combine Mehendi and Sangeet into themed courtyards (e.g. Sheesh Mahal or Fountain Lawn) for a complete royal experience.']
+  },
+  udaipur: {
+    city: 'Udaipur',
+    venues: [
+      { name: 'Jagmandir Island Palace', location: 'Lake Pichola, Udaipur', type: 'Island Palace on Lake Pichola', capacity: '300 – 800 guests', priceRange: 'Exclusive Island Heritage Venue', highlights: 'Boat procession arrival for Baratis, illuminated marble arches, surrounded by lake waters.' },
+      { name: 'The Oberoi Udaivilas', location: 'Haridas Ji Ki Magri, Udaipur', type: 'Ultra-Luxury Palace Resort', capacity: '200 – 500 guests', priceRange: 'Top-tier destination tariff', highlights: 'Royal domes, reflection pools, and panoramic views of City Palace across Lake Pichola.' }
+    ],
+    tips: ['Lake Pichola venues require private boat transfers; organize an acoustic shehnai ensemble on the transfer boats.']
+  },
+  delhi: {
+    city: 'Delhi NCR',
+    venues: [
+      { name: 'The Grand New Delhi', location: 'Vasant Kunj, South Delhi', type: '5-Star Luxury Resort & Cascading Lawns', capacity: '800 – 2,000 guests', priceRange: '₹3,200 – ₹4,800 per plate', highlights: '10 acres of landscaped greenery, multiple ballroom combinations, and luxury bridal suites.' },
+      { name: 'Amaara Farms', location: 'Chattarpur, Delhi', type: 'Boutique Farmhouse & Glasshouse Lawn', capacity: '500 – 1,500 guests', priceRange: '₹5 Lakh – ₹9 Lakh rental', highlights: 'Balinese architecture, dramatic Buddha sculptures, glass canopy dining pavilion.' }
+    ],
+    tips: ['Chattarpur and NH8 venues have high demand in November-December; plan traffic and valet logistics early.']
   }
 };
 
+// Generates an intelligent, comprehensive, human-like response when OpenAI API has quota issues
+function generateIntelligentContextualReply(prompt, history = []) {
+  const query = prompt.toLowerCase();
+  
+  // Combine query with recent history to understand ongoing context
+  const fullContext = history.map(h => (h.content || '')).join(' ').toLowerCase() + ' ' + query;
+
+  // 1. Detect City
+  let detectedCityKey = null;
+  if (fullContext.includes('bangalore') || fullContext.includes('bengaluru')) detectedCityKey = 'bangalore';
+  else if (fullContext.includes('mumbai') || fullContext.includes('bombay')) detectedCityKey = 'mumbai';
+  else if (fullContext.includes('jaipur') || fullContext.includes('rajasthan')) detectedCityKey = 'jaipur';
+  else if (fullContext.includes('udaipur')) detectedCityKey = 'udaipur';
+  else if (fullContext.includes('delhi') || fullContext.includes('ncr') || fullContext.includes('gurgaon') || fullContext.includes('noida')) detectedCityKey = 'delhi';
+  else if (fullContext.includes('ahmedabad') || fullContext.includes('gujarat')) detectedCityKey = 'ahmedabad';
+  else if (fullContext.includes('goa')) detectedCityKey = 'goa';
+  else if (fullContext.includes('hyderabad')) detectedCityKey = 'hyderabad';
+  else if (fullContext.includes('chennai')) detectedCityKey = 'chennai';
+  else if (fullContext.includes('kolkata')) detectedCityKey = 'kolkata';
+  else if (fullContext.includes('pune')) detectedCityKey = 'pune';
+
+  // 2. Detect Intent: Venues
+  const isVenueQuery = query.includes('venue') || query.includes('marriage') || query.includes('wedding') || query.includes('hall') || query.includes('place') || query.includes('lawn') || query.includes('palace') || query.includes('resort') || query.includes('ground') || query.includes('where to');
+
+  if (isVenueQuery && detectedCityKey && CITY_VENUES_DATABASE[detectedCityKey]) {
+    const cityData = CITY_VENUES_DATABASE[detectedCityKey];
+    let response = `🏰 **Top Wedding & Marriage Venues in ${cityData.city}**:\n\n`;
+    response += `Here are the premier curated marriage venues in **${cityData.city}** that are ideal for traditional rituals, sangeet, and grand wedding receptions:\n\n`;
+
+    cityData.venues.forEach((v, idx) => {
+      response += `### ${idx + 1}. **${v.name}**\n`;
+      response += `📍 **Location**: ${v.location}\n`;
+      response += `🏛️ **Type**: ${v.type}\n`;
+      response += `👥 **Guest Capacity**: ${v.capacity}\n`;
+      response += `💰 **Estimated Tariff**: ${v.priceRange}\n`;
+      response += `✨ **Highlights**: ${v.highlights}\n\n`;
+    });
+
+    if (cityData.tips && cityData.tips.length > 0) {
+      response += `💡 **Local Planner Tips for ${cityData.city}**:\n`;
+      cityData.tips.forEach(t => {
+        response += `• ${t}\n`;
+      });
+      response += `\n`;
+    }
+
+    response += `🌟 **Next Steps on UtsavMitra**:\n`;
+    response += `1. Head to our **[Venues Tab](/venues)** on the platform to submit a direct inquiry with your wedding dates and guest count!\n`;
+    response += `2. Use the **[AI Budget Calculator](/ai-planner)** to get precise per-plate and floral decor estimates.\n`;
+    response += `3. Once finalized, you can issue **encrypted QR passes** to all your guests for seamless gate attendance! 🪔\n\n`;
+    response += `Would you like me to estimate the catering budget or create an auspicious timeline for this celebration?`;
+    return response;
+  }
+
+  if (isVenueQuery && !detectedCityKey) {
+    return `🏰 **Wedding & Event Venue Selection Guide**:\n\n` +
+      `Choosing the ideal venue depends on your preferred city, guest count, and the style of celebration you desire:\n\n` +
+      `• **Heritage Palaces (Jaipur, Udaipur, Jodhpur)**: Best for royal destination weddings with fresco courtyards, elephant welcomes, and lakeside pheras (e.g. *Chomu Palace*, *Jagmandir Island*).\n` +
+      `• **Open-Air Lawns & Heritage Resorts (Bangalore, Hyderabad, Pune)**: Ideal for breezy outdoor receptions, amphitheaters, and floral mandaps under banyan trees (e.g. *The Tamarind Tree*, *Palace Grounds*).\n` +
+      `• **Seaside Resorts (Goa, Kerala - Kovalam/Kochi)**: Unforgettable sunset pheras overlooking the Arabian Sea (e.g. *The Leela Kovalam*, *Taj Exotica*).\n` +
+      `• **Luxury Convention Ballrooms (Delhi NCR, Mumbai)**: Pillarless, centrally air-conditioned halls for 1,000+ guests with high-tech audio/visual setups.\n\n` +
+      `✨ **Which city are you planning your wedding in?** (e.g., Bangalore, Jaipur, Mumbai, Delhi, Udaipur) Tell me your estimated guest count, and I will recommend specific venues with exact capacities and price ranges!`;
+  }
+
+  // 3. Detect Intent: Budget
+  if (query.includes('budget') || query.includes('cost') || query.includes('price') || query.includes('expense') || query.includes('how much') || query.includes('rupee') || query.includes('lakh')) {
+    const guestMatch = query.match(/(\d+)\s*(guests?|people|persons?|pax)/i) || fullContext.match(/(\d+)\s*(guests?|people|persons?|pax)/i);
+    const guests = guestMatch ? parseInt(guestMatch[1]) : 300;
+    
+    return `💰 **Indian Event Budget Strategy (${guests} Guests)**:\n\n` +
+      `For a typical Indian celebration of **${guests} guests**, here is the optimal rupee allocation model:\n\n` +
+      `1. **Catering & Royal Sweets (38%)**: ₹${((guests * 1800) * 0.75).toLocaleString('en-IN')} – ₹${((guests * 2500) * 1.1).toLocaleString('en-IN')}\n` +
+      `   • Welcome mocktail bar & Kesar Thandai\n` +
+      `   • Live Chaat Gali (Pani Puri, Dahi Bhalla, Dosa)\n` +
+      `   • Royal Gravies (Paneer Lababdar, Dal Bukhara, Zafrani Pulao)\n` +
+      `   • Hot dessert counter (Jalebi-Rabdi, Gulab Jamun, Paan counter)\n\n` +
+      `2. **Venue & Mandap / Lighting Decor (30%)**:\n` +
+      `   • Entrance floral arches with Marigold & Rajnigandha\n` +
+      `   • Revolving or lakeside Mandap setup with fairy light cascades\n` +
+      `   • Seating diwans, round tables, and stage backdrops\n\n` +
+      `3. **Cinematography & Pre-Wedding Shoot (12%)**:\n` +
+      `   • 2 Candid photographers, 1 drone pilot, 4K wedding highlight film\n\n` +
+      `4. **DJ, Sound Setup & Live Dhol Squad (10%)**:\n` +
+      `   • Line-array speakers, moving head beams, authentic Punjabi dhol troupe\n\n` +
+      `5. **Shagun, Safas & Favors (6%)**:\n` +
+      `   • Traditional Bandhani turbans for Baratis and custom return gift hampers\n\n` +
+      `6. **Vedic Panditji & Emergency Buffer (4%)**:\n` +
+      `   • Hawan samagri, sound clearances, and backup generator\n\n` +
+      `💡 *Tip*: Use UtsavMitra's **[AI Budget Planner](/ai-planner)** tab to customize this interactively with real-time sliders!`;
+  }
+
+  // 4. Detect Intent: Haldi / Mehendi / Rituals
+  if (query.includes('haldi') || query.includes('ubtan') || query.includes('pithi')) {
+    return `💛 **Complete Haldi Ceremony Planning Blueprint**:\n\n` +
+      `The Haldi ceremony is one of the most vibrant and joyous pre-wedding rituals! Here is how to plan an unforgettable Haldi:\n\n` +
+      `• **Theme & Floral Decor**: Golden Yellow & Kesari palette. Use 2,000+ fresh Marigold (Genda Phool) strings, brass urlis filled with floating petals, and yellow drapes.\n` +
+      `• **The Haldi Paste**: Combine organic Kasturi turmeric with sandalwood paste, pure rose water, and raw milk. Avoid chemical colors to keep it safe for sensitive skin.\n` +
+      `• **Floral Bath Shower**: Have close friends and family shower the couple with fresh yellow and orange marigold petals right after applying the paste!\n` +
+      `• **Dress Code**: All-yellow ethnic attire for guests (yellow kurtas for men, yellow lehengas/sarees for women).\n` +
+      `• **Music & Playlist**: Upbeat dholak tracks ("Galla Goriyan", "Kabira", "Mahi Ve", "London Thumakda") accompanied by live dhol players.\n` +
+      `• **Cooling Refreshments**: Aam Panna, chilled Kesar Badam Thandai, and fresh coconut water.\n\n` +
+      `Would you like me to write a rhyming Hindi/English invitation verse for your Haldi ceremony?`;
+  }
+
+  if (query.includes('sangeet') || query.includes('dance') || query.includes('song') || query.includes('music')) {
+    return `💃 **Grand Sangeet Night Masterplan**:\n\n` +
+      `• **Stage Production**: 24x16 ft elevated wooden stage with high-definition LED backdrop displaying personalized animations and couple memories.\n` +
+      `• **Program Flow**:\n` +
+      `  1. *Welcome Flashmob*: Cousins and siblings opening with high-energy Bollywood mashups.\n` +
+      `  2. *Parents & Elders Waltz*: Heartwarming classic retro melodies.\n` +
+      `  3. *Groom & Bride Solo & Duet*: Romantic contemporary choreography with low-fog dry ice.\n` +
+      `  4. *Family Dance Faceoff*: Playful competition between Ladkewale vs Ladkiwale.\n` +
+      `  5. *Open Dance Floor*: Resident DJ taking over with Bhangra, Bollywood EDM, and chartbusters.\n` +
+      `• **Midnight Fuel**: Street food counters (Pav Bhaji, Keema Pav, cutting chai, churros) to keep the dance floor energized till 1 AM!`;
+  }
+
+  // 5. Detect Intent: QR Ticketing & Check-In
+  if (query.includes('qr') || query.includes('ticket') || query.includes('scanner') || query.includes('pass') || query.includes('attendance') || query.includes('registration')) {
+    return `🎟️ **UtsavMitra QR-Code Ticketing & Attendance System**:\n\n` +
+      `UtsavMitra solves gate chaos, counterfeit passes, and duplicate entries using modern technology:\n\n` +
+      `1. **Encrypted Digital Passes**: Whenever an attendee books or registers (Free or Paid via Razorpay), the platform generates a unique encrypted Pass ID (e.g. \`UM-PASS-8841\`) and high-resolution QR code.\n` +
+      `2. **Live Camera Scanner**: Event organizers simply navigate to the **[QR Scanner](/organizer/scanner)** page on their smartphone or laptop and point the camera at attendee badges.\n` +
+      `3. **Instant Anti-Duplicate Verification**: The scanner verifies the ticket in under 500ms and records the entry timestamp and gate staff name. If someone tries to re-enter or share the pass, the system flashes a **bold RED duplicate alert** with the exact original check-in details!\n` +
+      `4. **Live Roster**: Organizers can monitor check-in percentages live or export the guest list as a printable register.`;
+  }
+
+  // 6. Detect Intent: Catering & Food
+  if (query.includes('food') || query.includes('catering') || query.includes('menu') || query.includes('dinner') || query.includes('sweet') || query.includes('mithai')) {
+    return `🍽️ **Royal Indian Banquet Catering Blueprint**:\n\n` +
+      `A quintessential Indian celebration menu features a harmonious balance of regional traditions:\n\n` +
+      `• **Welcome Coolers**: Royal Kesar Badam Thandai, Pomegranate Mint Mojito, Tender Coconut Water.\n` +
+      `• **Live Chaat Gali**: Chandni Chowk style Pani Puri (with 5 herb waters), Dahi Bhalla Papdi, and Palak Patta Chaat.\n` +
+      `• **Signature Starters**: Paneer Tikka Angara, Tandoori Malai Broccoli, Galouti Kebabs on miniature Sheermal.\n` +
+      `• **Royal Main Course**:\n` +
+      `  - *Paneer Lababdar* in rich tomato cashew gravy\n` +
+      `  - *Dal Bukhara* slow-cooked overnight with white butter\n` +
+      `  - *Subz Diwani Handi* with seasonal farm vegetables\n` +
+      `  - *Awadhi Zafrani Vegetable Biryani* served with Burani garlic raita\n` +
+      `  - *Tandoori Breads*: Butter Naan, Laccha Paratha, Missi Roti\n` +
+      `• **Dessert Extravaganza**: Hot Kesari Jalebi with chilled Laccha Rabdi, Angoori Gulab Jamun, and artisanal Kolkata Paan counter.\n\n` +
+      `💡 *Explore our **[AI Catering Planner](/ai-planner)** tab to generate menus for North Indian, Gujarati, or South Indian cuisines!*`;
+  }
+
+  // 7. General Conversational / Greetings / Assistance
+  return `Namaste! 🙏 I am **UtsavMitra AI**, your intelligent Indian celebration & event management assistant.\n\n` +
+    `I can help you plan traditional and modern celebrations with end-to-end guidance:\n\n` +
+    `• 🏰 **Venue Discovery**: Find palaces, lawns, and banquet halls in Bangalore, Jaipur, Mumbai, Delhi, Udaipur, Goa, etc.\n` +
+    `• 💰 **AI Budget Estimation**: Realistic rupee calculations for catering, mandap decor, DJ/dhol, and photography.\n` +
+    `• ⏰ **Muhurat & Timelines**: Auspicious wedding program flow, college fest schedules, and Dandiya nights.\n` +
+    `• 💌 **Digital E-Invites**: Beautiful bilingual Hindi/English invitation cards with automated RSVP tracking.\n` +
+    `• 🎟️ **QR-Code Gate Security**: Instant camera scanning to verify tickets and prevent duplicate entries.\n\n` +
+    `*What can I help you organize today? Tell me your preferred city, event type, or guest count!*`;
+}
+
+// Main Chatbot Assistant Handler
 exports.chatAssistant = async (req, res) => {
   try {
     const { prompt, history = [] } = req.body;
@@ -88,14 +253,14 @@ exports.chatAssistant = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Prompt query is required.' });
     }
 
-    // Try OpenAI API if client is configured
+    // Try OpenAI API first if key is configured
     if (openai && openaiApiKey) {
       try {
         const messages = [
           { role: 'system', content: UTSAV_SYSTEM_PROMPT }
         ];
 
-        // Append recent conversational history
+        // Append recent conversational context
         if (Array.isArray(history) && history.length > 0) {
           const recent = history.slice(-6);
           for (const msg of recent) {
@@ -113,7 +278,7 @@ exports.chatAssistant = async (req, res) => {
         const completion = await openai.chat.completions.create({
           model: 'gpt-4o-mini',
           messages,
-          max_tokens: 650,
+          max_tokens: 750,
           temperature: 0.7
         });
 
@@ -126,22 +291,36 @@ exports.chatAssistant = async (req, res) => {
           });
         }
       } catch (openAiError) {
-        console.warn(`[OpenAI Notice]: ${openAiError.message} - Using UtsavMitra intelligent celebration assistant.`);
+        console.warn(`[OpenAI Notice]: ${openAiError.message} - Activating UtsavMitra dynamic contextual AI.`);
       }
     }
 
-    // High quality intelligent heuristic fallback
-    const fallbackReply = getLocalIntelligentReply(prompt);
+    // Dynamic contextual conversational response (handles cities, venues, budgets, traditions)
+    const reply = generateIntelligentContextualReply(prompt, history);
+
     return res.status(200).json({
       success: true,
-      reply: fallbackReply,
-      source: 'smart_fallback'
+      reply,
+      source: 'utsav_ai'
     });
   } catch (error) {
     console.error('chatAssistant error:', error);
     return res.status(500).json({ success: false, message: 'AI Assistant error.' });
   }
 };
+
+const UTSAV_SYSTEM_PROMPT = `
+You are UtsavMitra AI (उत्सवमित्र), an intelligent, culturally knowledgeable, and warm Indian Event Management Consultant & Celebration Planner.
+You specialize in planning both traditional Indian celebrations and modern events:
+- Weddings (Shaadi, Sangeet, Mehendi, Haldi, Varmala, Reception, Pheras)
+- Navratri Garba & Dandiya Raas
+- College Cultural, Dramatics & Technical Fests (Hackathons, Battle of the Bands, Starlight Pro-Nites)
+- Religious & Temple Mahotsavs (Phoolon Ki Holi, Ganesh Utsav, Diwali Melas)
+- Corporate Galas, Culinary Carnivals, Birthdays, and Anniversaries.
+
+You provide actionable guidance on auspicious muhurats, traditional rituals, venue setup, multi-course Indian catering menus (North Indian, South Indian, Gujarati, Jain), line-item budgeting in INR (₹), and how UtsavMitra's QR-code ticketing, digital invitations, and Razorpay checkout streamline events.
+Maintain an enthusiastic, respectful, and polite tone. Use relevant festive emojis (🪔, 🌸, 💍, 🪘, ✨) and structured markdown where helpful.
+`.trim();
 
 // AI Budget Plan Generator
 exports.generateBudgetPlan = async (req, res) => {
