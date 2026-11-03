@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
+  Home,
   Sparkles, 
   Calendar, 
   MapPin, 
@@ -50,6 +51,18 @@ export const Navbar = () => {
 
           {/* Center Navigation Links */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            <Link
+              to="/"
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isActive('/')
+                  ? 'bg-saffron-500/10 text-saffron-400 border border-saffron-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              <Home className="w-4 h-4 text-saffron-400" />
+              <span>Home</span>
+            </Link>
+
             <Link
               to="/events"
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -203,6 +216,16 @@ export const Navbar = () => {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+          <Link
+            to="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`flex items-center gap-2 py-2 font-medium ${
+              isActive('/') ? 'text-saffron-400 font-bold' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            <Home className="w-4 h-4 text-saffron-400" />
+            <span>Home</span>
+          </Link>
           <Link
             to="/events"
             onClick={() => setMobileMenuOpen(false)}

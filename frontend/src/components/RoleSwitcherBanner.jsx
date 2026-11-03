@@ -43,52 +43,70 @@ export const RoleSwitcherBanner = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleSwitch = async (r) => {
-    if (user?.role === r.role) {
-      navigate(r.targetRoute);
-      return;
-    }
-    const res = await switchRolePersona(r.role);
-    if (res.success) {
-      navigate(r.targetRoute);
-    }
-  };
+  // STRICT REQUIREMENT: Hide 1st navigation bar from regular users and event organizers.
+  // No one should know about Admin or Super Admin dashboards except actual Admins and Super Admins.
+  if (!user || (user.role !== 'admin' && user.role !== 'super_admin')) {
+    return null;
+  }
+
+  const isSuperAdmin = user.role === 'super_admin';
 
   return (
-    <aside aria-label="Demo role selector" className="bg-slate-900/95 border-b border-saffron-500/20 backdrop-blur-md px-3 py-1.5 text-xs relative z-20">
+    <aside aria-label="Administrative controls" className="bg-slate-950/95 border-b border-indigo-500/30 backdrop-blur-md px-3 py-1.5 text-xs relative z-20">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-2">
         <div className="flex items-center gap-1.5 text-slate-300 font-medium text-[11px] sm:text-xs">
-          <Sparkles className="w-3.5 h-3.5 text-saffron-400 animate-pulse shrink-0" />
-          <span className="text-saffron-300 font-semibold">4 Interface Switcher:</span>
-          <span className="hidden sm:inline text-slate-400">Click any persona to test interface permissions</span>
+          {isSuperAdmin ? (
+            <>
+              <Crown className="w-3.5 h-3.5 text-amber-400 animate-pulse shrink-0" />
+              <span className="text-amber-300 font-bold">Super Admin Master Console</span>
+              <span className="hidden sm:inline text-slate-400">({user.name} &bull; UtsavMitra HQ)</span>
+            </>
+          ) : (
+            <>
+              <Shield className="w-3.5 h-3.5 text-indigo-400 animate-pulse shrink-0" />
+              <span className="text-indigo-300 font-bold">Administrator Operations Mode</span>
+              <span className="hidden sm:inline text-slate-400">({user.name})</span>
+            </>
+          )}
         </div>
 
-        <div className="flex items-center gap-1 sm:gap-1.5 w-full sm:w-auto overflow-x-auto pb-0.5 no-scrollbar justify-start sm:justify-end">
-          {ROLES.map((r) => {
-            const Icon = r.icon;
-            const isActive = user?.role === r.role;
-            return (
-              <button
-                key={r.role}
-                onClick={() => handleSwitch(r)}
-                className={`flex items-center justify-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg font-medium text-[11px] sm:text-xs transition-all whitespace-nowrap shrink-0 ${
-                  isActive
-                    ? `bg-gradient-to-r ${r.color} text-white shadow-lg ring-1 ring-white/30 scale-102`
-                    : 'bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700'
-                }`}
-                title={`Switch to ${r.label} as ${r.persona}`}
-              >
-                <Icon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
-                <span>{r.label.split(' ')[0]}</span>
-                <span className={`text-[10px] hidden md:inline ${isActive ? 'text-white/90' : 'text-slate-400'}`}>
-                  ({r.persona.split(' ')[0]})
-                </span>
-                {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping ml-0.5" />
-                )}
-              </button>
-            );
-          })}
+        <div className="flex items-center gap-1.5">
+          {isSuperAdmin && (
+            <button
+              onClick={() => navigate('/super-admin/dashboard')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-semibold text-[11px] transition-all ${
+                location.pathname === '/super-admin/dashboard'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 shadow-md font-bold'
+                  : 'bg-slate-900 hover:bg-slate-800 text-amber-300 border border-amber-500/30'
+              }`}
+            >
+              <Crown className="w-3 h-3" />
+              <span>Super Admin HQ</span>
+            </button>
+          )}
+
+          <button
+            onClick={() => navigate('/admin/dashboard')}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-semibold text-[11px] transition-all ${
+              location.pathname === '/admin/dashboard'
+                ? 'bg-gradient-to-r from-indigo-500 to-blue-600 text-white shadow-md font-bold'
+                : 'bg-slate-900 hover:bg-slate-800 text-indigo-300 border border-indigo-500/30'
+            }`}
+          >
+            <Shield className="w-3 h-3" />
+            <span>Admin Console</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/')}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] transition-all ${
+              location.pathname === '/'
+                ? 'bg-slate-800 text-white font-medium'
+                : 'text-slate-400 hover:text-white bg-slate-950/60'
+            }`}
+          >
+            <span>Public View</span>
+          </button>
         </div>
       </div>
     </aside>

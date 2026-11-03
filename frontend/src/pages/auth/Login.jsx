@@ -12,6 +12,7 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [showStaffAccess, setShowStaffAccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,62 +42,38 @@ export const Login = () => {
           🪔
         </div>
         <h1 className="text-3xl font-extrabold text-white font-serif">Welcome to UtsavMitra</h1>
-        <p className="text-xs text-slate-400">Sign in to your account across all 4 platform roles</p>
+        <p className="text-xs text-slate-400">Sign in to your UtsavMitra account</p>
       </div>
 
-      {/* 1-Click Persona Access Buttons (Demo) */}
+      {/* 1-Click Access for User & Organizer */}
       <div className="p-4 rounded-3xl bg-slate-900 border border-saffron-500/30 space-y-3 shadow-xl">
         <div className="flex items-center gap-1.5 text-xs font-bold text-saffron-400">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>One-Click Demo Personas:</span>
+          <span>Quick Sign-In Portals:</span>
         </div>
         <div className="grid grid-cols-2 gap-2 text-xs">
           <button
             type="button"
             onClick={() => handleQuickLogin('user', '/user/dashboard')}
-            className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
+            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
           >
             <div className="flex items-center gap-1 text-slate-200 font-bold">
               <User className="w-3.5 h-3.5 text-saffron-400" />
-              <span>User</span>
+              <span>Attendee / User</span>
             </div>
-            <div className="text-[10px] text-slate-400">Aarav Sharma</div>
+            <div className="text-[10px] text-slate-400 mt-0.5">Aarav Sharma</div>
           </button>
 
           <button
             type="button"
             onClick={() => handleQuickLogin('organizer', '/organizer/dashboard')}
-            className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
+            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
           >
             <div className="flex items-center gap-1 text-rose-300 font-bold">
               <Calendar className="w-3.5 h-3.5 text-rose-400" />
-              <span>Organizer</span>
+              <span>Event Organizer</span>
             </div>
-            <div className="text-[10px] text-slate-400">Rajesh Singhania</div>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleQuickLogin('admin', '/admin/dashboard')}
-            className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
-          >
-            <div className="flex items-center gap-1 text-indigo-300 font-bold">
-              <Shield className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Admin</span>
-            </div>
-            <div className="text-[10px] text-slate-400">Sunita Mehra</div>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleQuickLogin('super_admin', '/super-admin/dashboard')}
-            className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
-          >
-            <div className="flex items-center gap-1 text-amber-300 font-bold">
-              <Crown className="w-3.5 h-3.5 text-amber-400" />
-              <span>Super Admin</span>
-            </div>
-            <div className="text-[10px] text-slate-400">Vikramaditya (HQ)</div>
+            <div className="text-[10px] text-slate-400 mt-0.5">Rajesh Singhania</div>
           </button>
         </div>
       </div>
@@ -143,6 +120,40 @@ export const Login = () => {
           <Link to="/register" className="text-saffron-400 hover:text-saffron-300 font-semibold">
             Create an Account
           </Link>
+        </div>
+
+        {/* Discreet Staff / Executive Access Toggle */}
+        <div className="mt-4 pt-3 border-t border-slate-800/60 text-center">
+          <button
+            type="button"
+            onClick={() => setShowStaffAccess(!showStaffAccess)}
+            className="text-[11px] text-slate-500 hover:text-slate-400 transition-colors inline-flex items-center gap-1"
+          >
+            <Shield className="w-3 h-3 text-slate-500" />
+            <span>Staff &amp; Executive Access</span>
+          </button>
+
+          {showStaffAccess && (
+            <div className="mt-3 p-3 rounded-2xl bg-slate-950 border border-slate-800 text-left space-y-2">
+              <div className="text-[11px] font-bold text-slate-400">Authorized Personnel:</div>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin('admin', '/admin/dashboard')}
+                  className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-indigo-500/30 text-[11px] text-indigo-300 font-semibold text-center"
+                >
+                  Admin Portal
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin('super_admin', '/super-admin/dashboard')}
+                  className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-amber-500/30 text-[11px] text-amber-300 font-semibold text-center"
+                >
+                  Super Admin HQ
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

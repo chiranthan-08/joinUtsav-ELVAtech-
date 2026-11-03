@@ -165,8 +165,8 @@ export const Home = () => {
               <div className="text-xs text-slate-400 mt-0.5">Budgets &amp; Timelines</div>
             </div>
             <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
-              <div className="text-2xl font-bold text-emerald-400 font-serif">4 Roles</div>
-              <div className="text-xs text-slate-400 mt-0.5">Dedicated Interfaces</div>
+              <div className="text-2xl font-bold text-emerald-400 font-serif">24/7</div>
+              <div className="text-xs text-slate-400 mt-0.5">AI Event Consultant</div>
             </div>
           </div>
         </div>

@@ -36,15 +36,16 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Platform Interfaces */}
+          {/* Platform Services */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-100 uppercase tracking-wider mb-3">4 Interfaces</h4>
+            <h4 className="text-sm font-semibold text-slate-100 uppercase tracking-wider mb-3">Celebration Services</h4>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/" className="hover:text-saffron-400 transition-colors">1. User Discovery & Booking</Link></li>
-              <li><Link to="/organizer/dashboard" className="hover:text-rose-400 transition-colors">2. Event Organizer Portal</Link></li>
-              <li><Link to="/organizer/scanner" className="hover:text-emerald-400 transition-colors">⚡ QR Attendance Verification</Link></li>
-              <li><Link to="/admin/dashboard" className="hover:text-indigo-400 transition-colors">3. Admin Central Page</Link></li>
-              <li><Link to="/super-admin/dashboard" className="hover:text-amber-400 transition-colors">4. Super Admin Master HQ</Link></li>
+              <li><Link to="/events" className="hover:text-saffron-400 transition-colors">Explore All Celebrations</Link></li>
+              <li><Link to="/ai-planner" className="hover:text-rose-400 transition-colors">AI Event Planner</Link></li>
+              <li><Link to="/invitations" className="hover:text-amber-400 transition-colors">Digital E-Invites &amp; RSVP</Link></li>
+              <li><Link to="/venues" className="hover:text-teal-400 transition-colors">Royal Venues &amp; Banquet Lawns</Link></li>
+              <li><Link to="/organizer/dashboard" className="hover:text-rose-300 transition-colors">Organizer Portal &amp; Ticketing</Link></li>
+              <li><Link to="/organizer/scanner" className="hover:text-emerald-400 transition-colors">⚡ Live QR Gate Scanner</Link></li>
             </ul>
           </div>
 
