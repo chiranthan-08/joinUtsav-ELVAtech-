@@ -9,6 +9,7 @@ router.use(authMiddleware, roleMiddleware(['admin', 'super_admin']));
 
 router.get('/overview', adminController.getAdminOverview);
 router.get('/bookings', adminController.getAllBookingsMaster);
+router.post('/send-test-email', adminController.sendTestVerificationEmail);
 router.patch('/events/:id/status', adminController.updateEventStatus);
 router.patch('/users/:id/status', adminController.updateUserStatus);
 

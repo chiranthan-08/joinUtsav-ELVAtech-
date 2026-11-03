@@ -12,7 +12,8 @@
       "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
       "status": "active",
       "createdAt": "2026-01-01T10:00:00Z",
-      "lastLogin": "2026-11-02T09:30:00Z"
+      "lastLogin": "2026-11-03T12:05:27.619Z",
+      "updatedAt": "2026-11-03T12:05:27.619Z"
     },
     {
       "_id": "usr_admin_01",
@@ -26,7 +27,8 @@
       "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150",
       "status": "active",
       "createdAt": "2026-02-15T11:00:00Z",
-      "lastLogin": "2026-11-02T10:15:00Z"
+      "lastLogin": "2026-11-03T12:41:17.787Z",
+      "updatedAt": "2026-11-03T12:41:17.787Z"
     },
     {
       "_id": "usr_organizer_01",
@@ -115,6 +117,52 @@
   ],
   "events": [
     {
+      "_id": "evt_1793709810120i0t3",
+      "status": "approved",
+      "isFeatured": false,
+      "viewsCount": 1,
+      "createdAt": "2026-11-03T12:43:30.120Z",
+      "title": "Bangalore Tech & Cultural Fusion Fest 2026",
+      "tagline": "",
+      "description": "A vibrant evening of traditional music fused with interactive digital art and festive cuisine.",
+      "category": "Cultural Program",
+      "date": "2026-12-15",
+      "time": "18:00",
+      "endDate": "2026-12-15",
+      "endTime": "10:00 PM",
+      "venueName": "Palace Grounds Gayatri Vihar",
+      "venueAddress": "Palace Grounds Gayatri Vihar, Bangalore",
+      "city": "Bangalore",
+      "state": "Rajasthan",
+      "organizerId": "usr_organizer_01",
+      "organizerName": "Royal Rajputana Weddings & Events",
+      "organizerEmail": "organizer@jaipurfest.com",
+      "bannerUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
+      "ticketTiers": [
+        {
+          "id": "gen",
+          "name": "General Entry",
+          "price": 499,
+          "totalSeats": 500,
+          "bookedSeats": 0
+        }
+      ],
+      "dressCode": "Festive Indian / Smart Ethnic",
+      "highlights": [
+        "Live Music & Entertainment",
+        "Food & Refreshment Counters",
+        "Grand Celebration"
+      ],
+      "schedule": [
+        {
+          "time": "18:00",
+          "activity": "Event Inauguration & Grand Welcome",
+          "description": "Doors open for guests."
+        }
+      ],
+      "totalCapacity": 500
+    },
+    {
       "_id": "evt_01",
       "title": "Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
       "tagline": "Experience Regal Indian Hospitality, Bridal Couturiers & Sangeet Nights",
@@ -151,7 +199,7 @@
           "name": "Royal Sangeet Pass",
           "price": 1499,
           "totalSeats": 150,
-          "bookedSeats": 89,
+          "bookedSeats": 91,
           "description": "Front arena seating for Rajasthani folk dances, live Sufi troupe, and 56-Bhog dinner buffet",
           "perks": [
             "Reserved Front Rows",
@@ -1393,6 +1441,29 @@
   ],
   "bookings": [
     {
+      "_id": "bkg_1793709810101xu0d",
+      "passId": "UM-PASS-8851",
+      "paymentStatus": "paid",
+      "attendanceStatus": "pending",
+      "qrCodeDataUrl": "data:image/png;base64,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",
+      "createdAt": "2026-11-03T12:43:30.101Z",
+      "eventId": "evt_01",
+      "eventTitle": "Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "eventDate": "2026-11-15",
+      "eventVenue": "Chomu Palace Heritage Courtyard, Jaipur",
+      "userId": "usr_user_01",
+      "userName": "Aarav Sharma",
+      "userEmail": "aarav.sharma@gmail.com",
+      "userPhone": "+91 98765 11223",
+      "ticketTier": "Royal Sangeet Pass",
+      "quantity": 2,
+      "unitPrice": 1499,
+      "totalAmount": 2998,
+      "paymentMethod": "razorpay",
+      "razorpayPaymentId": "pay_rzp_mock_1793709810063",
+      "razorpayOrderId": "order_rzp_p0136h1v"
+    },
+    {
       "_id": "bkg_01",
       "passId": "UM-PASS-8841",
       "eventId": "evt_01",
@@ -1770,6 +1841,90 @@
   ],
   "auditLogs": [
     {
+      "_id": "aud_179370981012147m",
+      "actorId": "usr_organizer_01",
+      "actorName": "Rajesh Singhania",
+      "actorRole": "organizer",
+      "action": "EVENT_CREATED",
+      "targetType": "EVENT",
+      "targetId": "evt_1793709810120i0t3",
+      "details": "Created event: Bangalore Tech & Cultural Fusion Fest 2026",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-03T12:43:30.121Z"
+    },
+    {
+      "_id": "aud_1793709810103ckl",
+      "actorId": "usr_user_01",
+      "actorName": "Aarav Sharma",
+      "actorRole": "user",
+      "action": "TICKET_BOOKED",
+      "targetType": "BOOKING",
+      "targetId": "bkg_1793709810101xu0d",
+      "details": "Booked 2x Royal Sangeet Pass for Grand Royal Rajasthani Wedding Expo & Sangeet Gala (₹2998)",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-03T12:43:30.103Z"
+    },
+    {
+      "_id": "aud_1793709677789j13",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_admin_01",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-03T12:41:17.789Z"
+    },
+    {
+      "_id": "aud_1793709646643t9j",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_admin_01",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-03T12:40:46.643Z"
+    },
+    {
+      "_id": "aud_1793709591182kz3",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_admin_01",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-03T12:39:51.182Z"
+    },
+    {
+      "_id": "aud_1793707527622n9p",
+      "actorId": "usr_superadmin_01",
+      "actorName": "Vikramaditya Rathore",
+      "actorRole": "super_admin",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_superadmin_01",
+      "details": "Logged in successfully as super_admin",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-03T12:05:27.622Z"
+    },
+    {
+      "_id": "aud_17937074942291yc",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_admin_01",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-03T12:04:54.230Z"
+    },
+    {
       "_id": "aud_17936230797485gq",
       "actorId": "usr_1793623045815ty3f",
       "actorName": "praphu",
@@ -1840,5 +1995,127 @@
     "maintenanceMode": false,
     "updatedAt": "2026-11-02T12:00:00Z",
     "updatedBy": "Vikramaditya Rathore"
-  }
+  },
+  "emailLogs": [
+    {
+      "_id": "eml_1793709810130mi8",
+      "createdAt": "2026-11-03T12:43:30.130Z",
+      "to": "superadmin@utsavmitra.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "👑 [Super Admin HQ] New Event Created: Bangalore Tech & Cultural Fusion Fest 2026",
+      "type": "SUPERADMIN_EVENT_NOTIFICATION",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "eventId": "evt_1793709810120i0t3"
+      }
+    },
+    {
+      "_id": "eml_179370981012561j",
+      "createdAt": "2026-11-03T12:43:30.125Z",
+      "to": "admin@utsavmitra.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "✨ [Admin Alert] New Event Published: Bangalore Tech & Cultural Fusion Fest 2026 (Bangalore)",
+      "type": "ADMIN_EVENT_NOTIFICATION",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "eventId": "evt_1793709810120i0t3"
+      }
+    },
+    {
+      "_id": "eml_1793709810123cqb",
+      "createdAt": "2026-11-03T12:43:30.123Z",
+      "to": "organizer@jaipurfest.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "🪔 Event Listed Successfully: Bangalore Tech & Cultural Fusion Fest 2026 on UtsavMitra",
+      "type": "ORGANIZER_EVENT_CREATED",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "eventId": "evt_1793709810120i0t3"
+      }
+    },
+    {
+      "_id": "eml_1793709810116lcn",
+      "createdAt": "2026-11-03T12:43:30.116Z",
+      "to": "superadmin@utsavmitra.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "👑 [Super Admin HQ] GMV Transaction: ₹2,998 for Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "type": "SUPERADMIN_GMV_ALERT",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "grossAmount": 2998,
+        "commission": "149.90"
+      }
+    },
+    {
+      "_id": "eml_1793709810114l6u",
+      "createdAt": "2026-11-03T12:43:30.114Z",
+      "to": "admin@utsavmitra.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "📊 [Admin Alert] Ticket Sale: ₹2,998 for Grand Royal Rajasthani Wedding Expo & Sangeet Gala (Pass #UM-PASS-8851)",
+      "type": "ADMIN_FINANCIAL_ALERT",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "grossAmount": 2998,
+        "commission": "149.90"
+      }
+    },
+    {
+      "_id": "eml_1793709810112vot",
+      "createdAt": "2026-11-03T12:43:30.112Z",
+      "to": "organizer@jaipurfest.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "🎟️ New Booking Received: 2x Royal Sangeet Pass for Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "type": "ORGANIZER_SALE_ALERT",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "eventId": "evt_01",
+        "organizerEmail": "organizer@jaipurfest.com"
+      }
+    },
+    {
+      "_id": "eml_1793709810109b0w",
+      "createdAt": "2026-11-03T12:43:30.109Z",
+      "to": "aarav.sharma@gmail.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "🎉 Booking Confirmed! Your UtsavMitra Pass #UM-PASS-8851 (Grand Royal Rajasthani Wedding Expo & Sangeet Gala)",
+      "type": "USER_BOOKING_VERIFICATION",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "eventId": "evt_01",
+        "totalAmount": 2998
+      }
+    },
+    {
+      "_id": "eml_1793709591231e2s",
+      "createdAt": "2026-11-03T12:39:51.231Z",
+      "to": "admin@utsavmitra.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "🪔 UtsavMitra SendGrid Email Verification Test",
+      "type": "ADMIN_TEST_VERIFICATION",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "initiatedBy": "admin@utsavmitra.com"
+      }
+    }
+  ]
 }

@@ -23,7 +23,9 @@ import {
   Lock,
   FileText,
   DollarSign,
-  TrendingUp
+  TrendingUp,
+  Send,
+  Mail
 } from 'lucide-react';
 
 export const SuperAdminDashboard = () => {
@@ -48,6 +50,7 @@ export const SuperAdminDashboard = () => {
   // Commission fee setting
   const [commissionRate, setCommissionRate] = useState(5);
   const [updatingSettings, setUpdatingSettings] = useState(false);
+  const [sendingTestEmail, setSendingTestEmail] = useState(false);
 
   const fetchSuperAdminData = async () => {
     try {
@@ -119,6 +122,24 @@ export const SuperAdminDashboard = () => {
     }
   };
 
+  const handleSendTestEmail = async () => {
+    setSendingTestEmail(true);
+    try {
+      const res = await api.post('/admin/send-test-email', {
+        to: user?.email || 'superadmin@utsavmitra.com',
+        type: 'SUPERADMIN_SECURITY_CHECK'
+      });
+      if (res.success) {
+        toast.success(res.message || 'SendGrid verification email dispatched successfully!');
+        fetchSuperAdminData();
+      }
+    } catch (err) {
+      toast.error(err.message || 'Failed to dispatch SendGrid verification email.');
+    } finally {
+      setSendingTestEmail(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
@@ -138,6 +159,7 @@ export const SuperAdminDashboard = () => {
     allUsers = [],
     allVenues = [],
     auditLogs = [],
+    allEmailLogs = [],
     systemHealth,
     settings,
     metrics
@@ -310,6 +332,18 @@ export const SuperAdminDashboard = () => {
         >
           <Server className="w-4 h-4" />
           <span>System &amp; DB Diagnostics</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('sendgrid_emails')}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold transition-all ${
+            activeTab === 'sendgrid_emails'
+              ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-lg shadow-rose-600/20'
+              : 'text-slate-400 hover:text-white hover:bg-slate-900'
+          }`}
+        >
+          <Send className="w-4 h-4" />
+          <span>SendGrid Verification Ledger ({allEmailLogs.length})</span>
         </button>
       </div>
 
@@ -704,6 +738,108 @@ export const SuperAdminDashboard = () => {
                 <span className="text-slate-400">Host OS</span>
                 <span className="font-bold text-white truncate max-w-[200px]">{systemHealth?.platform}</span>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB: SENDGRID EMAIL DISPATCHES & VERIFICATION LEDGER */}
+      {activeTab === 'sendgrid_emails' && (
+        <div className="space-y-6">
+          {/* SendGrid Status & Dispatch Controls */}
+          <div className="bg-gradient-to-r from-slate-900 via-rose-950/30 to-slate-900 border border-rose-500/30 rounded-3xl p-6 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className="text-xs font-bold uppercase tracking-wider text-rose-300">
+                  SendGrid Transactional Verification Engine &bull; Super Admin View
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-white font-serif">
+                Multi-Stakeholder Automated Notification Engine
+              </h3>
+              <p className="text-xs text-slate-400 max-w-xl">
+                Real-time ledger tracking every ticket booking pass email dispatched to attendees, booking revenue alert dispatched to event organizers, and gross financial ledger notification sent to platform administrators.
+              </p>
+            </div>
+
+            <button
+              onClick={handleSendTestEmail}
+              disabled={sendingTestEmail}
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold text-xs shadow-lg shadow-rose-500/20 flex items-center gap-2 transition-all disabled:opacity-50 shrink-0"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>{sendingTestEmail ? 'Dispatching via SendGrid...' : 'Send Super Admin Test Email'}</span>
+            </button>
+          </div>
+
+          {/* Email Ledger Table */}
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+            <div className="p-4 border-b border-slate-800 flex items-center justify-between text-xs">
+              <span className="font-bold text-white font-serif">
+                Master SendGrid Verification &amp; Transaction Ledger ({allEmailLogs.length})
+              </span>
+              <span className="text-slate-400">Recipient &bull; Subject &bull; Delivery Status</span>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 uppercase font-bold text-[10px]">
+                  <tr>
+                    <th className="p-4">Recipient</th>
+                    <th className="p-4">Notification Type</th>
+                    <th className="p-4">Subject</th>
+                    <th className="p-4">Provider &amp; Status</th>
+                    <th className="p-4 text-right">Dispatched At</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800">
+                  {allEmailLogs.length > 0 ? (
+                    allEmailLogs.map((log) => (
+                      <tr key={log._id} className="hover:bg-slate-800/40">
+                        <td className="p-4 font-mono font-medium text-slate-200">
+                          {log.to}
+                        </td>
+                        <td className="p-4">
+                          <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold ${
+                            log.type.includes('USER')
+                              ? 'bg-saffron-500/20 text-saffron-300 border border-saffron-500/30'
+                              : log.type.includes('ORGANIZER')
+                              ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                              : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
+                          }`}>
+                            {log.type.replace(/_/g, ' ')}
+                          </span>
+                        </td>
+                        <td className="p-4 text-slate-300 max-w-sm truncate font-medium">
+                          {log.subject}
+                        </td>
+                        <td className="p-4">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                            {log.dispatchStatus || 'SENT'} &bull; {log.provider}
+                          </span>
+                        </td>
+                        <td className="p-4 text-right text-slate-400 text-[11px] font-mono whitespace-nowrap">
+                          {new Date(log.createdAt).toLocaleString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit'
+                          })}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5" className="p-8 text-center text-slate-500 italic">
+                        No SendGrid verification emails recorded yet. Book tickets or create an event to see live dispatches here!
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

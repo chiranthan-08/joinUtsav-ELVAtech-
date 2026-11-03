@@ -70,6 +70,7 @@ exports.getSuperAdminOverview = async (req, res) => {
         allInvitations,
         // System and logs
         auditLogs: allAuditLogs.slice(0, 50),
+        allEmailLogs: store.getEmailLogs(),
         systemHealth,
         settings,
         metrics: {

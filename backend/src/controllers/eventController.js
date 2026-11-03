@@ -1,5 +1,6 @@
 const store = require('../data/inMemoryStore');
 const { expandSearchQuery, normalizeCity, eventMatchesQuery } = require('../utils/searchHelper');
+const { sendEventCreatedEmails } = require('../services/emailService');
 
 exports.getAllEvents = async (req, res) => {
   try {
@@ -124,9 +125,18 @@ exports.createEvent = async (req, res) => {
 
     store.logAction(req.user, 'EVENT_CREATED', 'EVENT', newEvent._id, `Created event: ${newEvent.title}`, req);
 
+    // Trigger SendGrid verification emails for Organizer, Admin & Super Admin
+    try {
+      sendEventCreatedEmails({ event: newEvent, organizer: req.user }).catch(err => {
+        console.warn('[SendGrid Notice]: Async dispatch error:', err.message);
+      });
+    } catch (emailErr) {
+      console.warn('[SendGrid Notice]: Failed to queue event creation emails:', emailErr.message);
+    }
+
     return res.status(201).json({
       success: true,
-      message: 'Event created successfully!',
+      message: 'Event created successfully! Verification details dispatched via SendGrid.',
       event: newEvent
     });
   } catch (error) {

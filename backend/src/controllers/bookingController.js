@@ -1,5 +1,6 @@
 const Razorpay = require('razorpay');
 const store = require('../data/inMemoryStore');
+const { sendBookingConfirmationEmails } = require('../services/emailService');
 
 // Optional Razorpay instance
 let razorpayInstance = null;
@@ -54,9 +55,18 @@ exports.createBooking = async (req, res) => {
       req
     );
 
+    // Trigger SendGrid verification & confirmation emails (User, Organizer, Admin & Super Admin)
+    try {
+      sendBookingConfirmationEmails({ booking, event, user: req.user }).catch(err => {
+        console.warn('[SendGrid Notice]: Async dispatch error:', err.message);
+      });
+    } catch (emailErr) {
+      console.warn('[SendGrid Notice]: Failed to queue confirmation emails:', emailErr.message);
+    }
+
     return res.status(201).json({
       success: true,
-      message: 'Tickets booked successfully! Your digital QR pass is ready.',
+      message: 'Tickets booked successfully! Verification details & digital QR pass sent to your email.',
       booking
     });
   } catch (error) {

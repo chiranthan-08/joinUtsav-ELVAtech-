@@ -258,6 +258,24 @@ class Store {
     return log;
   }
 
+  // --- Email Logs (SendGrid) ---
+  getEmailLogs() {
+    this.data.emailLogs = this.data.emailLogs || [];
+    return this.data.emailLogs;
+  }
+  logEmail(emailRecord) {
+    this.data.emailLogs = this.data.emailLogs || [];
+    const record = {
+      _id: 'eml_' + Date.now() + Math.random().toString(36).substring(2, 5),
+      createdAt: new Date().toISOString(),
+      ...emailRecord
+    };
+    this.data.emailLogs.unshift(record);
+    if (this.data.emailLogs.length > 200) this.data.emailLogs.pop();
+    this.save();
+    return record;
+  }
+
   // --- System Settings ---
   getSettings() { return this.data.systemSettings; }
   updateSettings(updates) {

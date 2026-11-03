@@ -1,4 +1,5 @@
 const store = require('../data/inMemoryStore');
+const { sendEmail } = require('../services/emailService');
 
 // Admin has access to EVERY platform event, booking, user, organizer, and venue
 exports.getAdminOverview = async (req, res) => {
@@ -8,6 +9,7 @@ exports.getAdminOverview = async (req, res) => {
     const allUsers = store.getUsers();
     const allVenues = store.getVenues();
     const allInvitations = store.getInvitations();
+    const allEmailLogs = store.getEmailLogs();
 
     const regularUsers = allUsers.filter(u => u.role === 'user');
     const organizers = allUsers.filter(u => u.role === 'organizer');
@@ -36,19 +38,53 @@ exports.getAdminOverview = async (req, res) => {
           totalUsers: regularUsers.length,
           totalOrganizers: organizers.length,
           totalVenues: allVenues.length,
-          totalInvitations: allInvitations.length
+          totalInvitations: allInvitations.length,
+          totalEmailsDispatched: allEmailLogs.length
         },
         categoryStats,
         allEvents,
         allBookings,
         allUsers: allUsers.map(({ password, ...u }) => u),
         allVenues,
-        allInvitations
+        allInvitations,
+        allEmailLogs
       }
     });
   } catch (error) {
     console.error('getAdminOverview error:', error);
     return res.status(500).json({ success: false, message: 'Failed to retrieve admin overview.' });
+  }
+};
+
+exports.sendTestVerificationEmail = async (req, res) => {
+  try {
+    const { toEmail } = req.body;
+    const recipient = toEmail || req.user.email;
+    const result = await sendEmail({
+      to: recipient,
+      subject: '🪔 UtsavMitra SendGrid Email Verification Test',
+      html: `
+        <div style="font-family: sans-serif; padding: 24px; background: #0f172a; color: #f8fafc; border-radius: 12px; border: 1px solid #334155;">
+          <h2 style="color: #fb923c; margin-top: 0;">🪔 UtsavMitra SendGrid Verification</h2>
+          <p>This is a live transactional verification test dispatched via the UtsavMitra SendGrid mail engine.</p>
+          <div style="background: #1e293b; padding: 12px; border-radius: 8px; font-size: 13px;">
+            <p style="margin: 4px 0;"><strong>Recipient:</strong> ${recipient}</p>
+            <p style="margin: 4px 0;"><strong>Triggered By:</strong> ${req.user.name} (${req.user.role})</p>
+            <p style="margin: 4px 0;"><strong>Timestamp:</strong> ${new Date().toLocaleString('en-IN')}</p>
+            <p style="margin: 4px 0;"><strong>Status:</strong> Authenticated &amp; Verified</p>
+          </div>
+        </div>
+      `,
+      type: 'ADMIN_TEST_VERIFICATION',
+      metadata: { initiatedBy: req.user.email }
+    });
+    return res.status(200).json({
+      success: true,
+      message: `SendGrid verification email dispatched to ${recipient}!`,
+      result
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: 'Failed to send test email.' });
   }
 };
 
