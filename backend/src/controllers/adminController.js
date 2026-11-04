@@ -1,5 +1,5 @@
 const store = require('../data/inMemoryStore');
-const { sendEmail } = require('../services/emailService');
+const { sendEmail, getEmailProviderStatus } = require('../services/emailService');
 
 // Admin has access to EVERY platform event, booking, user, organizer, and venue
 exports.getAdminOverview = async (req, res) => {
@@ -47,7 +47,8 @@ exports.getAdminOverview = async (req, res) => {
         allUsers: allUsers.map(({ password, ...u }) => u),
         allVenues,
         allInvitations,
-        allEmailLogs
+        allEmailLogs,
+        emailProviderStatus: getEmailProviderStatus()
       }
     });
   } catch (error) {

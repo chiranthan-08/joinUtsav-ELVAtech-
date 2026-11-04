@@ -160,6 +160,7 @@ export const SuperAdminDashboard = () => {
     allVenues = [],
     auditLogs = [],
     allEmailLogs = [],
+    emailProviderStatus,
     systemHealth,
     settings,
     metrics
@@ -750,16 +751,21 @@ export const SuperAdminDashboard = () => {
           <div className="bg-gradient-to-r from-slate-900 via-rose-950/30 to-slate-900 border border-rose-500/30 rounded-3xl p-6 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className={`w-2.5 h-2.5 rounded-full ${emailProviderStatus?.isLive ? 'bg-emerald-400 animate-ping' : 'bg-amber-400'}`} />
                 <span className="text-xs font-bold uppercase tracking-wider text-rose-300">
-                  SendGrid Transactional Verification Engine &bull; Super Admin View
+                  Transactional Verification Engine &bull; {emailProviderStatus?.activeProvider || 'Gmail SMTP / SendGrid'}
                 </span>
+                {emailProviderStatus?.isLive && (
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
+                    LIVE DISPATCH ACTIVE
+                  </span>
+                )}
               </div>
               <h3 className="text-lg font-bold text-white font-serif">
                 Multi-Stakeholder Automated Notification Engine
               </h3>
               <p className="text-xs text-slate-400 max-w-xl">
-                Real-time ledger tracking every ticket booking pass email dispatched to attendees, booking revenue alert dispatched to event organizers, and gross financial ledger notification sent to platform administrators.
+                Real-time ledger tracking every ticket booking pass email dispatched to attendees, booking revenue alert dispatched to event organizers, and gross financial ledger notification sent to platform administrators via Gmail SMTP or SendGrid.
               </p>
             </div>
 
@@ -769,7 +775,7 @@ export const SuperAdminDashboard = () => {
               className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold text-xs shadow-lg shadow-rose-500/20 flex items-center gap-2 transition-all disabled:opacity-50 shrink-0"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>{sendingTestEmail ? 'Dispatching via SendGrid...' : 'Send Super Admin Test Email'}</span>
+              <span>{sendingTestEmail ? 'Dispatching...' : 'Send Super Admin Test Email'}</span>
             </button>
           </div>
 

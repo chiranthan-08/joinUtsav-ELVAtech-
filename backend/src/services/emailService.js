@@ -1,18 +1,42 @@
+const nodemailer = require('nodemailer');
 const sgMail = require('@sendgrid/mail');
 const store = require('../data/inMemoryStore');
 
-// Configure SendGrid API Key if present
-const sendgridApiKey = process.env.SENDGRID_API_KEY || '';
-const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL || 'notifications@utsavmitra.com';
-const FROM_NAME = 'UtsavMitra Celebrations';
+// Credentials & Configuration
+const GMAIL_USER = process.env.GMAIL_USER || '';
+const GMAIL_APP_PASSWORD = (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '');
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || '';
+
+const FROM_NAME = process.env.SMTP_FROM_NAME || 'UtsavMitra Celebrations';
+const FROM_EMAIL = GMAIL_USER || process.env.SENDGRID_FROM_EMAIL || 'notifications@utsavmitra.com';
 const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'admin@utsavmitra.com';
 const SUPERADMIN_EMAIL = process.env.SUPERADMIN_NOTIFICATION_EMAIL || 'superadmin@utsavmitra.com';
 
-if (sendgridApiKey) {
-  sgMail.setApiKey(sendgridApiKey);
+// Configure Gmail SMTP Transporter if App Password is provided
+let gmailTransporter = null;
+if (GMAIL_USER && GMAIL_APP_PASSWORD) {
+  try {
+    gmailTransporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: GMAIL_USER,
+        pass: GMAIL_APP_PASSWORD
+      }
+    });
+    console.log(`[Gmail SMTP Service]: Configured for account ${GMAIL_USER} via secure SMTP.`);
+  } catch (e) {
+    console.warn('[Gmail SMTP Initialization Error]:', e.message);
+  }
+}
+
+// Configure SendGrid if API key is provided
+if (SENDGRID_API_KEY) {
+  sgMail.setApiKey(SENDGRID_API_KEY);
   console.log('[SendGrid Service]: API Key configured and active.');
-} else {
-  console.log('[SendGrid Service]: No SENDGRID_API_KEY detected in .env. Operating in resilient simulation & audit ledger mode.');
+}
+
+if (!gmailTransporter && !SENDGRID_API_KEY) {
+  console.log('[Email Dispatch Engine]: Operating in resilient simulation & audit ledger mode. (Add GMAIL_APP_PASSWORD or SENDGRID_API_KEY in .env for direct inbox delivery)');
 }
 
 // Common festive HTML email wrapper
@@ -56,7 +80,7 @@ function getEmailWrapper(title, preheader, contentHtml) {
     </div>
     <div class="footer">
       <p style="margin: 0 0 8px 0;">This email was sent by <strong>UtsavMitra Automated Verification Engine</strong>.</p>
-      <p style="margin: 0;">Secured with SendGrid Email Dispatch &amp; Encrypted QR Pass Validation &bull; India</p>
+      <p style="margin: 0;">Secured with Multi-Provider SMTP &amp; Encrypted QR Pass Validation &bull; India</p>
     </div>
   </div>
 </body>
@@ -65,35 +89,59 @@ function getEmailWrapper(title, preheader, contentHtml) {
 }
 
 /**
- * Universal Send Method via SendGrid with automatic fallback logging
+ * Universal Send Method with Multi-Provider Support (Gmail SMTP, SendGrid, Resilient Simulation)
  */
 async function sendEmail({ to, subject, html, text, type = 'NOTIFICATION', metadata = {} }) {
-  const msg = {
-    to,
-    from: {
-      email: FROM_EMAIL,
-      name: FROM_NAME
-    },
-    subject,
-    text: text || subject,
-    html
-  };
-
   let dispatchStatus = 'SIMULATED';
+  let provider = 'Simulation Ledger';
   let errorDetail = null;
 
-  if (sendgridApiKey) {
+  // Option 1: Gmail SMTP (Primary if App Password provided)
+  if (gmailTransporter) {
     try {
-      const response = await sgMail.send(msg);
+      const info = await gmailTransporter.sendMail({
+        from: `"${FROM_NAME}" <${GMAIL_USER}>`,
+        to,
+        subject,
+        text: text || subject,
+        html
+      });
       dispatchStatus = 'SENT';
+      provider = 'Gmail SMTP';
+      console.log(`[Gmail SMTP Success]: Delivered email to ${to} (${subject}). MessageId: ${info.messageId}`);
+    } catch (err) {
+      errorDetail = err.message;
+      dispatchStatus = 'FAILED_FALLBACK_LOGGED';
+      provider = 'Gmail SMTP';
+      console.warn(`[Gmail SMTP Error]: Unable to deliver to ${to}:`, err.message);
+    }
+  }
+  // Option 2: SendGrid API
+  else if (SENDGRID_API_KEY) {
+    try {
+      const response = await sgMail.send({
+        to,
+        from: {
+          email: FROM_EMAIL,
+          name: FROM_NAME
+        },
+        subject,
+        text: text || subject,
+        html
+      });
+      dispatchStatus = 'SENT';
+      provider = 'SendGrid API';
       console.log(`[SendGrid Success]: Email delivered to ${to} (${subject}). Status: ${response[0]?.statusCode}`);
     } catch (err) {
       errorDetail = err.response?.body?.errors || err.message;
       dispatchStatus = 'FAILED_FALLBACK_LOGGED';
+      provider = 'SendGrid API';
       console.warn(`[SendGrid Notice]: Unable to send via public API:`, errorDetail);
     }
-  } else {
-    console.log(`[SendGrid Simulation]: Dispatched email to ${to} -> Subject: "${subject}"`);
+  } 
+  // Option 3: Simulation & Audit Logging
+  else {
+    console.log(`[Email Simulation]: Dispatched email to ${to} -> Subject: "${subject}"`);
   }
 
   // Record into platform email ledger for Admin & audit purposes
@@ -103,7 +151,7 @@ async function sendEmail({ to, subject, html, text, type = 'NOTIFICATION', metad
     subject,
     type,
     dispatchStatus,
-    provider: sendgridApiKey ? 'SendGrid API' : 'SendGrid Simulator',
+    provider,
     error: errorDetail,
     metadata
   });
@@ -111,6 +159,7 @@ async function sendEmail({ to, subject, html, text, type = 'NOTIFICATION', metad
   return {
     success: true,
     dispatchStatus,
+    provider,
     emailId: loggedEmail._id
   };
 }
@@ -570,10 +619,36 @@ async function sendUserRegistrationEmail({ user }) {
   });
 }
 
+function getEmailProviderStatus() {
+  if (gmailTransporter) {
+    return {
+      activeProvider: 'Gmail SMTP',
+      senderEmail: GMAIL_USER,
+      status: 'CONFIGURED_ACTIVE',
+      isLive: true
+    };
+  } else if (SENDGRID_API_KEY) {
+    return {
+      activeProvider: 'SendGrid API',
+      senderEmail: FROM_EMAIL,
+      status: 'CONFIGURED_ACTIVE',
+      isLive: true
+    };
+  } else {
+    return {
+      activeProvider: 'Simulation Mode (Waiting for Gmail App Password or SendGrid Key)',
+      senderEmail: GMAIL_USER || FROM_EMAIL,
+      status: 'SIMULATION_MODE',
+      isLive: false
+    };
+  }
+}
+
 module.exports = {
   sendEmail,
   sendBookingConfirmationEmails,
   sendEventCreatedEmails,
-  sendUserRegistrationEmail
+  sendUserRegistrationEmail,
+  getEmailProviderStatus
 };
 

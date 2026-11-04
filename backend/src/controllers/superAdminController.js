@@ -2,6 +2,7 @@ const os = require('os');
 const bcrypt = require('bcryptjs');
 const store = require('../data/inMemoryStore');
 const { getMongoStatus } = require('../config/db');
+const { getEmailProviderStatus } = require('../services/emailService');
 
 exports.getSuperAdminOverview = async (req, res) => {
   try {
@@ -71,6 +72,7 @@ exports.getSuperAdminOverview = async (req, res) => {
         // System and logs
         auditLogs: allAuditLogs.slice(0, 50),
         allEmailLogs: store.getEmailLogs(),
+        emailProviderStatus: getEmailProviderStatus(),
         systemHealth,
         settings,
         metrics: {

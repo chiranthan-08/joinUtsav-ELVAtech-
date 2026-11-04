@@ -93,7 +93,7 @@ export const AdminDashboard = () => {
     );
   }
 
-  const { metrics, allEvents = [], allBookings = [], allUsers = [], allVenues = [], allEmailLogs = [] } = data || {};
+  const { metrics, allEvents = [], allBookings = [], allUsers = [], allVenues = [], allEmailLogs = [], emailProviderStatus } = data || {};
 
   // Extract all inquiries across all venues
   const allInquiries = [];
@@ -545,23 +545,28 @@ export const AdminDashboard = () => {
         </div>
       )}
 
-      {/* TAB 5: SENDGRID EMAIL DISPATCHES & VERIFICATION LEDGER */}
+      {/* TAB 5: TRANSACTIONAL VERIFICATION & EMAIL LEDGER */}
       {activeTab === 'emails' && (
         <div className="space-y-6">
-          {/* SendGrid Status & Dispatch Controls */}
+          {/* Email Engine Status & Dispatch Controls */}
           <div className="bg-gradient-to-r from-slate-900 via-rose-950/30 to-slate-900 border border-rose-500/30 rounded-3xl p-6 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className={`w-2.5 h-2.5 rounded-full ${emailProviderStatus?.isLive ? 'bg-emerald-400 animate-ping' : 'bg-amber-400'}`} />
                 <span className="text-xs font-bold uppercase tracking-wider text-rose-300">
-                  SendGrid Transactional Verification Engine
+                  Transactional Verification Engine &bull; {emailProviderStatus?.activeProvider || 'Gmail SMTP / SendGrid'}
                 </span>
+                {emailProviderStatus?.isLive && (
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
+                    LIVE DISPATCH ACTIVE
+                  </span>
+                )}
               </div>
               <h3 className="text-lg font-bold text-white font-serif">
                 Automated Multi-Stakeholder Email Dispatcher
               </h3>
               <p className="text-xs text-slate-400 max-w-xl">
-                Automatically verifies bookings for attendees, sends booking revenue alerts to organizers, and notifies admins &amp; super admins of platform GMV transactions and new event listings.
+                Automatically verifies bookings for attendees, sends booking revenue alerts to organizers, and notifies admins &amp; super admins of platform GMV transactions and new user registrations via Gmail SMTP or SendGrid.
               </p>
             </div>
 
@@ -571,7 +576,7 @@ export const AdminDashboard = () => {
               className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold text-xs shadow-lg shadow-rose-500/20 flex items-center gap-2 transition-all disabled:opacity-50 shrink-0"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>{sendingTestEmail ? 'Dispatching via SendGrid...' : 'Send Test Verification Email'}</span>
+              <span>{sendingTestEmail ? 'Dispatching...' : 'Send Test Verification Email'}</span>
             </button>
           </div>
 
