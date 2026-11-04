@@ -428,8 +428,152 @@ async function sendEventCreatedEmails({ event, organizer }) {
   });
 }
 
+/**
+ * Send welcome & account verification email upon registration
+ */
+async function sendUserRegistrationEmail({ user }) {
+  const isOrganizer = user.role === 'organizer';
+  const roleLabel = isOrganizer ? 'Event Organizer' : 'Celebration Guest / User';
+  const portalUrl = 'http://localhost:5173';
+
+  const userHtml = getEmailWrapper(
+    `Welcome to UtsavMitra, ${user.name}!`,
+    `Your ${roleLabel} account is now verified and active.`,
+    `
+      <div style="text-align: center; margin-bottom: 25px;">
+        <span class="badge">Account Verified &bull; ${roleLabel.toUpperCase()}</span>
+        <h2 style="color: #ffffff; margin: 15px 0 5px 0; font-size: 22px;">Namaste, ${user.name}! 🙏</h2>
+        <p style="color: #94a3b8; font-size: 14px; margin: 0;">
+          Welcome to <strong>UtsavMitra</strong> – India's premier AI-powered event management platform for weddings, cultural festivals, college fests, and celebrations.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3 style="color: #fb923c; font-size: 15px; margin: 0 0 15px 0; border-bottom: 1px solid #334155; padding-bottom: 8px;">
+          🪔 Your Account Profile &amp; Credentials
+        </h3>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 8px 0; color: #94a3b8;">Full Name:</td>
+            <td style="padding: 8px 0; color: #ffffff; font-weight: bold; text-align: right;">${user.name}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 8px 0; color: #94a3b8;">Registered Email:</td>
+            <td style="padding: 8px 0; color: #38bdf8; font-weight: bold; text-align: right;">${user.email}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 8px 0; color: #94a3b8;">Assigned Role:</td>
+            <td style="padding: 8px 0; color: #34d399; font-weight: bold; text-align: right;">${roleLabel}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 8px 0; color: #94a3b8;">Contact Phone:</td>
+            <td style="padding: 8px 0; color: #cbd5e1; text-align: right;">${user.phone || 'N/A'}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: #94a3b8;">City:</td>
+            <td style="padding: 8px 0; color: #cbd5e1; text-align: right;">${user.city || 'India'}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="background: rgba(234, 88, 12, 0.1); border: 1px dashed rgba(234, 88, 12, 0.4); border-radius: 12px; padding: 15px; margin: 20px 0; font-size: 13px; color: #fdba74;">
+        <strong style="color: #fb923c;">✨ What you can do next:</strong>
+        <ul style="margin: 8px 0 0 0; padding-left: 20px; line-height: 1.6;">
+          ${isOrganizer 
+            ? `
+              <li>List your weddings, cultural shows, college fests, or concerts</li>
+              <li>Configure customized ticket tiers with Razorpay payment processing</li>
+              <li>Scan attendee passes at entry gates using our QR-code scanner</li>
+            `
+            : `
+              <li>Explore verified celebrations and cultural events across Indian cities</li>
+              <li>Book tickets securely via Razorpay with instant digital passes</li>
+              <li>Consult our AI Celebration Assistant anytime for ritual planning &amp; venue guidance</li>
+            `
+          }
+        </ul>
+      </div>
+
+      <div style="text-align: center; margin: 30px 0 15px 0;">
+        <a href="${portalUrl}${isOrganizer ? '/organizer/dashboard' : '/events'}" class="btn">
+          ${isOrganizer ? 'Open Organizer Console &rarr;' : 'Explore Upcoming Celebrations &rarr;'}
+        </a>
+      </div>
+    `
+  );
+
+  // Send to the registered user
+  await sendEmail({
+    to: user.email,
+    subject: `🪔 Welcome to UtsavMitra! Your Account is Verified (${user.name})`,
+    html: userHtml,
+    type: 'USER_REGISTRATION_VERIFICATION',
+    metadata: { userId: user._id, role: user.role }
+  });
+
+  // Admin notification
+  const adminHtml = getEmailWrapper(
+    `New User Registered: ${user.name}`,
+    `New ${user.role} registration on UtsavMitra platform.`,
+    `
+      <div style="text-align: center; margin-bottom: 20px;">
+        <span class="badge">Platform Security Notice</span>
+        <h2 style="color: #ffffff; margin: 15px 0 5px 0; font-size: 20px;">New Account Registered</h2>
+        <p style="color: #94a3b8; font-size: 13px;">A new ${user.role} has signed up on UtsavMitra.</p>
+      </div>
+
+      <div class="card">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 6px 0; color: #94a3b8;">User Name:</td>
+            <td style="padding: 6px 0; color: #ffffff; font-weight: bold; text-align: right;">${user.name}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 6px 0; color: #94a3b8;">Email:</td>
+            <td style="padding: 6px 0; color: #38bdf8; text-align: right;">${user.email}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 6px 0; color: #94a3b8;">Role:</td>
+            <td style="padding: 6px 0; color: #ffffff; text-align: right;">${user.role}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 6px 0; color: #94a3b8;">City:</td>
+            <td style="padding: 6px 0; color: #ffffff; text-align: right;">${user.city || 'India'}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; color: #94a3b8;">Phone:</td>
+            <td style="padding: 6px 0; color: #cbd5e1; text-align: right;">${user.phone || 'N/A'}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="text-align: center; margin: 25px 0 15px 0;">
+        <a href="${portalUrl}/admin/dashboard" class="btn">View Users in Admin Console</a>
+      </div>
+    `
+  );
+
+  await sendEmail({
+    to: ADMIN_EMAIL,
+    subject: `👤 [Admin Alert] New ${user.role.toUpperCase()} Registered: ${user.name} (${user.email})`,
+    html: adminHtml,
+    type: 'ADMIN_USER_REGISTERED_ALERT',
+    metadata: { userId: user._id }
+  });
+
+  await sendEmail({
+    to: SUPERADMIN_EMAIL,
+    subject: `👑 [Super Admin HQ] Account Created: ${user.name} (${user.role})`,
+    html: adminHtml,
+    type: 'SUPERADMIN_USER_REGISTERED_ALERT',
+    metadata: { userId: user._id }
+  });
+}
+
 module.exports = {
   sendEmail,
   sendBookingConfirmationEmails,
-  sendEventCreatedEmails
+  sendEventCreatedEmails,
+  sendUserRegistrationEmail
 };
+

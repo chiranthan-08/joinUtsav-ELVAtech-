@@ -17,7 +17,8 @@ import {
   ArrowRight,
   TrendingUp,
   Trash2,
-  Edit
+  Edit,
+  Mail
 } from 'lucide-react';
 
 export const OrganizerDashboard = () => {
@@ -32,6 +33,22 @@ export const OrganizerDashboard = () => {
     totalPendingCheckIns: 0
   });
   const [loading, setLoading] = useState(true);
+  const [resendingEmail, setResendingEmail] = useState(false);
+
+  const handleResendVerification = async () => {
+    if (!user?.email) return;
+    setResendingEmail(true);
+    try {
+      const res = await api.post('/auth/resend-verification', { email: user.email });
+      if (res.success) {
+        toast.success(res.message);
+      }
+    } catch (err) {
+      toast.error(err.message || 'Failed to dispatch verification email.');
+    } finally {
+      setResendingEmail(false);
+    }
+  };
 
   const fetchOrganizerData = async () => {
     try {
@@ -87,6 +104,16 @@ export const OrganizerDashboard = () => {
         </div>
 
         <div className="flex items-center gap-3 flex-wrap">
+          <button
+            onClick={handleResendVerification}
+            disabled={resendingEmail}
+            className="px-3.5 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 text-rose-300 border border-rose-500/30 font-semibold text-xs transition-all flex items-center gap-1.5 disabled:opacity-50"
+            title="Resend verification & welcome email to your organizer inbox"
+          >
+            <Mail className="w-3.5 h-3.5 text-rose-400" />
+            <span>{resendingEmail ? 'Dispatching...' : 'Resend Verification Email'}</span>
+          </button>
+
           <Link
             to="/organizer/events/new"
             className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold text-xs shadow-lg shadow-rose-500/20 flex items-center gap-2 transition-all"

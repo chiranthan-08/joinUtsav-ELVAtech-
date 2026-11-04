@@ -23,6 +23,22 @@ export const UserDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [invitations, setInvitations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [resendingEmail, setResendingEmail] = useState(false);
+
+  const handleResendVerification = async () => {
+    if (!user?.email) return;
+    setResendingEmail(true);
+    try {
+      const res = await api.post('/auth/resend-verification', { email: user.email });
+      if (res.success) {
+        toast.success(res.message);
+      }
+    } catch (err) {
+      toast.error(err.message || 'Failed to dispatch verification email.');
+    } finally {
+      setResendingEmail(false);
+    }
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -62,7 +78,16 @@ export const UserDashboard = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            onClick={handleResendVerification}
+            disabled={resendingEmail}
+            className="px-3.5 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 text-saffron-300 border border-saffron-500/30 font-semibold text-xs transition-all flex items-center gap-1.5 disabled:opacity-50"
+            title="Resend verification & welcome email to your registered inbox"
+          >
+            <Mail className="w-3.5 h-3.5 text-saffron-400" />
+            <span>{resendingEmail ? 'Dispatching...' : 'Resend Verification Email'}</span>
+          </button>
           <Link
             to="/events"
             className="px-4 py-2.5 rounded-xl bg-saffron-600 hover:bg-saffron-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2"

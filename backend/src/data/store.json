@@ -113,6 +113,20 @@
       "phone": "+919035049264",
       "city": "tmk",
       "organization": ""
+    },
+    {
+      "_id": "usr_1793806198454108u",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=chiranth",
+      "status": "active",
+      "createdAt": "2026-11-04T15:29:58.454Z",
+      "lastLogin": "2026-11-04T15:29:58.454Z",
+      "name": "chiranth",
+      "email": "chiranthansiddu@gmail.com",
+      "password": "$2a$10$YJJn9TO1EgZbQzJboYgQhucMkd4a/1YexZuYmYQf3GoFJzFmjqDH2",
+      "role": "user",
+      "phone": "9035049264",
+      "city": "bangalore",
+      "organization": ""
     }
   ],
   "events": [
@@ -1841,6 +1855,18 @@
   ],
   "auditLogs": [
     {
+      "_id": "aud_1793806198467wh0",
+      "actorId": "usr_1793806198454108u",
+      "actorName": "chiranth",
+      "actorRole": "user",
+      "action": "USER_REGISTERED",
+      "targetType": "USER",
+      "targetId": "usr_1793806198454108u",
+      "details": "Registered as user",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-04T15:29:58.467Z"
+    },
+    {
       "_id": "aud_179370981012147m",
       "actorId": "usr_organizer_01",
       "actorName": "Rajesh Singhania",
@@ -1997,6 +2023,49 @@
     "updatedBy": "Vikramaditya Rathore"
   },
   "emailLogs": [
+    {
+      "_id": "eml_1793806565480j7u",
+      "createdAt": "2026-11-04T15:36:05.480Z",
+      "to": "superadmin@utsavmitra.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "👑 [Super Admin HQ] Account Created: chiranth (user)",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1793806198454108u"
+      }
+    },
+    {
+      "_id": "eml_179380656547505o",
+      "createdAt": "2026-11-04T15:36:05.475Z",
+      "to": "admin@utsavmitra.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "👤 [Admin Alert] New USER Registered: chiranth (chiranthansiddu@gmail.com)",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1793806198454108u"
+      }
+    },
+    {
+      "_id": "eml_17938065654682jh",
+      "createdAt": "2026-11-04T15:36:05.468Z",
+      "to": "chiranthansiddu@gmail.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (chiranth)",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "dispatchStatus": "SIMULATED",
+      "provider": "SendGrid Simulator",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1793806198454108u",
+        "role": "user"
+      }
+    },
     {
       "_id": "eml_1793709810130mi8",
       "createdAt": "2026-11-03T12:43:30.130Z",

@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const store = require('../data/inMemoryStore');
+const { sendUserRegistrationEmail } = require('../services/emailService');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'utsavmitra_super_secret_jwt_key_2026_festive';
 
@@ -40,12 +41,17 @@ exports.register = async (req, res) => {
 
     store.logAction(newUser, 'USER_REGISTERED', 'USER', newUser._id, `Registered as ${newUser.role}`, req);
 
+    // Send automated SendGrid welcome & account verification email
+    sendUserRegistrationEmail({ user: newUser }).catch(err => {
+      console.warn('[Registration Email Dispatch Warning]:', err.message);
+    });
+
     const token = generateToken(newUser);
     const { password: _, ...userWithoutPassword } = newUser;
 
     return res.status(201).json({
       success: true,
-      message: 'Registration successful! Welcome to UtsavMitra.',
+      message: 'Registration successful! Verification email dispatched.',
       token,
       user: userWithoutPassword
     });
@@ -153,6 +159,31 @@ exports.quickSwitchPersona = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: 'Failed to switch demo persona.' });
+  }
+};
+
+// Resend verification / welcome email for any registered email
+exports.resendVerificationEmail = async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Email is required.' });
+    }
+
+    const user = store.getUserByEmail(email);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'No registered user found with this email address.' });
+    }
+
+    await sendUserRegistrationEmail({ user });
+
+    return res.status(200).json({
+      success: true,
+      message: `Verification and welcome email dispatched to ${user.email}! Check your inbox and spam folder.`
+    });
+  } catch (error) {
+    console.error('resendVerificationEmail error:', error);
+    return res.status(500).json({ success: false, message: 'Failed to dispatch verification email.' });
   }
 };
 
