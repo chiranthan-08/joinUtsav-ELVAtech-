@@ -9,6 +9,7 @@ router.get('/organizer/my-events', authMiddleware, roleMiddleware(['organizer', 
 router.get('/:id', eventController.getEventById);
 router.post('/', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_admin']), eventController.createEvent);
 router.put('/:id', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_admin']), eventController.updateEvent);
+router.post('/:id/broadcast-update', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_admin']), eventController.broadcastEventUpdate);
 router.delete('/:id', authMiddleware, roleMiddleware(['organizer', 'admin', 'super_admin']), eventController.deleteEvent);
 
 module.exports = router;

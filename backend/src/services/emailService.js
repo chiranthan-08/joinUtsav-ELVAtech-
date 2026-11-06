@@ -619,6 +619,121 @@ async function sendUserRegistrationEmail({ user }) {
   });
 }
 
+/**
+ * Send 6-Digit Login Verification Code (OTP) via Email
+ */
+async function sendLoginOTPEmail({ email, otp, userName = 'Valued Guest' }) {
+  const contentHtml = `
+    <div style="text-align: center; margin-bottom: 25px;">
+      <span class="badge">Security &bull; One-Time Password</span>
+      <h2 style="color: #ffffff; margin: 15px 0 5px 0; font-size: 22px;">Sign in to UtsavMitra</h2>
+      <p style="color: #94a3b8; font-size: 14px; margin: 0;">
+        Hello <strong>${userName}</strong>, here is your single-use verification code to log in:
+      </p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, rgba(234, 88, 12, 0.15) 0%, rgba(225, 29, 72, 0.15) 100%); border: 2px dashed #ea580c; border-radius: 16px; padding: 25px; text-align: center; margin: 25px 0;">
+      <div style="font-size: 11px; text-transform: uppercase; color: #fed7aa; letter-spacing: 2px; font-weight: bold; margin-bottom: 8px;">
+        Your Verification Code
+      </div>
+      <div style="font-family: 'Courier New', Courier, monospace; font-size: 40px; font-weight: 800; color: #ffffff; letter-spacing: 10px; padding: 5px 0;">
+        ${otp}
+      </div>
+      <div style="font-size: 12px; color: #f87171; font-weight: 600; margin-top: 8px;">
+        ⏳ Valid for 10 minutes only &bull; Do not share this code
+      </div>
+    </div>
+
+    <div class="card" style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+      <strong style="color: #ffffff;">🔒 Security Notice:</strong>
+      <p style="margin: 6px 0 0 0;">
+        If you did not request this login code, you can safely disregard this email. Your UtsavMitra account remains completely secure.
+      </p>
+    </div>
+  `;
+
+  const html = getEmailWrapper(
+    'UtsavMitra Sign-In Code',
+    `Your verification code is ${otp}. Valid for 10 minutes.`,
+    contentHtml
+  );
+
+  return await sendEmail({
+    to: email,
+    subject: `🔐 Your UtsavMitra Sign-In Code: ${otp}`,
+    html,
+    type: 'LOGIN_OTP_VERIFICATION',
+    metadata: { email, otpSentAt: new Date().toISOString() }
+  });
+}
+
+/**
+ * Send Customer Event Update / Announcement Email to Attendee
+ */
+async function sendCustomerUpdateEmail({ event, updateTitle, updateMessage, attendeeEmail, attendeeName = 'Guest' }) {
+  const portalUrl = 'http://localhost:5173';
+  const contentHtml = `
+    <div style="text-align: center; margin-bottom: 25px;">
+      <span class="badge" style="background: rgba(14, 165, 233, 0.2); color: #38bdf8; border-color: rgba(14, 165, 233, 0.4);">
+        📢 Organizer Announcement
+      </span>
+      <h2 style="color: #ffffff; margin: 15px 0 5px 0; font-size: 22px;">Important Update: ${event.title}</h2>
+      <p style="color: #94a3b8; font-size: 14px; margin: 0;">
+        Hello <strong>${attendeeName}</strong>, the event organizers have broadcast an announcement regarding your upcoming celebration:
+      </p>
+    </div>
+
+    <div style="background: rgba(15, 23, 42, 0.9); border-left: 4px solid #ea580c; border-radius: 12px; padding: 20px; margin: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+      <h3 style="color: #fb923c; margin: 0 0 10px 0; font-size: 16px;">
+        📌 ${updateTitle}
+      </h3>
+      <div style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">
+${updateMessage}
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 style="color: #94a3b8; font-size: 12px; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px;">
+        Event Schedule &amp; Venue
+      </h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+        <tr style="border-bottom: 1px solid #334155;">
+          <td style="padding: 6px 0; color: #94a3b8;">Celebration:</td>
+          <td style="padding: 6px 0; color: #ffffff; font-weight: bold; text-align: right;">${event.title}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #334155;">
+          <td style="padding: 6px 0; color: #94a3b8;">Scheduled Date:</td>
+          <td style="padding: 6px 0; color: #ffffff; text-align: right;">${event.date} (${event.time || 'Evening'})</td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 0; color: #94a3b8;">Venue Address:</td>
+          <td style="padding: 6px 0; color: #38bdf8; text-align: right;">${event.venueName}, ${event.city}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0 15px 0;">
+      <a href="${portalUrl}/user/dashboard" class="btn">
+        View My Digital Passes &amp; QR Code &rarr;
+      </a>
+    </div>
+  `;
+
+  const html = getEmailWrapper(
+    `Update: ${event.title}`,
+    `${updateTitle} - Important update for ${event.title}`,
+    contentHtml
+  );
+
+  return await sendEmail({
+    to: attendeeEmail,
+    subject: `📢 [Event Update] ${updateTitle} - ${event.title}`,
+    html,
+    type: 'CUSTOMER_EVENT_UPDATE',
+    metadata: { eventId: event._id, updateTitle }
+  });
+}
+
 function getEmailProviderStatus() {
   if (gmailTransporter) {
     return {
@@ -649,6 +764,8 @@ module.exports = {
   sendBookingConfirmationEmails,
   sendEventCreatedEmails,
   sendUserRegistrationEmail,
+  sendLoginOTPEmail,
+  sendCustomerUpdateEmail,
   getEmailProviderStatus
 };
 

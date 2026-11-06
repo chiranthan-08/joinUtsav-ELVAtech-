@@ -287,6 +287,52 @@ class Store {
     this.save();
     return this.data.systemSettings;
   }
+
+  // --- Login OTPs ---
+  storeOTP(email, otp, expiresInMinutes = 10) {
+    this.data.otps = this.data.otps || {};
+    const normEmail = email.toLowerCase().trim();
+    this.data.otps[normEmail] = {
+      otp: String(otp).trim(),
+      expiresAt: Date.now() + (expiresInMinutes * 60 * 1000),
+      attempts: 0
+    };
+    this.save();
+    return this.data.otps[normEmail];
+  }
+
+  verifyOTP(email, enteredOtp) {
+    this.data.otps = this.data.otps || {};
+    const normEmail = email.toLowerCase().trim();
+    const record = this.data.otps[normEmail];
+
+    if (!record) {
+      return { success: false, message: 'No active OTP request found for this email. Please request a new code.' };
+    }
+
+    if (Date.now() > record.expiresAt) {
+      delete this.data.otps[normEmail];
+      this.save();
+      return { success: false, message: 'This OTP code has expired. Please request a new code.' };
+    }
+
+    if (record.attempts >= 5) {
+      delete this.data.otps[normEmail];
+      this.save();
+      return { success: false, message: 'Too many incorrect attempts. Please request a new code.' };
+    }
+
+    if (record.otp !== String(enteredOtp).trim()) {
+      record.attempts += 1;
+      this.save();
+      return { success: false, message: `Incorrect verification code. (${5 - record.attempts} attempts remaining)` };
+    }
+
+    // OTP verified successfully -> clear it
+    delete this.data.otps[normEmail];
+    this.save();
+    return { success: true };
+  }
 }
 
 const storeInstance = new Store();

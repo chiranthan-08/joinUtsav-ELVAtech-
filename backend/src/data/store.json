@@ -119,14 +119,15 @@
       "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=chiranth",
       "status": "active",
       "createdAt": "2026-11-04T15:29:58.454Z",
-      "lastLogin": "2026-11-04T15:29:58.454Z",
+      "lastLogin": "2026-11-06T04:32:14.936Z",
       "name": "chiranth",
       "email": "chiranthansiddu@gmail.com",
       "password": "$2a$10$YJJn9TO1EgZbQzJboYgQhucMkd4a/1YexZuYmYQf3GoFJzFmjqDH2",
       "role": "user",
       "phone": "9035049264",
       "city": "bangalore",
-      "organization": ""
+      "organization": "",
+      "updatedAt": "2026-11-06T04:32:14.936Z"
     }
   ],
   "events": [
@@ -1855,6 +1856,42 @@
   ],
   "auditLogs": [
     {
+      "_id": "aud_1793939534950lh1",
+      "actorId": "usr_organizer_01",
+      "actorName": "Rajesh Singhania",
+      "actorRole": "organizer",
+      "action": "EVENT_UPDATE_BROADCAST",
+      "targetType": "EVENT",
+      "targetId": "evt_01",
+      "details": "Broadcast announcement \"Dinner Schedule Update: Dinner Buffet at 7:30 PM\" to 1 attendees",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-06T04:32:14.950Z"
+    },
+    {
+      "_id": "aud_1793939534938vu7",
+      "actorId": "usr_1793806198454108u",
+      "actorName": "chiranth",
+      "actorRole": "user",
+      "action": "USER_LOGIN_VIA_OTP",
+      "targetType": "USER",
+      "targetId": "usr_1793806198454108u",
+      "details": "Authenticated via Email OTP",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-06T04:32:14.938Z"
+    },
+    {
+      "_id": "aud_1793807456277bfp",
+      "actorId": "usr_1793806198454108u",
+      "actorName": "chiranth",
+      "actorRole": "user",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_1793806198454108u",
+      "details": "Logged in successfully as user",
+      "ipAddress": "::1",
+      "createdAt": "2026-11-04T15:50:56.278Z"
+    },
+    {
       "_id": "aud_1793806198467wh0",
       "actorId": "usr_1793806198454108u",
       "actorName": "chiranth",
@@ -2024,6 +2061,51 @@
   },
   "emailLogs": [
     {
+      "_id": "eml_1793939534948xii",
+      "createdAt": "2026-11-06T04:32:14.948Z",
+      "to": "aarav.sharma@gmail.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "📢 [Event Update] Dinner Schedule Update: Dinner Buffet at 7:30 PM - Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "type": "CUSTOMER_EVENT_UPDATE",
+      "dispatchStatus": "SIMULATED",
+      "provider": "Simulation Ledger",
+      "error": null,
+      "metadata": {
+        "eventId": "evt_01",
+        "updateTitle": "Dinner Schedule Update: Dinner Buffet at 7:30 PM"
+      }
+    },
+    {
+      "_id": "eml_1793939534874wzo",
+      "createdAt": "2026-11-06T04:32:14.874Z",
+      "to": "chiranthansiddu@gmail.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "🔐 Your UtsavMitra Sign-In Code: 757006",
+      "type": "LOGIN_OTP_VERIFICATION",
+      "dispatchStatus": "SIMULATED",
+      "provider": "Simulation Ledger",
+      "error": null,
+      "metadata": {
+        "email": "chiranthansiddu@gmail.com",
+        "otpSentAt": "2026-11-06T04:32:14.874Z"
+      }
+    },
+    {
+      "_id": "eml_1793939524804iqq",
+      "createdAt": "2026-11-06T04:32:04.804Z",
+      "to": "chiranthansiddu@gmail.com",
+      "from": "notifications@utsavmitra.com",
+      "subject": "🔐 Your UtsavMitra Sign-In Code: 238641",
+      "type": "LOGIN_OTP_VERIFICATION",
+      "dispatchStatus": "SIMULATED",
+      "provider": "Simulation Ledger",
+      "error": null,
+      "metadata": {
+        "email": "chiranthansiddu@gmail.com",
+        "otpSentAt": "2026-11-06T04:32:04.803Z"
+      }
+    },
+    {
       "_id": "eml_1793806565480j7u",
       "createdAt": "2026-11-04T15:36:05.480Z",
       "to": "superadmin@utsavmitra.com",
@@ -2186,5 +2268,6 @@
         "initiatedBy": "admin@utsavmitra.com"
       }
     }
-  ]
+  ],
+  "otps": {}
 }

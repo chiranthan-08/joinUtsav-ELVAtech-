@@ -18,7 +18,10 @@ import {
   TrendingUp,
   Trash2,
   Edit,
-  Mail
+  Mail,
+  Send,
+  Megaphone,
+  X
 } from 'lucide-react';
 
 export const OrganizerDashboard = () => {
@@ -34,6 +37,27 @@ export const OrganizerDashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const [resendingEmail, setResendingEmail] = useState(false);
+  const [broadcastModalEvent, setBroadcastModalEvent] = useState(null);
+  const [broadcastForm, setBroadcastForm] = useState({ updateTitle: '', updateMessage: '' });
+  const [broadcasting, setBroadcasting] = useState(false);
+
+  const handleBroadcastUpdate = async (e) => {
+    e.preventDefault();
+    if (!broadcastModalEvent || !broadcastForm.updateTitle || !broadcastForm.updateMessage) return;
+    setBroadcasting(true);
+    try {
+      const res = await api.post(`/events/${broadcastModalEvent._id}/broadcast-update`, broadcastForm);
+      if (res.success) {
+        toast.success(res.message || 'Update broadcast successfully to attendees!');
+        setBroadcastModalEvent(null);
+        setBroadcastForm({ updateTitle: '', updateMessage: '' });
+      }
+    } catch (err) {
+      toast.error(err.message || 'Failed to broadcast update.');
+    } finally {
+      setBroadcasting(false);
+    }
+  };
 
   const handleResendVerification = async () => {
     if (!user?.email) return;
@@ -249,21 +273,33 @@ export const OrganizerDashboard = () => {
                   </div>
 
                   {/* Bottom Action Footer */}
-                  <div className="p-4 bg-slate-950/80 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                  <div className="p-4 bg-slate-950/80 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
                     <Link
                       to={`/organizer/events/${evt._id}/attendees`}
-                      className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-slate-200 font-semibold text-xs flex items-center gap-1.5 transition-colors"
+                      className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-slate-200 font-semibold text-xs flex items-center gap-1.5 transition-colors"
                     >
                       <Users className="w-3.5 h-3.5 text-rose-400" />
-                      <span>Guest Roster &amp; Attendance</span>
+                      <span>Guest Roster</span>
                     </Link>
+
+                    <button
+                      onClick={() => {
+                        setBroadcastModalEvent(evt);
+                        setBroadcastForm({ updateTitle: '', updateMessage: '' });
+                      }}
+                      className="px-3 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold text-xs flex items-center gap-1.5 transition-colors"
+                      title="Send announcement email to all ticket holders"
+                    >
+                      <Megaphone className="w-3.5 h-3.5 text-rose-400" />
+                      <span>Broadcast Update</span>
+                    </button>
 
                     <Link
                       to={`/events/${evt._id}`}
-                      className="px-3.5 py-2 rounded-xl bg-rose-600/20 text-rose-300 border border-rose-500/30 hover:bg-rose-600/30 font-semibold text-xs flex items-center gap-1.5 transition-colors"
+                      className="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800 font-semibold text-xs flex items-center gap-1.5 transition-colors"
                     >
                       <Eye className="w-3.5 h-3.5" />
-                      <span>View Public Page</span>
+                      <span>Public Page</span>
                     </Link>
                   </div>
                 </div>
@@ -284,6 +320,76 @@ export const OrganizerDashboard = () => {
           </div>
         )}
       </div>
+
+      {/* Broadcast Announcement Modal */}
+      {broadcastModalEvent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div className="flex items-center gap-2">
+                <Megaphone className="w-5 h-5 text-rose-400" />
+                <div>
+                  <h3 className="font-bold text-white font-serif text-base">Broadcast Update to Attendees</h3>
+                  <p className="text-[11px] text-slate-400 truncate max-w-xs">{broadcastModalEvent.title}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setBroadcastModalEvent(null)}
+                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleBroadcastUpdate} className="space-y-4 text-xs">
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Announcement Subject / Headline *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Schedule Change: Sangeet Dinner Starts at 7:30 PM"
+                  value={broadcastForm.updateTitle}
+                  onChange={(e) => setBroadcastForm({ ...broadcastForm, updateTitle: e.target.value })}
+                  className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-xs focus:border-rose-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Announcement Message *</label>
+                <textarea
+                  required
+                  rows={4}
+                  placeholder="Enter details for attendees regarding schedule, parking, attire, or ritual instructions..."
+                  value={broadcastForm.updateMessage}
+                  onChange={(e) => setBroadcastForm({ ...broadcastForm, updateMessage: e.target.value })}
+                  className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-xs focus:border-rose-500 focus:outline-none"
+                />
+                <p className="text-[10px] text-slate-500 mt-1">
+                  This message will be dispatched via email to all verified ticket holders of this celebration.
+                </p>
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+                <button
+                  type="button"
+                  onClick={() => setBroadcastModalEvent(null)}
+                  className="px-4 py-2 rounded-xl text-slate-400 hover:text-white font-semibold text-xs"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={broadcasting}
+                  className="px-5 py-2.5 rounded-xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white shadow-lg text-xs flex items-center gap-2 transition-all disabled:opacity-50"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>{broadcasting ? 'Broadcasting...' : 'Send Broadcast Email'}</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

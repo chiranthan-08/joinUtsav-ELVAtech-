@@ -67,6 +67,35 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const sendLoginOTP = async (email) => {
+    try {
+      const data = await api.post('/auth/send-otp', { email });
+      if (data.success) {
+        toast.success(data.message || 'Verification code sent to your email.');
+        return { success: true };
+      }
+    } catch (err) {
+      toast.error(err.message || 'Failed to send OTP code.');
+      return { success: false, error: err.message };
+    }
+  };
+
+  const loginWithOTP = async (email, otp) => {
+    try {
+      const data = await api.post('/auth/verify-otp', { email, otp });
+      if (data.success) {
+        localStorage.setItem('utsavmitra_token', data.token);
+        setToken(data.token);
+        setUser(data.user);
+        toast.success(`Welcome to UtsavMitra, ${data.user.name}!`);
+        return { success: true, user: data.user };
+      }
+    } catch (err) {
+      toast.error(err.message || 'Invalid or expired OTP.');
+      return { success: false, error: err.message };
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem('utsavmitra_token');
     setToken(null);
@@ -98,6 +127,8 @@ export const AuthProvider = ({ children }) => {
         token,
         loading,
         login,
+        sendLoginOTP,
+        loginWithOTP,
         register,
         logout,
         switchRolePersona,

@@ -1,6 +1,6 @@
 const store = require('../data/inMemoryStore');
 const { expandSearchQuery, normalizeCity, eventMatchesQuery } = require('../utils/searchHelper');
-const { sendEventCreatedEmails } = require('../services/emailService');
+const { sendEventCreatedEmails, sendCustomerUpdateEmail } = require('../services/emailService');
 
 exports.getAllEvents = async (req, res) => {
   try {
@@ -224,6 +224,71 @@ exports.getOrganizerEvents = async (req, res) => {
   } catch (error) {
     console.error('getOrganizerEvents error:', error);
     return res.status(500).json({ success: false, message: 'Failed to fetch organizer events.' });
+  }
+};
+
+// Broadcast Customer Event Update / Announcement to all Attendees
+exports.broadcastEventUpdate = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { updateTitle, updateMessage } = req.body;
+
+    if (!updateTitle || !updateMessage) {
+      return res.status(400).json({ success: false, message: 'Update title and message are required.' });
+    }
+
+    const event = store.getEventById(id);
+    if (!event) {
+      return res.status(404).json({ success: false, message: 'Event not found.' });
+    }
+
+    // Permission check: must be the organizer or admin/super_admin
+    if (req.user.role !== 'admin' && req.user.role !== 'super_admin' && event.organizerId !== req.user._id) {
+      return res.status(403).json({ success: false, message: 'Unauthorized to broadcast updates for this celebration.' });
+    }
+
+    // Find all bookings for this event
+    const allBookings = store.getBookings();
+    const eventBookings = allBookings.filter(b => b.eventId === id && b.paymentStatus === 'paid');
+
+    // Distinct emails so someone who bought multiple times doesn't get duplicate emails
+    const recipientMap = new Map();
+    eventBookings.forEach(b => {
+      if (b.userEmail && !recipientMap.has(b.userEmail.toLowerCase())) {
+        recipientMap.set(b.userEmail.toLowerCase(), b.userName || 'Valued Guest');
+      }
+    });
+
+    // Dispatch customer update emails
+    let dispatchCount = 0;
+    for (const [email, name] of recipientMap.entries()) {
+      await sendCustomerUpdateEmail({
+        event,
+        updateTitle,
+        updateMessage,
+        attendeeEmail: email,
+        attendeeName: name
+      });
+      dispatchCount++;
+    }
+
+    store.logAction(
+      req.user,
+      'EVENT_UPDATE_BROADCAST',
+      'EVENT',
+      event._id,
+      `Broadcast announcement "${updateTitle}" to ${dispatchCount} attendees`,
+      req
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: `Announcement broadcast successfully to ${dispatchCount} attendee(s)!`,
+      attendeesContacted: dispatchCount
+    });
+  } catch (error) {
+    console.error('broadcastEventUpdate error:', error);
+    return res.status(500).json({ success: false, message: 'Failed to broadcast event announcement.' });
   }
 };
 
