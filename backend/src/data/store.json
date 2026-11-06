@@ -2061,6 +2061,64 @@
   },
   "emailLogs": [
     {
+      "_id": "eml_1793940109090q2g",
+      "createdAt": "2026-11-06T04:41:49.090Z",
+      "to": "chiranthansiddu@gmail.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "🔐 Your UtsavMitra Sign-In Code: 478359",
+      "type": "LOGIN_OTP_VERIFICATION",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "email": "chiranthansiddu@gmail.com",
+        "otpSentAt": "2026-11-06T04:41:46.752Z"
+      }
+    },
+    {
+      "_id": "eml_1793940092411u9x",
+      "createdAt": "2026-11-06T04:41:32.411Z",
+      "to": "superadmin@utsavmitra.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "👑 [Super Admin HQ] Account Created: chiranth (user)",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1793806198454108u"
+      }
+    },
+    {
+      "_id": "eml_1793940089157t9j",
+      "createdAt": "2026-11-06T04:41:29.157Z",
+      "to": "admin@utsavmitra.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "👤 [Admin Alert] New USER Registered: chiranth (chiranthansiddu@gmail.com)",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1793806198454108u"
+      }
+    },
+    {
+      "_id": "eml_1793940086095qfi",
+      "createdAt": "2026-11-06T04:41:26.095Z",
+      "to": "chiranthansiddu@gmail.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (chiranth)",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1793806198454108u",
+        "role": "user"
+      }
+    },
+    {
       "_id": "eml_1793939534948xii",
       "createdAt": "2026-11-06T04:32:14.948Z",
       "to": "aarav.sharma@gmail.com",
@@ -2269,5 +2327,11 @@
       }
     }
   ],
-  "otps": {}
+  "otps": {
+    "chiranthansiddu@gmail.com": {
+      "otp": "478359",
+      "expiresAt": 1793940706750,
+      "attempts": 0
+    }
+  }
 }

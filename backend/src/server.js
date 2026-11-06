@@ -1,9 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const dotenv = require('dotenv');
 const { connectDB, getMongoStatus } = require('./config/db');
 
-// Load environment variables
+// Load environment variables reliably from backend/.env and root .env
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
 dotenv.config();
 
 const app = express();

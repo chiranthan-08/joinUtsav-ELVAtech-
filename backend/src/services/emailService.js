@@ -1,3 +1,8 @@
+const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
+dotenv.config();
+
 const nodemailer = require('nodemailer');
 const sgMail = require('@sendgrid/mail');
 const store = require('../data/inMemoryStore');
