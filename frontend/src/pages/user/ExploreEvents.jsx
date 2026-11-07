@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { api } from '../../api/client';
 import { EventCard } from '../../components/EventCard';
+import { FALLBACK_EVENTS } from '../../data/seedFallback';
 import { Search, Filter, Calendar, MapPin, Sparkles, X } from 'lucide-react';
 
 export const ExploreEvents = () => {
@@ -35,12 +36,22 @@ export const ExploreEvents = () => {
       if (search) query.append('search', search);
 
       const res = await api.get(`/events?${query.toString()}`);
-      if (res.success) {
+      if (res && res.success && res.events) {
         setEvents(res.events || []);
         setSearchMetadata(res.searchMetadata || null);
+      } else {
+        throw new Error('No events returned');
       }
     } catch (err) {
-      console.error('Failed to fetch events:', err);
+      console.warn('API unreachable, applying client-side filtering on fallback events:', err.message);
+      let list = FALLBACK_EVENTS;
+      if (category !== 'All') list = list.filter(e => e.category === category);
+      if (city !== 'All') list = list.filter(e => (e.city || '').toLowerCase().includes(city.toLowerCase()));
+      if (search && search.trim()) {
+        const q = search.trim().toLowerCase();
+        list = list.filter(e => (e.title || '').toLowerCase().includes(q) || (e.city || '').toLowerCase().includes(q) || (e.category || '').toLowerCase().includes(q));
+      }
+      setEvents(list);
     } finally {
       setLoading(false);
     }

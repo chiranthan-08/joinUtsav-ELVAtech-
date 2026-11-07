@@ -1,4 +1,4 @@
-const API_BASE_URL = '/api';
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
 
 export const apiClient = async (endpoint, options = {}) => {
   const token = localStorage.getItem('utsavmitra_token');
@@ -15,7 +15,8 @@ export const apiClient = async (endpoint, options = {}) => {
   };
 
   try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+    const url = endpoint.startsWith('http') ? endpoint : `${API_BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
+    const response = await fetch(url, config);
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {

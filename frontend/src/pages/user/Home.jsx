@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { api } from '../../api/client';
 import { EventCard } from '../../components/EventCard';
+import { FALLBACK_EVENTS, FALLBACK_VENUES } from '../../data/seedFallback';
 import { 
   Sparkles, 
   Compass, 
@@ -57,14 +58,27 @@ export const Home = () => {
           api.get('/venues')
         ]);
 
-        if (eventsRes.status === 'fulfilled' && eventsRes.value?.success) {
-          setEvents(eventsRes.value.events || []);
+        let loadedEvents = [];
+        let loadedVenues = [];
+
+        if (eventsRes.status === 'fulfilled' && eventsRes.value?.success && eventsRes.value.events?.length) {
+          loadedEvents = eventsRes.value.events;
+        } else {
+          loadedEvents = FALLBACK_EVENTS;
         }
-        if (venuesRes.status === 'fulfilled' && venuesRes.value?.success) {
-          setVenues(venuesRes.value.venues?.slice(0, 3) || []);
+
+        if (venuesRes.status === 'fulfilled' && venuesRes.value?.success && venuesRes.value.venues?.length) {
+          loadedVenues = venuesRes.value.venues.slice(0, 3);
+        } else {
+          loadedVenues = FALLBACK_VENUES.slice(0, 3);
         }
+
+        setEvents(loadedEvents);
+        setVenues(loadedVenues);
       } catch (err) {
-        console.error('Failed loading home data:', err);
+        console.error('Failed loading home data, using cached fallback:', err);
+        setEvents(FALLBACK_EVENTS);
+        setVenues(FALLBACK_VENUES.slice(0, 3));
       } finally {
         setLoading(false);
       }

@@ -3,6 +3,7 @@ import { api } from '../../api/client';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { MapPin, Users, Star, IndianRupee, Sparkles, Check, Send, Phone, Mail, Search, X } from 'lucide-react';
+import { FALLBACK_VENUES } from '../../data/seedFallback';
 
 export const VenueDiscovery = () => {
   const { user } = useAuth();
@@ -37,12 +38,22 @@ export const VenueDiscovery = () => {
       if (search.trim()) query.append('search', search.trim());
 
       const res = await api.get(`/venues?${query.toString()}`);
-      if (res.success) {
+      if (res && res.success && res.venues) {
         setVenues(res.venues || []);
         setSearchExplanation(res.searchMetadata?.explanation || null);
+      } else {
+        throw new Error('Venues not returned');
       }
     } catch (err) {
-      console.error('Failed to load venues:', err);
+      console.warn('API unreachable, using fallback venues:', err.message);
+      let list = FALLBACK_VENUES;
+      if (selectedCity !== 'All') list = list.filter(v => (v.city || '').toLowerCase().includes(selectedCity.toLowerCase()));
+      if (selectedType !== 'All') list = list.filter(v => (v.type || '').toLowerCase() === selectedType.toLowerCase());
+      if (search && search.trim()) {
+        const q = search.trim().toLowerCase();
+        list = list.filter(v => (v.name || '').toLowerCase().includes(q) || (v.city || '').toLowerCase().includes(q));
+      }
+      setVenues(list);
     } finally {
       setLoading(false);
     }

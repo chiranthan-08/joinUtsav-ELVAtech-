@@ -4,6 +4,7 @@ import { api } from '../../api/client';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { RazorpayModal } from '../../components/RazorpayModal';
+import { FALLBACK_EVENTS } from '../../data/seedFallback';
 import { 
   Calendar, 
   Clock, 
@@ -34,14 +35,24 @@ export const EventDetails = () => {
     const fetchEvent = async () => {
       try {
         const res = await api.get(`/events/${id}`);
-        if (res.success && res.event) {
+        if (res && res.success && res.event) {
           setEvent(res.event);
           if (res.event.ticketTiers && res.event.ticketTiers.length > 0) {
             setSelectedTier(res.event.ticketTiers[0]);
           }
+          return;
         }
+        throw new Error('Event not returned');
       } catch (err) {
-        toast.error('Failed to load event details.');
+        const found = FALLBACK_EVENTS.find(e => e._id === id);
+        if (found) {
+          setEvent(found);
+          if (found.ticketTiers && found.ticketTiers.length > 0) {
+            setSelectedTier(found.ticketTiers[0]);
+          }
+        } else {
+          toast.error('Failed to load event details.');
+        }
       } finally {
         setLoading(false);
       }
