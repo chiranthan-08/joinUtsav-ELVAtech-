@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const BookingSchema = new mongoose.Schema({
+  _id: { type: String },
   passId: { type: String, required: true, unique: true }, // e.g. "UM-PASS-8839"
   eventId: { type: String, required: true },
   eventTitle: { type: String, required: true },
@@ -31,7 +32,7 @@ const BookingSchema = new mongoose.Schema({
   checkedInAt: { type: Date },
   checkedInBy: { type: String },
   createdAt: { type: Date, default: Date.now }
-});
+}, { strict: false, timestamps: true });
 
 module.exports = mongoose.models.Booking || mongoose.model('Booking', BookingSchema);
 

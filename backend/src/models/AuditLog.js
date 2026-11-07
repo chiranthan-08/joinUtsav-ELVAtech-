@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const AuditLogSchema = new mongoose.Schema({
+  _id: { type: String },
   actorId: { type: String, required: true },
   actorName: { type: String, required: true },
   actorRole: { type: String, required: true },
@@ -10,9 +11,10 @@ const AuditLogSchema = new mongoose.Schema({
   details: { type: String, default: '' },
   ipAddress: { type: String, default: '127.0.0.1' },
   createdAt: { type: Date, default: Date.now }
-});
+}, { strict: false, timestamps: true });
 
 const SystemSettingSchema = new mongoose.Schema({
+  _id: { type: String },
   platformName: { type: String, default: 'UtsavMitra' },
   platformFeePercent: { type: Number, default: 5 }, // 5% platform commission
   razorpayTestMode: { type: Boolean, default: true },
@@ -22,7 +24,7 @@ const SystemSettingSchema = new mongoose.Schema({
   maintenanceMode: { type: Boolean, default: false },
   updatedAt: { type: Date, default: Date.now },
   updatedBy: { type: String, default: 'superadmin' }
-});
+}, { strict: false, timestamps: true });
 
 const AuditLog = mongoose.models.AuditLog || mongoose.model('AuditLog', AuditLogSchema);
 const SystemSetting = mongoose.models.SystemSetting || mongoose.model('SystemSetting', SystemSettingSchema);

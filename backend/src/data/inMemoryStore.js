@@ -2,6 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode');
 const { getSeedData } = require('./seedData');
+const {
+  persistCreate,
+  persistUpdate,
+  persistDelete,
+  persistSettings
+} = require('../services/mongoSyncService');
 
 const STORE_FILE = path.join(__dirname, 'store.json');
 
@@ -88,6 +94,7 @@ class Store {
     };
     this.data.users.push(newUser);
     this.save();
+    persistCreate('User', newUser);
     return newUser;
   }
   updateUser(id, updates) {
@@ -95,12 +102,14 @@ class Store {
     if (idx === -1) return null;
     this.data.users[idx] = { ...this.data.users[idx], ...updates, updatedAt: new Date().toISOString() };
     this.save();
+    persistUpdate('User', id, this.data.users[idx]);
     return this.data.users[idx];
   }
   deleteUser(id) {
     const initialLen = this.data.users.length;
     this.data.users = this.data.users.filter(u => u._id !== id);
     this.save();
+    persistDelete('User', id);
     return this.data.users.length < initialLen;
   }
 
@@ -118,6 +127,7 @@ class Store {
     };
     this.data.events.unshift(newEvent);
     this.save();
+    persistCreate('Event', newEvent);
     return newEvent;
   }
   updateEvent(id, updates) {
@@ -125,12 +135,14 @@ class Store {
     if (idx === -1) return null;
     this.data.events[idx] = { ...this.data.events[idx], ...updates, updatedAt: new Date().toISOString() };
     this.save();
+    persistUpdate('Event', id, this.data.events[idx]);
     return this.data.events[idx];
   }
   deleteEvent(id) {
     const initialLen = this.data.events.length;
     this.data.events = this.data.events.filter(e => e._id !== id);
     this.save();
+    persistDelete('Event', id);
     return this.data.events.length < initialLen;
   }
 
@@ -158,10 +170,12 @@ class Store {
       const tier = evt.ticketTiers.find(t => t.name === bookingData.ticketTier || t.id === bookingData.ticketTierId);
       if (tier) {
         tier.bookedSeats = (tier.bookedSeats || 0) + (bookingData.quantity || 1);
+        persistUpdate('Event', evt._id, evt);
       }
     }
 
     this.save();
+    persistCreate('Booking', newBooking);
     return newBooking;
   }
   updateBooking(id, updates) {
@@ -169,7 +183,15 @@ class Store {
     if (idx === -1) return null;
     this.data.bookings[idx] = { ...this.data.bookings[idx], ...updates };
     this.save();
+    persistUpdate('Booking', id, this.data.bookings[idx]);
     return this.data.bookings[idx];
+  }
+  deleteBooking(id) {
+    const initialLen = this.data.bookings.length;
+    this.data.bookings = this.data.bookings.filter(b => b._id !== id);
+    this.save();
+    persistDelete('Booking', id);
+    return this.data.bookings.length < initialLen;
   }
 
   // --- Venues ---
@@ -187,6 +209,7 @@ class Store {
     };
     this.data.venues.unshift(newVenue);
     this.save();
+    persistCreate('Venue', newVenue);
     return newVenue;
   }
   updateVenue(id, updates) {
@@ -194,11 +217,13 @@ class Store {
     if (idx === -1) return null;
     this.data.venues[idx] = { ...this.data.venues[idx], ...updates };
     this.save();
+    persistUpdate('Venue', id, this.data.venues[idx]);
     return this.data.venues[idx];
   }
   deleteVenue(id) {
     this.data.venues = this.data.venues.filter(v => v._id !== id);
     this.save();
+    persistDelete('Venue', id);
     return true;
   }
 
@@ -220,6 +245,7 @@ class Store {
     };
     this.data.invitations.unshift(newInvite);
     this.save();
+    persistCreate('Invitation', newInvite);
     return newInvite;
   }
   addRSVP(slugOrId, rsvpData) {
@@ -233,6 +259,7 @@ class Store {
     invite.rsvpList = invite.rsvpList || [];
     invite.rsvpList.push(newRsvp);
     this.save();
+    persistUpdate('Invitation', invite._id, invite);
     return invite;
   }
 
@@ -255,6 +282,7 @@ class Store {
     // keep max 500 logs
     if (this.data.auditLogs.length > 500) this.data.auditLogs.pop();
     this.save();
+    persistCreate('AuditLog', log);
     return log;
   }
 
@@ -273,6 +301,7 @@ class Store {
     this.data.emailLogs.unshift(record);
     if (this.data.emailLogs.length > 200) this.data.emailLogs.pop();
     this.save();
+    persistCreate('EmailLog', record);
     return record;
   }
 
@@ -285,6 +314,7 @@ class Store {
       updatedAt: new Date().toISOString()
     };
     this.save();
+    persistSettings(this.data.systemSettings);
     return this.data.systemSettings;
   }
 

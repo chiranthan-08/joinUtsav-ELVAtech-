@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const InvitationSchema = new mongoose.Schema({
+  _id: { type: String },
   title: { type: String, required: true },
   hostName: { type: String, required: true },
   eventType: { type: String, required: true }, // Wedding, Sangeet, Birthday, Griha Pravesh, Annaprashan, College Reunion
@@ -27,7 +28,7 @@ const InvitationSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   createdBy: { type: String, required: true },
   createdAt: { type: Date, default: Date.now }
-});
+}, { strict: false, timestamps: true });
 
 module.exports = mongoose.models.Invitation || mongoose.model('Invitation', InvitationSchema);
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const VenueSchema = new mongoose.Schema({
+  _id: { type: String },
   name: { type: String, required: true },
   city: { type: String, required: true },
   state: { type: String, default: 'Rajasthan' },
@@ -33,7 +34,7 @@ const VenueSchema = new mongoose.Schema({
   }],
   status: { type: String, enum: ['available', 'booked', 'maintenance'], default: 'available' },
   createdAt: { type: Date, default: Date.now }
-});
+}, { strict: false, timestamps: true });
 
 module.exports = mongoose.models.Venue || mongoose.model('Venue', VenueSchema);
 

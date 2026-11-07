@@ -11,6 +11,7 @@ const TicketTierSchema = new mongoose.Schema({
 });
 
 const EventSchema = new mongoose.Schema({
+  _id: { type: String },
   title: { type: String, required: true },
   tagline: { type: String, default: '' },
   description: { type: String, required: true },
@@ -48,7 +49,7 @@ const EventSchema = new mongoose.Schema({
   totalCapacity: { type: Number, default: 500 },
   viewsCount: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
-});
+}, { strict: false, timestamps: true });
 
 module.exports = mongoose.models.Event || mongoose.model('Event', EventSchema);
 
