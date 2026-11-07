@@ -173,6 +173,34 @@
       "phone": "+91 98765 43210",
       "city": "Jaipur",
       "organization": ""
+    },
+    {
+      "_id": "usr_1794050670405fg58",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=saritha",
+      "status": "active",
+      "createdAt": "2026-11-07T11:24:30.405Z",
+      "lastLogin": "2026-11-07T11:24:30.405Z",
+      "name": "saritha",
+      "email": "sarithashree9535@gmail.com",
+      "password": "$2a$10$J9gqFGwYI1a0QZt10GciMOQagJIUx4XhJo6PgfvyXLtGgZOxRlvr6",
+      "role": "user",
+      "phone": "9019281165",
+      "city": "Btm layout",
+      "organization": ""
+    },
+    {
+      "_id": "usr_1794051267168w4wb",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=prabhu",
+      "status": "active",
+      "createdAt": "2026-11-07T11:34:27.168Z",
+      "lastLogin": "2026-11-07T11:34:27.168Z",
+      "name": "prabhu",
+      "email": "prabhutp2@gmail.com",
+      "password": "$2a$10$FxXWqU84ixdrWwJQAgO8jO9fuKQE72OiKGFJrTJTSSJqfQmFHwVx2",
+      "role": "user",
+      "phone": "8892033409",
+      "city": "tmk",
+      "organization": ""
     }
   ],
   "events": [
@@ -2067,6 +2095,30 @@
   ],
   "auditLogs": [
     {
+      "_id": "aud_1794051267174h5r",
+      "actorId": "usr_1794051267168w4wb",
+      "actorName": "prabhu",
+      "actorRole": "user",
+      "action": "USER_REGISTERED",
+      "targetType": "USER",
+      "targetId": "usr_1794051267168w4wb",
+      "details": "Registered as user",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-11-07T11:34:27.174Z"
+    },
+    {
+      "_id": "aud_1794050670410qk0",
+      "actorId": "usr_1794050670405fg58",
+      "actorName": "saritha",
+      "actorRole": "user",
+      "action": "USER_REGISTERED",
+      "targetType": "USER",
+      "targetId": "usr_1794050670405fg58",
+      "details": "Registered as user",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-11-07T11:24:30.410Z"
+    },
+    {
       "_id": "aud_179404971864127l",
       "actorId": "usr_1794049718628em7u",
       "actorName": "saritha",
@@ -2345,6 +2397,92 @@
     "updatedBy": "Vikramaditya Rathore"
   },
   "emailLogs": [
+    {
+      "_id": "eml_1794051275021jnh",
+      "createdAt": "2026-11-07T11:34:35.021Z",
+      "to": "superadmin@utsavmitra.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "👑 [Super Admin HQ] Account Created: prabhu (user)",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1794051267168w4wb"
+      }
+    },
+    {
+      "_id": "eml_1794051272716vty",
+      "createdAt": "2026-11-07T11:34:32.716Z",
+      "to": "admin@utsavmitra.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "👤 [Admin Alert] New USER Registered: prabhu (prabhutp2@gmail.com)",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1794051267168w4wb"
+      }
+    },
+    {
+      "_id": "eml_1794051270088jz4",
+      "createdAt": "2026-11-07T11:34:30.088Z",
+      "to": "prabhutp2@gmail.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (prabhu)",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1794051267168w4wb",
+        "role": "user"
+      }
+    },
+    {
+      "_id": "eml_1794050678035nck",
+      "createdAt": "2026-11-07T11:24:38.035Z",
+      "to": "superadmin@utsavmitra.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "👑 [Super Admin HQ] Account Created: saritha (user)",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1794050670405fg58"
+      }
+    },
+    {
+      "_id": "eml_1794050675926w3a",
+      "createdAt": "2026-11-07T11:24:35.926Z",
+      "to": "admin@utsavmitra.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "👤 [Admin Alert] New USER Registered: saritha (sarithashree9535@gmail.com)",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1794050670405fg58"
+      }
+    },
+    {
+      "_id": "eml_179405067332468q",
+      "createdAt": "2026-11-07T11:24:33.324Z",
+      "to": "sarithashree9535@gmail.com",
+      "from": "chiranthansiddu@gmail.com",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (saritha)",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "dispatchStatus": "SENT",
+      "provider": "Gmail SMTP",
+      "error": null,
+      "metadata": {
+        "userId": "usr_1794050670405fg58",
+        "role": "user"
+      }
+    },
     {
       "_id": "eml_17940497275704zg",
       "createdAt": "2026-11-07T11:08:47.570Z",
