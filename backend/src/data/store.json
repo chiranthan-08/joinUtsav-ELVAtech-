@@ -14,7 +14,7 @@
       "phone": "+91 98290 12345",
       "role": "super_admin",
       "status": "active",
-      "updatedAt": "2026-11-08T14:12:14.832Z"
+      "updatedAt": "2026-11-08T14:12:14.850Z"
     },
     {
       "_id": "usr_admin_01",
@@ -30,7 +30,7 @@
       "phone": "+91 98110 54321",
       "role": "admin",
       "status": "active",
-      "updatedAt": "2026-11-08T14:12:03.202Z"
+      "updatedAt": "2026-11-08T14:12:03.224Z"
     },
     {
       "_id": "usr_organizer_01",
@@ -2102,27 +2102,31 @@
   "auditLogs": [
     {
       "_id": "aud_179414713483865k",
+      "__v": 0,
+      "action": "USER_LOGIN",
       "actorId": "usr_superadmin_01",
       "actorName": "Vikramaditya Rathore",
       "actorRole": "super_admin",
-      "action": "USER_LOGIN",
-      "targetType": "USER",
-      "targetId": "usr_superadmin_01",
+      "createdAt": "2026-11-08T14:12:14.850Z",
       "details": "Logged in successfully as super_admin",
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-11-08T14:12:14.839Z"
+      "targetId": "usr_superadmin_01",
+      "targetType": "USER",
+      "updatedAt": "2026-11-08T14:12:14.850Z"
     },
     {
       "_id": "aud_1794147123208m2s",
+      "__v": 0,
+      "action": "USER_LOGIN",
       "actorId": "usr_admin_01",
       "actorName": "Sunita Mehra",
       "actorRole": "admin",
-      "action": "USER_LOGIN",
-      "targetType": "USER",
-      "targetId": "usr_admin_01",
+      "createdAt": "2026-11-08T14:12:03.225Z",
       "details": "Logged in successfully as admin",
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-11-08T14:12:03.208Z"
+      "targetId": "usr_admin_01",
+      "targetType": "USER",
+      "updatedAt": "2026-11-08T14:12:03.225Z"
     },
     {
       "_id": "aud_1794051267174h5r",
