@@ -1,1695 +1,2998 @@
-export const FALLBACK_EVENTS = [
-  {
-    "_id": "evt_1793709810120i0t3",
+export const FALLBACK_STORE = {
+  "users": [
+    {
+      "_id": "usr_superadmin_01",
+      "__v": 0,
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+      "city": "New Delhi",
+      "createdAt": "2026-11-07T11:02:31.736Z",
+      "email": "superadmin@utsavmitra.com",
+      "lastLogin": "2026-11-08T14:12:14.832Z",
+      "name": "Vikramaditya Rathore",
+      "organization": "UtsavMitra HQ",
+      "password": "$2a$10$B19bp4DSiI1jzkSl93lRRuUkk3zn2t3M355tlxeWX/QDKyzXxR6k6",
+      "phone": "+91 98290 12345",
+      "role": "super_admin",
+      "status": "active",
+      "updatedAt": "2026-11-08T14:12:14.832Z"
+    },
+    {
+      "_id": "usr_admin_01",
+      "__v": 0,
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150",
+      "city": "Jaipur",
+      "createdAt": "2026-11-07T11:02:32.470Z",
+      "email": "admin@utsavmitra.com",
+      "lastLogin": "2026-11-08T14:12:03.202Z",
+      "name": "Sunita Mehra",
+      "organization": "UtsavMitra Regional Operations",
+      "password": "$2a$10$3BNiP.RvjgoSKXoH0Y6yOuHY/3oV80WA8E17075ggemGjhsEA0itO",
+      "phone": "+91 98110 54321",
+      "role": "admin",
+      "status": "active",
+      "updatedAt": "2026-11-08T14:12:03.202Z"
+    },
+    {
+      "_id": "usr_organizer_01",
+      "__v": 0,
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "city": "Jaipur",
+      "createdAt": "2026-11-07T11:02:32.534Z",
+      "email": "organizer@jaipurfest.com",
+      "lastLogin": "2026-11-02T11:45:00.000Z",
+      "name": "Rajesh Singhania",
+      "organization": "Royal Rajputana Weddings & Events",
+      "password": "$2a$10$pq8bShN63/eN9hplQxzUFO9eXBuRdCWJp//vjuFm2Kr8YYgrE1NMe",
+      "phone": "+91 94140 88776",
+      "role": "organizer",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:32.534Z"
+    },
+    {
+      "_id": "usr_organizer_02",
+      "__v": 0,
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
+      "city": "Mumbai",
+      "createdAt": "2026-11-07T11:02:32.603Z",
+      "email": "organizer@mumbaiculture.in",
+      "lastLogin": "2026-11-01T18:20:00.000Z",
+      "name": "Devika Kulkarni",
+      "organization": "Aamchi Mumbai Utsav Mandali",
+      "password": "$2a$10$t9Y9//h.L7yKhK22f4CzFO1P5I3/3CAq3omkeXv8MRYGNdZoL03wu",
+      "phone": "+91 98200 99881",
+      "role": "organizer",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:32.603Z"
+    },
+    {
+      "_id": "usr_organizer_03",
+      "__v": 0,
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150",
+      "city": "Mumbai",
+      "createdAt": "2026-11-07T11:02:32.682Z",
+      "email": "fest@iitb.ac.in",
+      "lastLogin": "2026-11-02T12:00:00.000Z",
+      "name": "Ankit Verma",
+      "organization": "IIT Fest Council & Youth Wing",
+      "password": "$2a$10$.7HOL3DZbrwng37u83d04.9gmgNScfZaBC1DikF6J0KH.QRfm9fQS",
+      "phone": "+91 97690 11223",
+      "role": "organizer",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:32.682Z"
+    },
+    {
+      "_id": "usr_user_01",
+      "__v": 0,
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
+      "city": "New Delhi",
+      "createdAt": "2026-11-07T11:02:32.743Z",
+      "email": "aarav.sharma@gmail.com",
+      "lastLogin": "2026-11-02T14:10:00.000Z",
+      "name": "Aarav Sharma",
+      "organization": "",
+      "password": "$2a$10$YBlfTLqyYTXzSUAv.c../.PTO5KKxyW6K7UYXHDlIHYRT7avD0gd.",
+      "phone": "+91 98765 11223",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:32.743Z"
+    },
+    {
+      "_id": "usr_user_02",
+      "__v": 0,
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+      "city": "Ahmedabad",
+      "createdAt": "2026-11-07T11:02:32.801Z",
+      "email": "priya.patel@gmail.com",
+      "lastLogin": "2026-11-02T13:40:00.000Z",
+      "name": "Priya Patel",
+      "organization": "",
+      "password": "$2a$10$wz5/jNbE8DkdsenhB0EM3.7okif3p1IlK39L2nEAAjP8mtDHiANF6",
+      "phone": "+91 99090 33445",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:32.801Z"
+    },
+    {
+      "_id": "usr_1793623045815ty3f",
+      "__v": 0,
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=praphu",
+      "city": "tmk",
+      "createdAt": "2026-11-07T11:02:32.862Z",
+      "email": "prabhu@gmail.com",
+      "lastLogin": "2026-11-02T12:37:25.815Z",
+      "name": "praphu",
+      "organization": "",
+      "password": "$2a$10$4Ix31XOkJRUFbatI//wO4etk5xaWxuivKSzI3l.bhZ9CEiy885FZW",
+      "phone": "+919035049264",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:32.862Z"
+    },
+    {
+      "_id": "usr_1793806198454108u",
+      "__v": 0,
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=chiranth",
+      "city": "bangalore",
+      "createdAt": "2026-11-07T11:02:32.947Z",
+      "email": "chiranthansiddu@gmail.com",
+      "lastLogin": "2026-11-06T04:32:14.936Z",
+      "name": "chiranth",
+      "organization": "",
+      "password": "$2a$10$YJJn9TO1EgZbQzJboYgQhucMkd4a/1YexZuYmYQf3GoFJzFmjqDH2",
+      "phone": "9035049264",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:32.947Z"
+    },
+    {
+      "_id": "usr_1793940545146zsy5",
+      "__v": 0,
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=rahul",
+      "city": "jkfsdc",
+      "createdAt": "2026-11-07T11:02:33.028Z",
+      "email": "rahullkrr1012@gmail.com",
+      "lastLogin": "2026-11-06T04:50:57.150Z",
+      "name": "rahul",
+      "organization": "",
+      "password": "$2a$10$QRgCTrkr6/YBYk2hHMnjkuzuew.QFcU7UW3DFUOcEEfDs0JtXHduy",
+      "phone": "8465041851",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:02:33.028Z"
+    },
+    {
+      "_id": "usr_1794049718628em7u",
+      "__v": 0,
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=saritha",
+      "city": "Jaipur",
+      "createdAt": "2026-11-07T11:08:38.691Z",
+      "email": "sarithasaru385@gmail.com",
+      "lastLogin": "2026-11-07T11:08:38.628Z",
+      "name": "saritha",
+      "organization": "",
+      "password": "$2a$10$DLBIjF45iDz5YSzyCHg8YehqZXFf73kncTLpVDixc0yA3nWgLplEC",
+      "phone": "+91 98765 43210",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:08:38.691Z"
+    },
+    {
+      "_id": "usr_1794050670405fg58",
+      "__v": 0,
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=saritha",
+      "city": "Btm layout",
+      "createdAt": "2026-11-07T11:24:30.416Z",
+      "email": "sarithashree9535@gmail.com",
+      "lastLogin": "2026-11-07T11:24:30.405Z",
+      "name": "saritha",
+      "organization": "",
+      "password": "$2a$10$J9gqFGwYI1a0QZt10GciMOQagJIUx4XhJo6PgfvyXLtGgZOxRlvr6",
+      "phone": "9019281165",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:24:30.416Z"
+    },
+    {
+      "_id": "usr_1794051267168w4wb",
+      "__v": 0,
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=prabhu",
+      "city": "tmk",
+      "createdAt": "2026-11-07T11:34:27.182Z",
+      "email": "prabhutp2@gmail.com",
+      "lastLogin": "2026-11-07T11:34:27.168Z",
+      "name": "prabhu",
+      "organization": "",
+      "password": "$2a$10$FxXWqU84ixdrWwJQAgO8jO9fuKQE72OiKGFJrTJTSSJqfQmFHwVx2",
+      "phone": "8892033409",
+      "role": "user",
+      "status": "active",
+      "updatedAt": "2026-11-07T11:34:27.182Z"
+    }
+  ],
+  "events": [
+    {
+      "_id": "evt_1793709810120i0t3",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
+      "category": "Cultural Program",
+      "city": "Bangalore",
+      "createdAt": "2026-11-07T11:02:33.116Z",
+      "date": "2026-12-15",
+      "description": "A vibrant evening of traditional music fused with interactive digital art and festive cuisine.",
+      "dressCode": "Festive Indian / Smart Ethnic",
+      "endDate": "2026-12-15",
+      "endTime": "10:00 PM",
+      "highlights": [
+        "Live Music & Entertainment",
+        "Food & Refreshment Counters",
+        "Grand Celebration"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@jaipurfest.com",
+      "organizerId": "usr_organizer_01",
+      "organizerName": "Royal Rajputana Weddings & Events",
+      "schedule": [
+        {
+          "time": "18:00",
+          "activity": "Event Inauguration & Grand Welcome",
+          "description": "Doors open for guests.",
+          "_id": "6aef0549ce09b2dedf8757e5"
+        }
+      ],
+      "state": "Rajasthan",
+      "status": "approved",
+      "tagline": "",
+      "ticketTiers": [
+        {
+          "id": "gen",
+          "name": "General Entry",
+          "price": 499,
+          "totalSeats": 500,
+          "bookedSeats": 0,
+          "description": "",
+          "perks": [],
+          "_id": "6aef0549ce09b2dedf8757e6"
+        }
+      ],
+      "time": "18:00",
+      "title": "Bangalore Tech & Cultural Fusion Fest 2026",
+      "totalCapacity": 500,
+      "updatedAt": "2026-11-07T11:02:33.116Z",
+      "venueAddress": "Palace Grounds Gayatri Vihar, Bangalore",
+      "venueName": "Palace Grounds Gayatri Vihar",
+      "viewsCount": 1
+    },
+    {
+      "_id": "evt_01",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80",
+      "category": "Wedding",
+      "city": "Jaipur",
+      "createdAt": "2026-11-07T11:02:33.227Z",
+      "date": "2026-11-15",
+      "description": "Step into royal Indian opulence with heritage bridal showcases, live shehnai and sufi performances, royal marigold floral installations, and an exclusive culinary journey through 56 Bhog royal dishes. Meet top destination wedding planners, mehendi artisans, and royal jewelers.",
+      "dressCode": "Royal Ethnic / Traditional Rajasthani (Bandhani, Lehengas, Sherwanis)",
+      "endDate": "2026-11-16",
+      "endTime": "11:30 PM",
+      "highlights": [
+        "50+ Destination Wedding Planners & Royal Couturiers",
+        "Live Sufi & Bollywood Sangeet Night with Manganiyar Troupe",
+        "Live 56 Bhog Royal Feast Tasting",
+        "Bridal Jewellery Fashion Walk"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "organizer@jaipurfest.com",
+      "organizerId": "usr_organizer_01",
+      "organizerName": "Royal Rajputana Weddings & Events",
+      "schedule": [
+        {
+          "time": "05:30 PM",
+          "activity": "Shahi Nagada & Shehnai Welcome",
+          "description": "Traditional aarti welcome and royal turban tying at the courtyard gateway.",
+          "_id": "6aef0549ce09b2dedf8757ea"
+        },
+        {
+          "time": "07:00 PM",
+          "activity": "Bridal Couture Runway",
+          "description": "Showcasing traditional Zardozi and Gotapatti designer ensembles.",
+          "_id": "6aef0549ce09b2dedf8757eb"
+        },
+        {
+          "time": "08:30 PM",
+          "activity": "Grand Sangeet & Folk Fusion Night",
+          "description": "Celebrated folk artists and live acoustic Sufi music performance.",
+          "_id": "6aef0549ce09b2dedf8757ec"
+        },
+        {
+          "time": "10:00 PM",
+          "activity": "Royal Royal Dinner & Networking",
+          "description": "Authentic Dal Baati Churma, Gatte ki Sabzi, and assorted Indian mithais.",
+          "_id": "6aef0549ce09b2dedf8757ed"
+        }
+      ],
+      "state": "Rajasthan",
+      "status": "approved",
+      "tagline": "Experience Regal Indian Hospitality, Bridal Couturiers & Sangeet Nights",
+      "ticketTiers": [
+        {
+          "id": "tier_free_pass",
+          "name": "General Visitor Pass",
+          "price": 0,
+          "totalSeats": 300,
+          "bookedSeats": 145,
+          "description": "Access to royal bridal pavilions, exhibition stalls & evening shehnai concert",
+          "perks": [
+            "Free Entry",
+            "Welcome Drink (Thandai)",
+            "Exhibition Directory"
+          ],
+          "_id": "6aef0549ce09b2dedf8757ee"
+        },
+        {
+          "id": "tier_royal_sangeet",
+          "name": "Royal Sangeet Pass",
+          "price": 1499,
+          "totalSeats": 150,
+          "bookedSeats": 91,
+          "description": "Front arena seating for Rajasthani folk dances, live Sufi troupe, and 56-Bhog dinner buffet",
+          "perks": [
+            "Reserved Front Rows",
+            "Royal Dinner Buffet",
+            "Gift Hamper",
+            "Fast-track QR entry"
+          ],
+          "_id": "6aef0549ce09b2dedf8757ef"
+        },
+        {
+          "id": "tier_vip_couple",
+          "name": "VIP Shahi Couple Pass",
+          "price": 3499,
+          "totalSeats": 50,
+          "bookedSeats": 32,
+          "description": "Exclusive lounge access with vintage car royal entry photo-op, turban tying ceremony, and royal hospitality",
+          "perks": [
+            "2-Person VIP Access",
+            "Valet Parking",
+            "Royal Turban & Dupatta Welcome",
+            "Private Champagne/Mocktail Table"
+          ],
+          "_id": "6aef0549ce09b2dedf8757f0"
+        }
+      ],
+      "time": "05:30 PM",
+      "title": "Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "totalCapacity": 500,
+      "updatedAt": "2026-11-07T11:02:33.227Z",
+      "venueAddress": "Chomu Fort, Sikar Road, Jaipur, Rajasthan",
+      "venueName": "Chomu Palace Heritage Courtyard",
+      "viewsCount": 1420
+    },
+    {
+      "_id": "evt_02",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=1200&q=80",
+      "category": "Cultural Program",
+      "city": "Ahmedabad",
+      "createdAt": "2026-11-07T11:02:33.291Z",
+      "date": "2026-11-20",
+      "description": "Nine nights of divine devotion, high-energy dandiya swirls, and enchanting Gujarati folk rhythms under 100,000 fairy lights. Featuring 15-piece live traditional dholak, shehnai, and harmonium orchestration with 30,000+ dancers in full Chaniya Choli splendor.",
+      "dressCode": "Authentic Gujarati Garba Attire (Chaniya Choli / Kediyu Kurta)",
+      "endDate": "2026-11-20",
+      "endTime": "01:00 AM",
+      "highlights": [
+        "Live 15-Piece Dholak & Folk Orchestra",
+        "Prizes for Best Traditional Costume & Best Garba Couple",
+        "Over 40 Food Stalls serving Kutch & Kathiawadi delicacies",
+        "100% Family Safe Environment with High Security"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "organizer@mumbaiculture.in",
+      "organizerId": "usr_organizer_02",
+      "organizerName": "Aamchi Mumbai Utsav Mandali",
+      "schedule": [
+        {
+          "time": "07:00 PM",
+          "activity": "Aarti & Deepotsav",
+          "description": "Auspicious Maa Ambe Mahamangal Aarti with 108 diyas.",
+          "_id": "6aef0549ce09b2dedf8757f9"
+        },
+        {
+          "time": "07:45 PM",
+          "activity": "Traditional 3-Taali & Dodhiya",
+          "description": "Opening slow traditional Gujarati circle dances.",
+          "_id": "6aef0549ce09b2dedf8757fa"
+        },
+        {
+          "time": "09:30 PM",
+          "activity": "High Tempo Dandiya Raas",
+          "description": "Live dhol beats and synchronized dandiya claps across all 4 zones.",
+          "_id": "6aef0549ce09b2dedf8757fb"
+        },
+        {
+          "time": "11:45 PM",
+          "activity": "Sanedo & Awards Ceremony",
+          "description": "Energetic Sanedo rounds and presentation of the Utsav Trophy.",
+          "_id": "6aef0549ce09b2dedf8757fc"
+        }
+      ],
+      "state": "Gujarat",
+      "status": "approved",
+      "tagline": "Gujarat’s Largest Traditional Garba & Dandiya Mahotsav",
+      "ticketTiers": [
+        {
+          "id": "tier_early_dancer",
+          "name": "Dandiya Lover Pass",
+          "price": 499,
+          "totalSeats": 1000,
+          "bookedSeats": 620,
+          "description": "Single day entrance pass to main Garba lawn with pair of wooden dandiya sticks included",
+          "perks": [
+            "Pair of Dandiya Sticks",
+            "Access to Main Arena",
+            "Food Court Access"
+          ],
+          "_id": "6aef0549ce09b2dedf8757fd"
+        },
+        {
+          "id": "tier_season_pass",
+          "name": "VIP Circle & Celebrity Lawn",
+          "price": 1999,
+          "totalSeats": 200,
+          "bookedSeats": 165,
+          "description": "Elevated wooden dance deck near celebrity stage, air-cooled lounge, and unlimited snack counters",
+          "perks": [
+            "Elevated Deck Access",
+            "Unlimited Gujarati Chaat & Fafda-Jalebi",
+            "Dedicated QR Lane",
+            "Locker Facility"
+          ],
+          "_id": "6aef0549ce09b2dedf8757fe"
+        }
+      ],
+      "time": "07:00 PM",
+      "title": "Maha Navratri Dandiya Raas 2026 – Falguni & Folk Symphony",
+      "totalCapacity": 2000,
+      "updatedAt": "2026-11-07T11:02:33.291Z",
+      "venueAddress": "SG Highway, Bodakdev, Ahmedabad, Gujarat",
+      "venueName": "Karnavati Club Grand Lawns",
+      "viewsCount": 3100
+    },
+    {
+      "_id": "evt_03",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1200&q=80",
+      "category": "College Fest",
+      "city": "Mumbai",
+      "createdAt": "2026-11-07T11:02:33.354Z",
+      "date": "2026-12-05",
+      "description": "The mega annual inter-college celebration uniting over 120+ universities from across the nation. Experience 48-hour AI Hackathons, Street Dance Battles, Hindi Dramatics, Standup Comedy, and a mesmerizing open-air concert by India’s top indie rock and fusion artists.",
+      "dressCode": "College Casuals / Streetwear / Quirky Festival Fits",
+      "endDate": "2026-12-07",
+      "endTime": "11:00 PM",
+      "highlights": [
+        "Over ₹5,00,000 Cash Prizes across 35 Competitions",
+        "National Level 24hr Hackathon in partnership with Leading Tech Giants",
+        "Star Concert featuring Top Bollywood & Fusion Rock Band",
+        "Food Truck Alley with 30+ Global & Street Food Vendors"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "fest@iitb.ac.in",
+      "organizerId": "usr_organizer_03",
+      "organizerName": "IIT Fest Council & Youth Wing",
+      "schedule": [
+        {
+          "time": "10:00 AM",
+          "activity": "Opening Ceremony & Keynote",
+          "description": "Inauguration by celebrated alumni and keynote panel on youth innovation.",
+          "_id": "6aef0549ce09b2dedf875806"
+        },
+        {
+          "time": "01:00 PM",
+          "activity": "Street Play & Battle of the Bands",
+          "description": "High-octane dramatic and musical competitions at the amphitheater.",
+          "_id": "6aef0549ce09b2dedf875807"
+        },
+        {
+          "time": "05:30 PM",
+          "activity": "Choreonite – Inter-College Dance Clash",
+          "description": "Synchronized Western, Bollywood, and Classical fusion choreography.",
+          "_id": "6aef0549ce09b2dedf875808"
+        },
+        {
+          "time": "08:30 PM",
+          "activity": "Starlight Pro-Nite Live Concert",
+          "description": "Massive open-air stadium musical concert under spectacular laser lights.",
+          "_id": "6aef0549ce09b2dedf875809"
+        }
+      ],
+      "state": "Maharashtra",
+      "status": "approved",
+      "tagline": "Asia’s Premier College Fest – Battle of the Bands, Hackathon & Starlight Pro-Nite",
+      "ticketTiers": [
+        {
+          "id": "tier_student_pass",
+          "name": "Student Delegate Pass",
+          "price": 299,
+          "totalSeats": 1500,
+          "bookedSeats": 880,
+          "description": "Valid college ID required. Grants full 3-day access to workshops, competitions, and daytime events",
+          "perks": [
+            "Fest Goodie Kit",
+            "Campus Access",
+            "Competition Registrations"
+          ],
+          "_id": "6aef0549ce09b2dedf87580a"
+        },
+        {
+          "id": "tier_pronite_concert",
+          "name": "All-Access + Concert Pass",
+          "price": 999,
+          "totalSeats": 600,
+          "bookedSeats": 410,
+          "description": "Includes evening entry to the main arena for EDM night, Bollywood Star Singer, and Battle of the Bands",
+          "perks": [
+            "VIP Pro-Nite Pit",
+            "Express Badge Pickup",
+            "Meet & Greet Raffle"
+          ],
+          "_id": "6aef0549ce09b2dedf87580b"
+        }
+      ],
+      "time": "10:00 AM",
+      "title": "Mood Indigo 2026: Pan-India Youth Cultural & Tech Carnival",
+      "totalCapacity": 3000,
+      "updatedAt": "2026-11-07T11:02:33.354Z",
+      "venueAddress": "Powai, Mumbai, Maharashtra 400076",
+      "venueName": "Gymkhana Grounds, IIT Bombay Campus",
+      "viewsCount": 4500
+    },
+    {
+      "_id": "evt_04",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?w=1200&q=80",
+      "category": "Religious",
+      "city": "Mathura",
+      "createdAt": "2026-11-07T11:02:33.415Z",
+      "date": "2026-12-18",
+      "description": "Celebrate the holy festival of colors in the divine traditional style with 5,000 kilograms of fragrant marigold, rose, and tesu petals. No chemical colors! Immerse yourself in Braj folk songs, traditional Rasleela performances, and unlimited authentic Mathura pedas & chilled Kesar Badam Thandai.",
+      "dressCode": "Crisp White Traditional Kurta-Pajama or White Salwar Kameez",
+      "endDate": "2026-12-18",
+      "endTime": "04:00 PM",
+      "highlights": [
+        "5,000 KG Fresh Rose & Marigold Petals showered from towers",
+        "Live Haveli Sangeet & Traditional Rasleela Actors from Mathura",
+        "Authentic Braj Khaja, Makhan Mishri & Kesar Thandai",
+        "Eco-Friendly & Completely Safe for Children and Senior Citizens"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@jaipurfest.com",
+      "organizerId": "usr_organizer_01",
+      "organizerName": "Royal Rajputana Weddings & Events",
+      "schedule": [
+        {
+          "time": "09:00 AM",
+          "activity": "Shankhnaad & Vedic Havan",
+          "description": "Invoking blessings for peace, joy, and spiritual harmony.",
+          "_id": "6aef0549ce09b2dedf875813"
+        },
+        {
+          "time": "10:30 AM",
+          "activity": "Mayur Dance & Braj Rasleela",
+          "description": "Traditional dramatic portrayal of Radha Krishna pastimes.",
+          "_id": "6aef0549ce09b2dedf875814"
+        },
+        {
+          "time": "12:00 PM",
+          "activity": "Phoolon Ki Holi Maha Utsav",
+          "description": "Grand shower of flower petals across the arena with live nagada beats.",
+          "_id": "6aef0549ce09b2dedf875815"
+        },
+        {
+          "time": "02:00 PM",
+          "activity": "Bhog Prasad & Kirtan Mandali",
+          "description": "Feast of 11 traditional Brajvasi delicacies and ecstatic kirtan.",
+          "_id": "6aef0549ce09b2dedf875816"
+        }
+      ],
+      "state": "Uttar Pradesh",
+      "status": "approved",
+      "tagline": "Pure Floral Ecstasy, Temple Bells & Vedic Celebrations",
+      "ticketTiers": [
+        {
+          "id": "tier_holi_general",
+          "name": "Flower Blessing Pass",
+          "price": 350,
+          "totalSeats": 800,
+          "bookedSeats": 520,
+          "description": "Includes organic flower basket, white cotton scarf, and traditional temple prasad",
+          "perks": [
+            "Organic Flower Kit",
+            "Braj Thandai Coupon",
+            "Vedic Aarti Seating"
+          ],
+          "_id": "6aef0549ce09b2dedf875817"
+        },
+        {
+          "id": "tier_holi_family",
+          "name": "Kutumb Family Pass (4 Guests)",
+          "price": 1200,
+          "totalSeats": 100,
+          "bookedSeats": 74,
+          "description": "Special seating for families with elderly members, covered shamiana, and unlimited satvik brunch",
+          "perks": [
+            "Reserved Covered Seating",
+            "Satvik Royal Feast",
+            "Floral Garlands & Chadar Offering"
+          ],
+          "_id": "6aef0549ce09b2dedf875818"
+        }
+      ],
+      "time": "09:00 AM",
+      "title": "Vrindavan Phoolon Ki Holi & Braj Raas Mahotsav",
+      "totalCapacity": 1000,
+      "updatedAt": "2026-11-07T11:02:33.415Z",
+      "venueAddress": "Parikrama Marg, Raman Reti, Vrindavan, Uttar Pradesh",
+      "venueName": "Yamuna Riverfront Amphitheater",
+      "viewsCount": 2200
+    },
+    {
+      "_id": "evt_05",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&q=80",
+      "category": "Corporate",
+      "city": "Bangalore",
+      "createdAt": "2026-11-07T11:02:33.492Z",
+      "date": "2026-12-24",
+      "description": "The Garden City’s favorite open-air lifestyle celebration! Featuring 20 artisanal microbreweries, masterclasses by celebrity chefs, pet-friendly obstacle parks, flea market with 80 handcrafted Indian lifestyle brands, and an acoustic sundowner stage.",
+      "dressCode": "Chic Casual / Boho Festival Outfits",
+      "endDate": "2026-12-25",
+      "endTime": "10:30 PM",
+      "highlights": [
+        "20 Top Microbreweries & Mocktail Innovators",
+        "Live Cooking Battles with MasterChef Contestants",
+        "Pet Friendly Arena with Puppy Play Zones",
+        "Sundowner Acoustic Performances by Top Indie Artists"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@mumbaiculture.in",
+      "organizerId": "usr_organizer_02",
+      "organizerName": "Aamchi Mumbai Utsav Mandali",
+      "schedule": [
+        {
+          "time": "12:00 PM",
+          "activity": "Gates Open & Flea Market Browse",
+          "description": "Explore handcrafted ceramics, sustainable apparel, and artisanal spices.",
+          "_id": "6aef0549ce09b2dedf875820"
+        },
+        {
+          "time": "02:30 PM",
+          "activity": "Masterclass: Modern Indian Street Tapas",
+          "description": "Interactive culinary workshop by award-winning chefs.",
+          "_id": "6aef0549ce09b2dedf875821"
+        },
+        {
+          "time": "06:00 PM",
+          "activity": "Sunset Acoustic Sessions",
+          "description": "Soothing indie folk and jazz fusion music under fairy lit banyan trees.",
+          "_id": "6aef0549ce09b2dedf875822"
+        },
+        {
+          "time": "08:30 PM",
+          "activity": "Headliner Rock Act & Craft Brew Tasting",
+          "description": "Energetic rock performance to close out the culinary weekend.",
+          "_id": "6aef0549ce09b2dedf875823"
+        }
+      ],
+      "state": "Karnataka",
+      "status": "approved",
+      "tagline": "Modern Celebrations, Live Indie Bands & 100+ Gourmet Stalls",
+      "ticketTiers": [
+        {
+          "id": "tier_beer_single",
+          "name": "Day Explorer Pass",
+          "price": 599,
+          "totalSeats": 1200,
+          "bookedSeats": 430,
+          "description": "Access to all culinary stages, flea market, acoustic live concerts and 2 craft beverage tasters",
+          "perks": [
+            "2 Complimentary Beverage Tasters",
+            "Souvenir Cup",
+            "Stage Access"
+          ],
+          "_id": "6aef0549ce09b2dedf875824"
+        },
+        {
+          "id": "tier_foodie_vip",
+          "name": "Gourmet VIP Lounge Pass",
+          "price": 1899,
+          "totalSeats": 150,
+          "bookedSeats": 92,
+          "description": "VIP shaded cabana seating with table service, chef tasting platter, and dedicated bar counter",
+          "perks": [
+            "Chef Curated 4-Course Tasting",
+            "Unlimited Craft Mocktails/Brew",
+            "VIP Restrooms",
+            "Valet Parking"
+          ],
+          "_id": "6aef0549ce09b2dedf875825"
+        }
+      ],
+      "time": "12:00 PM",
+      "title": "Bangalore Culinary & Craft Beer Carnival 2026",
+      "totalCapacity": 1500,
+      "updatedAt": "2026-11-07T11:02:33.492Z",
+      "venueAddress": "Near Cantonment Railway Station, Jayamahal, Bengaluru 560046",
+      "venueName": "Jaymahal Palace Lawns",
+      "viewsCount": 1890
+    },
+    {
+      "_id": "evt_06",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80",
+      "category": "Concert",
+      "city": "Bangalore",
+      "createdAt": "2026-11-07T11:02:33.552Z",
+      "date": "2026-12-12",
+      "description": "Experience an unforgettable musical evening in the Silicon Valley of India! The King of Romance, Arijit Singh, accompanied by a 60-piece international symphony orchestra performing his timeless chartbusters. Multi-tiered stadium seating, world-class acoustic engineering, and synchronized wristband light displays.",
+      "dressCode": "Concert Chic / Glam Casuals",
+      "endDate": "2026-12-12",
+      "endTime": "11:00 PM",
+      "highlights": [
+        "60-Piece Live International Classical & Bollywood Symphony Orchestra",
+        "State-of-the-Art L-Acoustics K1 Stadium Sound System",
+        "Over 3 Hours of Non-stop Soul-stirring Melodies",
+        "Over 50 Curated Food & Beverage Counters"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "organizer@mumbaiculture.in",
+      "organizerId": "usr_organizer_02",
+      "organizerName": "Aamchi Mumbai Utsav Mandali",
+      "schedule": [
+        {
+          "time": "05:00 PM",
+          "activity": "Gate Opening & QR Fast-Scan",
+          "description": "Attendees scan digital QR tickets at designated lanes.",
+          "_id": "6aef0549ce09b2dedf87582d"
+        },
+        {
+          "time": "06:30 PM",
+          "activity": "Opening Acoustic Fusion Set",
+          "description": "Showcase by rising indie folk and classical sitar-fusion artists.",
+          "_id": "6aef0549ce09b2dedf87582e"
+        },
+        {
+          "time": "07:45 PM",
+          "activity": "Arijit Singh & Symphony Grand Entry",
+          "description": "Massive opening sequence featuring full 60-piece orchestra.",
+          "_id": "6aef0549ce09b2dedf87582f"
+        },
+        {
+          "time": "10:45 PM",
+          "activity": "Grand Finale & Confetti Shower",
+          "description": "Spectacular fireworks and laser display closing the musical night.",
+          "_id": "6aef0549ce09b2dedf875830"
+        }
+      ],
+      "state": "Karnataka",
+      "status": "approved",
+      "tagline": "Live 60-Piece Grand Symphony & Bollywood Melodies Under the Stars",
+      "ticketTiers": [
+        {
+          "id": "tier_concert_silver",
+          "name": "Silver Grandstand Pass",
+          "price": 999,
+          "totalSeats": 3000,
+          "bookedSeats": 1820,
+          "description": "Tiered bleacher seating with direct view of main stage and LED audio towers",
+          "perks": [
+            "Grandstand Access",
+            "LED Glow Wristband",
+            "Food Court Access"
+          ],
+          "_id": "6aef0549ce09b2dedf875831"
+        },
+        {
+          "id": "tier_concert_gold",
+          "name": "Gold Fan Pit",
+          "price": 2499,
+          "totalSeats": 1000,
+          "bookedSeats": 740,
+          "description": "Standing arena directly in front of main stage thrust for hardcore music enthusiasts",
+          "perks": [
+            "Front Fan Pit Access",
+            "Dedicated Fast-Track QR Lane",
+            "Concert Tour Lanyard"
+          ],
+          "_id": "6aef0549ce09b2dedf875832"
+        },
+        {
+          "id": "tier_concert_vip",
+          "name": "Royal VIP Lounge with Hospitality",
+          "price": 5499,
+          "totalSeats": 250,
+          "bookedSeats": 190,
+          "description": "Elevated luxury deck with plush lounge seating, unlimited premium catering buffet and bar service",
+          "perks": [
+            "Elevated Private Deck",
+            "Unlimited Gourmet Food & Beverages",
+            "VIP Valet Parking",
+            "Artist Meet & Greet Raffle"
+          ],
+          "_id": "6aef0549ce09b2dedf875833"
+        }
+      ],
+      "time": "06:30 PM",
+      "title": "Arijit Singh Symphony & Bollywood Pro-Nite Live 2026",
+      "totalCapacity": 5000,
+      "updatedAt": "2026-11-07T11:02:33.552Z",
+      "venueAddress": "Bellary Road, Near Sadashivanagar, Bangalore, Karnataka 560080",
+      "venueName": "Palace Grounds, Gayathri Vihar",
+      "viewsCount": 6800
+    },
+    {
+      "_id": "evt_07",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&q=80",
+      "category": "Concert",
+      "city": "Goa",
+      "createdAt": "2026-11-07T11:02:33.630Z",
+      "date": "2026-12-28",
+      "description": "Dance on the sun-kissed sands of Vagator as world-renowned DJs spin high-octane electronic, progressive house, and trance tracks. Experience massive kinetic stage designs, flame projectors, laser visual shows, and beachside bohemian flea markets.",
+      "dressCode": "Beach Bohemian / Tropical Festival Fits",
+      "endDate": "2026-12-29",
+      "endTime": "02:00 AM",
+      "highlights": [
+        "Top Global & Indian EDM Headliners",
+        "Epic Sunset over the Arabian Sea with Fire Dancers",
+        "Water Sports & Sunset Volleyball Courts",
+        "Beach BBQ and Cocktail Shacks"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "fest@iitb.ac.in",
+      "organizerId": "usr_organizer_03",
+      "organizerName": "IIT Fest Council & Youth Wing",
+      "schedule": [
+        {
+          "time": "04:00 PM",
+          "activity": "Sundowner Deep House Set",
+          "description": "Relaxed grooves as the golden hour sun sets into the sea.",
+          "_id": "6aef0549ce09b2dedf87583c"
+        },
+        {
+          "time": "07:00 PM",
+          "activity": "Bass & Pyro Stage Activation",
+          "description": "High tempo electronic and bass drops with flame throwers.",
+          "_id": "6aef0549ce09b2dedf87583d"
+        },
+        {
+          "time": "09:30 PM",
+          "activity": "International Headliner Main Act",
+          "description": "Spectacular 2-hour headline set with synchronized laser beams.",
+          "_id": "6aef0549ce09b2dedf87583e"
+        }
+      ],
+      "state": "Goa",
+      "status": "approved",
+      "tagline": "Asia’s Biggest Open-Air Beach EDM & Sunset Electronic Music Festival",
+      "ticketTiers": [
+        {
+          "id": "tier_goa_early",
+          "name": "Sunburn Beach Pass",
+          "price": 1499,
+          "totalSeats": 2500,
+          "bookedSeats": 1420,
+          "description": "Full day access to beach dance arena, sunset chill-out zone, and food court",
+          "perks": [
+            "Beach Arena Access",
+            "Welcome Beer/Mocktail",
+            "Eco Wristband"
+          ],
+          "_id": "6aef0549ce09b2dedf87583f"
+        },
+        {
+          "id": "tier_goa_vip",
+          "name": "VIP Shaded Cabana Deck",
+          "price": 3499,
+          "totalSeats": 300,
+          "bookedSeats": 240,
+          "description": "Elevated wooden deck overlooking the Arabian Sea sunset with private bar service and air-cooled cabanas",
+          "perks": [
+            "Private Cabana Table",
+            "Finger Foods Tasting Platter",
+            "Express QR Check-in",
+            "Private Restrooms"
+          ],
+          "_id": "6aef0549ce09b2dedf875840"
+        }
+      ],
+      "time": "04:00 PM",
+      "title": "Sunburn Arena Goa Sunset Beach Bash 2026",
+      "totalCapacity": 3000,
+      "updatedAt": "2026-11-07T11:02:33.630Z",
+      "venueAddress": "Ozran Beach Road, Vagator, Goa 403509",
+      "venueName": "Vagator Hilltop Beach Arena",
+      "viewsCount": 4100
+    },
+    {
+      "_id": "evt_08",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1200&q=80",
+      "category": "Birthday",
+      "city": "Jaipur",
+      "createdAt": "2026-11-07T11:02:33.684Z",
+      "date": "2026-12-08",
+      "description": "Celebrate a milestone 50th birthday fit for an emperor! Set in a frescoed heritage courtyard with traditional Nagada salutations, personalized turban tying for all guests, a mesmerizing live evening of Mehdi Hassan ghazals, and an elaborate candlelit royal dinner.",
+      "dressCode": "Royal Indian Ethnic (Bandhgala, Kurta-Churidar, Silk Sarees)",
+      "endDate": "2026-12-08",
+      "endTime": "11:45 PM",
+      "highlights": [
+        "Live Ghazal & Sufi Ensemble under illuminated palace arches",
+        "Spectacular 5-tier Royal Pistachio & Saffron Celebration Cake",
+        "Traditional Aarti & Marwar Turban tying ceremony for all attendees",
+        "Authentic 56-Bhog Royal Thali banquet"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@jaipurfest.com",
+      "organizerId": "usr_organizer_01",
+      "organizerName": "Royal Rajputana Weddings & Events",
+      "schedule": [
+        {
+          "time": "06:30 PM",
+          "activity": "Shahi Swagat & Turban Tying",
+          "description": "Guests welcomed with rose water sprinkling and Bandhani safas.",
+          "_id": "6aef0549ce09b2dedf875847"
+        },
+        {
+          "time": "07:30 PM",
+          "activity": "Ghazal Mehfil & Family Tributes",
+          "description": "Soulful live ghazals and nostalgic family audiovisual journey.",
+          "_id": "6aef0549ce09b2dedf875848"
+        },
+        {
+          "time": "09:00 PM",
+          "activity": "Royal Cake Cutting & Fireworks",
+          "description": "Sparklers and celebratory toasts in the central courtyard.",
+          "_id": "6aef0549ce09b2dedf875849"
+        },
+        {
+          "time": "09:30 PM",
+          "activity": "Shahi Dawat Banquet Opens",
+          "description": "Authentic Daal Baati Churma, Ker Sangri, and royal halwas.",
+          "_id": "6aef0549ce09b2dedf87584a"
+        }
+      ],
+      "state": "Rajasthan",
+      "status": "approved",
+      "tagline": "Regal Rajasthani Birthday Celebration with Ghazals, Royal Darbar & 56-Bhog",
+      "ticketTiers": [
+        {
+          "id": "tier_bday_guest",
+          "name": "Shahi Birthday Guest Pass",
+          "price": 999,
+          "totalSeats": 200,
+          "bookedSeats": 110,
+          "description": "Includes royal garland greeting, Ghazal recital seating, and full 5-course banquet",
+          "perks": [
+            "Ghazal Evening Access",
+            "Royal Rajasthani Buffet",
+            "Celebration Cake Slice",
+            "Custom Souvenir"
+          ],
+          "_id": "6aef0549ce09b2dedf87584b"
+        },
+        {
+          "id": "tier_bday_family",
+          "name": "Kutumb Family Table (4 Guests)",
+          "price": 3499,
+          "totalSeats": 30,
+          "bookedSeats": 22,
+          "description": "Reserved family round table with dedicated royal butler service and personalized silver gift memento",
+          "perks": [
+            "Reserved Front Table",
+            "Personalized Butler Service",
+            "Silver Memento Box",
+            "Valet Parking"
+          ],
+          "_id": "6aef0549ce09b2dedf87584c"
+        }
+      ],
+      "time": "06:30 PM",
+      "title": "Royal Rajwada 50th Golden Jubilee Birthday & Shahi Dawat",
+      "totalCapacity": 350,
+      "updatedAt": "2026-11-07T11:02:33.684Z",
+      "venueAddress": "Chomu Fort, Sikar Road, Jaipur, Rajasthan 303702",
+      "venueName": "Chomu Palace Heritage Courtyard",
+      "viewsCount": 1540
+    },
+    {
+      "_id": "evt_09",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80",
+      "category": "Birthday",
+      "city": "Mumbai",
+      "createdAt": "2026-11-07T11:02:33.745Z",
+      "date": "2026-12-19",
+      "description": "The ultimate coming-of-age celebration! A rooftop high-energy party drenched in blacklight UV neon glows, glow-in-the-dark face artists, unlimited gourmet sliders & woodfired pizzas, and live mixes by Mumbai’s favorite club DJs.",
+      "dressCode": "Neon Brights / White (Glows under Blacklight)",
+      "endDate": "2026-12-20",
+      "endTime": "01:00 AM",
+      "highlights": [
+        "Live UV Blacklight Art Studio for face and wrist designs",
+        "Resident Celebrity Club DJ spinning Hip-Hop, Pop & Bollywood Remixes",
+        "Custom 360-Degree Video Photobooth for TikTok & Instagram reels",
+        "Unlimited Mocktail Smoke Bar and Dessert Fondue Fountain"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@mumbaiculture.in",
+      "organizerId": "usr_organizer_02",
+      "organizerName": "Aamchi Mumbai Utsav Mandali",
+      "schedule": [
+        {
+          "time": "07:00 PM",
+          "activity": "Glow Station Open & Mocktails",
+          "description": "Guests get custom neon paint and glow bands upon arrival.",
+          "_id": "6aef0549ce09b2dedf875854"
+        },
+        {
+          "time": "08:30 PM",
+          "activity": "Grand Cake Reveal & Lightshow",
+          "description": "Illuminated neon birthday cake cutting with cold sparkler fountains.",
+          "_id": "6aef0549ce09b2dedf875855"
+        },
+        {
+          "time": "09:00 PM",
+          "activity": "DJ Club Set & Open Dance Floor",
+          "description": "High tempo party hits on the open-air rooftop deck.",
+          "_id": "6aef0549ce09b2dedf875856"
+        }
+      ],
+      "state": "Maharashtra",
+      "status": "approved",
+      "tagline": "Electrifying Neon Light Party with Celebrity DJ, Mocktail Bar & Photobooth",
+      "ticketTiers": [
+        {
+          "id": "tier_neon_party",
+          "name": "Neon Party Pass",
+          "price": 799,
+          "totalSeats": 300,
+          "bookedSeats": 195,
+          "description": "Includes neon glow accessories, UV body painting, mocktail coupon, and open dance floor",
+          "perks": [
+            "Glow Kit & Glasses",
+            "2 Signature Mocktails",
+            "Dance Floor Access"
+          ],
+          "_id": "6aef0549ce09b2dedf875857"
+        },
+        {
+          "id": "tier_neon_vip",
+          "name": "VIP Rooftop Cabana (Group of 5)",
+          "price": 3499,
+          "totalSeats": 25,
+          "bookedSeats": 18,
+          "description": "Private shaded rooftop cabana with dedicated server, chef snack platters, and 360-degree skyline views",
+          "perks": [
+            "Private Cabana Seating",
+            "Gourmet Tapas Platter",
+            "Priority DJ Song Requests",
+            "Fast-Track QR Entry"
+          ],
+          "_id": "6aef0549ce09b2dedf875858"
+        }
+      ],
+      "time": "07:00 PM",
+      "title": "Neon Glow Sky-Lounge 18th Milestone Birthday Bash",
+      "totalCapacity": 450,
+      "updatedAt": "2026-11-07T11:02:33.745Z",
+      "venueAddress": "Dr. Annie Besant Road, Worli, Mumbai 400018",
+      "venueName": "Skyline Rooftop Club & Lounge",
+      "viewsCount": 2300
+    },
+    {
+      "_id": "evt_10",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
+      "category": "Wedding",
+      "city": "Bangalore",
+      "createdAt": "2026-11-07T11:02:33.805Z",
+      "date": "2026-12-21",
+      "description": "Immerse yourself in timeless Dravidian wedding heritage! Featuring master Nadaswaram and Thavil artists from Thanjavur, authentic handwoven Kanjivaram silk bridal showcases, sacred floral Mandap inspirations crafted from jasmine and banana leaves, and an authentic 24-item traditional plantain leaf banquet.",
+      "dressCode": "Traditional South Indian (Pattu Sarees, Silk Dhotis with Angavastram)",
+      "endDate": "2026-12-21",
+      "endTime": "04:00 PM",
+      "highlights": [
+        "Live Temple Nadaswaram & Thavil Maestros from Tamil Nadu",
+        "Authentic 24-Dish Traditional Kalyana Sappadu on Banana Leaves",
+        "Exhibition of 40+ Certified Kanjivaram & Temple Jewellery Artisans",
+        "Live Temple Kolam & Fresh Jasmine Floral Mandap Workshops"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "organizer@jaipurfest.com",
+      "organizerId": "usr_organizer_01",
+      "organizerName": "Royal Rajputana Weddings & Events",
+      "schedule": [
+        {
+          "time": "08:00 AM",
+          "activity": "Mangala Nadaswaram & Filter Coffee",
+          "description": "Sacred morning musical awakening with piping hot Kumbakonam degree coffee.",
+          "_id": "6aef0549ce09b2dedf87585f"
+        },
+        {
+          "time": "10:00 AM",
+          "activity": "Kanjivaram Silk & Gold Jewelry Runway",
+          "description": "Showcasing heirloom bridal drapes and traditional Temple jewelry sets.",
+          "_id": "6aef0549ce09b2dedf875860"
+        },
+        {
+          "time": "12:30 PM",
+          "activity": "Royal Kalyana Elai Sappadu Banquet",
+          "description": "Traditional plantain leaf feast featuring Bisibelebath, Avial, Payasam & Poli.",
+          "_id": "6aef0549ce09b2dedf875861"
+        }
+      ],
+      "state": "Karnataka",
+      "status": "approved",
+      "tagline": "Traditional Nadaswaram, Kanjivaram Bridal Runway & Authentic Elai Sappadu Feast",
+      "ticketTiers": [
+        {
+          "id": "tier_kalyana_visitor",
+          "name": "General Exhibition Pass",
+          "price": 0,
+          "totalSeats": 500,
+          "bookedSeats": 260,
+          "description": "Free entrance to bridal pavilions, wedding vendor stalls, and classical Nadaswaram concerts",
+          "perks": [
+            "Free Entry",
+            "Filter Coffee Welcome",
+            "Wedding Planning Directory"
+          ],
+          "_id": "6aef0549ce09b2dedf875862"
+        },
+        {
+          "id": "tier_elai_sappadu",
+          "name": "Elai Sappadu Royal Feast Pass",
+          "price": 899,
+          "totalSeats": 300,
+          "bookedSeats": 185,
+          "description": "Reserved traditional seated lunch banquet served on banana leaves with 24 authentic South Indian delicacies",
+          "perks": [
+            "Authentic 24-Item Sadhya/Elai Feast",
+            "Front Seating for Bridal Show",
+            "Gift Pack of Mysore Pak"
+          ],
+          "_id": "6aef0549ce09b2dedf875863"
+        }
+      ],
+      "time": "08:00 AM",
+      "title": "South Indian Sacred Kalyana Mandapam & Bridal Showcase",
+      "totalCapacity": 800,
+      "updatedAt": "2026-11-07T11:02:33.805Z",
+      "venueAddress": "Kanakapura Road, Avalahalli, Bangalore, Karnataka 560062",
+      "venueName": "The Tamarind Tree Courtyard",
+      "viewsCount": 2900
+    },
+    {
+      "_id": "evt_11",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80",
+      "category": "Wedding",
+      "city": "Udaipur",
+      "createdAt": "2026-11-07T11:02:33.864Z",
+      "date": "2026-12-22",
+      "description": "Set against the shimmering waters of Lake Pichola with the illuminated City Palace as backdrop. Featuring arrival by illuminated royal barges, evening Sufi Qawwali night by renowned Nizami Brothers, and an unforgettable waterfront royal feast.",
+      "dressCode": "Royal Destination Ethnic (Sherwanis, Anarkalis, Regal Bandhgalas)",
+      "endDate": "2026-12-23",
+      "endTime": "01:00 AM",
+      "highlights": [
+        "Illuminated Royal Boat Transfer across Lake Pichola",
+        "Live Sufi Qawwali by Celebrated Nizami Troupe",
+        "Floating Diya Ceremony & Lakefront Pyrotechnics",
+        "Mewari Royal Culinary Feast"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@jaipurfest.com",
+      "organizerId": "usr_organizer_01",
+      "organizerName": "Royal Rajputana Weddings & Events",
+      "schedule": [
+        {
+          "time": "05:00 PM",
+          "activity": "Sunset Royal Boat Procession",
+          "description": "Baratis arrive via fairy-lit boats accompanied by live shehnai.",
+          "_id": "6aef0549ce09b2dedf87586a"
+        },
+        {
+          "time": "07:00 PM",
+          "activity": "Lakefront Sufi Mehfil",
+          "description": "Soulful acoustic Sufi musical poetry on the waterfront deck.",
+          "_id": "6aef0549ce09b2dedf87586b"
+        },
+        {
+          "time": "09:30 PM",
+          "activity": "Mewari Royal Dinner Buffet",
+          "description": "Gourmet Laal Maas, Dal Baati, and Ghevar dessert counters.",
+          "_id": "6aef0549ce09b2dedf87586c"
+        }
+      ],
+      "state": "Rajasthan",
+      "status": "approved",
+      "tagline": "Romantic Lake Pichola Twilight Celebrations with Sufi Troupes & Candlelit Mandap",
+      "ticketTiers": [
+        {
+          "id": "tier_udaipur_sufi",
+          "name": "Lakeside Sufi Delegate Pass",
+          "price": 1899,
+          "totalSeats": 250,
+          "bookedSeats": 160,
+          "description": "Includes royal barge transfer across the lake, Sufi mehfil front seating, and Mewari dinner banquet",
+          "perks": [
+            "Lake Boat Transfer",
+            "Live Sufi Mehfil",
+            "Mewari Royal Buffet",
+            "Welcome Garland"
+          ],
+          "_id": "6aef0549ce09b2dedf87586d"
+        }
+      ],
+      "time": "05:00 PM",
+      "title": "Lakeside Royal Destination Wedding & Sufi Sangeet Night",
+      "totalCapacity": 400,
+      "updatedAt": "2026-11-07T11:02:33.864Z",
+      "venueAddress": "Near Fateh Sagar Lake, Ambamata, Udaipur, Rajasthan 313001",
+      "venueName": "Radisson Blu Waterfront Lawn",
+      "viewsCount": 2100
+    },
+    {
+      "_id": "evt_12",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80",
+      "category": "Cultural Program",
+      "city": "New Delhi",
+      "createdAt": "2026-11-07T11:02:33.924Z",
+      "date": "2026-11-12",
+      "description": "Delhi’s largest traditional Diwali carnival celebrating the victory of light! Over 200 master craftsmen from 18 states showcasing handcrafted earthen lamps, brass idols, Zari textiles, and handloom gifts. Savor authentic Old Delhi street food with live folk dance and puppet shows.",
+      "dressCode": "Bright Indian Festive Wear (Kurtas, Sarees, Dupattas)",
+      "endDate": "2026-11-14",
+      "endTime": "10:00 PM",
+      "highlights": [
+        "100,000 Earthen Lamps lit synchronously at twilight",
+        "200+ Master Craftsmen from Rajasthan, Bengal, Kashmir & Gujarat",
+        "Authentic Chandni Chowk Jalebi, Rabdi & Dahi Bhalla food lane",
+        "Puppet Shows, Kalbelia Folk Dancers & Fire Acrobats"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@mumbaiculture.in",
+      "organizerId": "usr_organizer_02",
+      "organizerName": "Aamchi Mumbai Utsav Mandali",
+      "schedule": [
+        {
+          "time": "11:00 AM",
+          "activity": "Craft Bazaar & Food Street Opens",
+          "description": "Explore handloom stalls and savor regional snacks.",
+          "_id": "6aef0549ce09b2dedf875873"
+        },
+        {
+          "time": "06:00 PM",
+          "activity": "Maha Deepotsav Light-Up",
+          "description": "Lighting of 100,000 diyas with live Vedic chants.",
+          "_id": "6aef0549ce09b2dedf875874"
+        },
+        {
+          "time": "08:00 PM",
+          "activity": "Sufi & Folk Music Showcase",
+          "description": "Celebrated Rajasthani Manganiyar and Qawwali musical groups.",
+          "_id": "6aef0549ce09b2dedf875875"
+        }
+      ],
+      "state": "Delhi",
+      "status": "approved",
+      "tagline": "100,000 Handcrafted Diyas, Terracotta Artisans & Chandni Chowk Food Street",
+      "ticketTiers": [
+        {
+          "id": "tier_diwali_entry",
+          "name": "Festival Day Pass",
+          "price": 150,
+          "totalSeats": 3000,
+          "bookedSeats": 1950,
+          "description": "Full day entrance to all craft stalls, folk performances, and Diwali light displays",
+          "perks": [
+            "General Admission",
+            "Set of 4 Handcrafted Terracotta Diyas",
+            "Flea Market Access"
+          ],
+          "_id": "6aef0549ce09b2dedf875876"
+        },
+        {
+          "id": "tier_diwali_family",
+          "name": "Diwali Festive Hamper Pass (4 Guests)",
+          "price": 750,
+          "totalSeats": 400,
+          "bookedSeats": 310,
+          "description": "Entrance for 4 family members plus exclusive artisan Diwali gift box with assorted dry fruits and brass diya",
+          "perks": [
+            "4x Entry Passes",
+            "Artisan Brass Diya & Sweets Box",
+            "Reserved Evening Concert Seating"
+          ],
+          "_id": "6aef0549ce09b2dedf875877"
+        }
+      ],
+      "time": "11:00 AM",
+      "title": "Dilli Haat Grand Diwali Deepotsav & Craft Mela",
+      "totalCapacity": 4000,
+      "updatedAt": "2026-11-07T11:02:33.924Z",
+      "venueAddress": "INA Colony, Kidwai Nagar West, New Delhi 110023",
+      "venueName": "Dilli Haat Open Amphitheater",
+      "viewsCount": 3800
+    },
+    {
+      "_id": "evt_13",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?w=1200&q=80",
+      "category": "Cultural Program",
+      "city": "Kolkata",
+      "createdAt": "2026-11-07T11:02:33.992Z",
+      "date": "2026-10-18",
+      "description": "Experience the divine devotion and grand cultural fervor of Kolkata’s celebrated Durga Utsav! Featuring majestic hand-carved pandals, 108 lotus flower pushpanjali, mesmerizing Dhunuchi dance competitions with live Dhaakis, and traditional community Bhog.",
+      "dressCode": "Traditional Bengali Attire (Red & White Garad Sarees, Kurta-Dhoti)",
+      "endDate": "2026-10-21",
+      "endTime": "11:30 PM",
+      "highlights": [
+        "Mesmerizing Dhunuchi Dance Competition with 50+ Dhaakis",
+        "Consecrated Authentic Bengali Khichuri Bhog feast",
+        "Evening Rabindra Sangeet & Baul Folk Music concerts",
+        "Spectacular Eco-Friendly Idol Immersion Procession"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "organizer@mumbaiculture.in",
+      "organizerId": "usr_organizer_02",
+      "organizerName": "Aamchi Mumbai Utsav Mandali",
+      "schedule": [
+        {
+          "time": "07:00 AM",
+          "activity": "Mahashtami Pushpanjali & Aarti",
+          "description": "Offering of 108 lotuses and holy chants to Maa Durga.",
+          "_id": "6aef0549ce09b2dedf87587e"
+        },
+        {
+          "time": "01:00 PM",
+          "activity": "Community Maha Bhog Distribution",
+          "description": "Traditional sit-down feast served to all registered delegates.",
+          "_id": "6aef0549ce09b2dedf87587f"
+        },
+        {
+          "time": "06:30 PM",
+          "activity": "Sandhya Aarti & Dhunuchi Naach Clash",
+          "description": "High-energy clay pot incense dance accompanied by ecstatic dhaak rhythms.",
+          "_id": "6aef0549ce09b2dedf875880"
+        }
+      ],
+      "state": "West Bengal",
+      "status": "approved",
+      "tagline": "Traditional Sindoor Khela, Ecstatic Dhaak Beats & Authentic Bengali Khichuri Bhog",
+      "ticketTiers": [
+        {
+          "id": "tier_pandal_free",
+          "name": "General Pandal Darshan",
+          "price": 0,
+          "totalSeats": 5000,
+          "bookedSeats": 3200,
+          "description": "Free visitor pass for Maa Durga Pandal Darshan and evening cultural stage shows",
+          "perks": [
+            "Free Entry",
+            "Pushpanjali Access",
+            "Cultural Shows"
+          ],
+          "_id": "6aef0549ce09b2dedf875881"
+        },
+        {
+          "id": "tier_bhog_pass",
+          "name": "Maha Bhog & Aarti Pass",
+          "price": 450,
+          "totalSeats": 800,
+          "bookedSeats": 620,
+          "description": "Includes consecrated traditional Khichuri, Labra, Chutney & Payesh Mahaprasad seated luncheon",
+          "perks": [
+            "Mahaprasad Bhog Luncheon",
+            "VIP Pushpanjali Lane",
+            "Rosogolla Box"
+          ],
+          "_id": "6aef0549ce09b2dedf875882"
+        }
+      ],
+      "time": "07:00 AM",
+      "title": "Durga Puja Dhunuchi Naach & Grand Maha Aarti Mahotsav",
+      "totalCapacity": 6000,
+      "updatedAt": "2026-11-07T11:02:33.992Z",
+      "venueAddress": "JB Block, Sector III, Bidhannagar, Kolkata, West Bengal 700098",
+      "venueName": "Salt Lake Stadium Central Lawns",
+      "viewsCount": 4700
+    },
+    {
+      "_id": "evt_14",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80",
+      "category": "Corporate",
+      "city": "Bangalore",
+      "createdAt": "2026-11-07T11:02:34.064Z",
+      "date": "2026-12-16",
+      "description": "The definitive annual conclave uniting India’s visionary startup founders, AI researchers, and tech pioneers in the Silicon Valley of Asia. An evening of intellectual fireside debates, 5-course gourmet dining, and private deal-room lounges.",
+      "dressCode": "Business Formal / Smart Executive Western",
+      "endDate": "2026-12-16",
+      "endTime": "11:00 PM",
+      "highlights": [
+        "Keynote Panels with Top Unicorn Founders & AI Lab Directors",
+        "Gourmet 5-Course Plated Banquet by MasterChefs",
+        "Curated 1-on-1 Networking Deal Rooms",
+        "Annual UtsavMitra Tech Innovator Awards"
+      ],
+      "isFeatured": false,
+      "organizerEmail": "fest@iitb.ac.in",
+      "organizerId": "usr_organizer_03",
+      "organizerName": "IIT Fest Council & Youth Wing",
+      "schedule": [
+        {
+          "time": "06:00 PM",
+          "activity": "Executive Registration & Cocktails",
+          "description": "Fast QR badge pickup and networking over artisanal mocktails and hors d'oeuvres.",
+          "_id": "6aef054ace09b2dedf875889"
+        },
+        {
+          "time": "07:15 PM",
+          "activity": "Keynote Panel: The Future of Agentic AI",
+          "description": "Fireside discussion with leading Indian AI founders.",
+          "_id": "6aef054ace09b2dedf87588a"
+        },
+        {
+          "time": "08:45 PM",
+          "activity": "Awards Presentation & High-Table Dinner",
+          "description": "Honoring top innovators followed by multi-course plated dinner.",
+          "_id": "6aef054ace09b2dedf87588b"
+        }
+      ],
+      "state": "Karnataka",
+      "status": "approved",
+      "tagline": "High-Table Executive Dinner, Fireside Keynotes & Networking for 800+ Leaders",
+      "ticketTiers": [
+        {
+          "id": "tier_founder_pass",
+          "name": "Founder Delegate Pass",
+          "price": 2999,
+          "totalSeats": 400,
+          "bookedSeats": 280,
+          "description": "Full access to keynote stages, interactive AI debate panels, networking cocktails & 5-course dinner",
+          "perks": [
+            "Keynote & Panel Access",
+            "Cocktail Networking",
+            "Executive Dinner Banquet",
+            "Attendee Directory App"
+          ],
+          "_id": "6aef054ace09b2dedf87588c"
+        },
+        {
+          "id": "tier_cxo_vip",
+          "name": "CXO & Investor Lounge Pass",
+          "price": 6499,
+          "totalSeats": 100,
+          "bookedSeats": 82,
+          "description": "Private deal-making lounge with table service, pre-dinner investor roundtable, and valet parking",
+          "perks": [
+            "Private Investor Lounge",
+            "1-on-1 Deal Rooms",
+            "Top-Shelf Dining",
+            "Dedicated Concierge"
+          ],
+          "_id": "6aef054ace09b2dedf87588d"
+        }
+      ],
+      "time": "06:00 PM",
+      "title": "India AI & Tech Founders Gala Night 2026",
+      "totalCapacity": 500,
+      "updatedAt": "2026-11-07T11:02:34.064Z",
+      "venueAddress": "Old Airport Road, Kodihalli, Bangalore, Karnataka 560008",
+      "venueName": "The Leela Palace Grand Ballroom",
+      "viewsCount": 3200
+    },
+    {
+      "_id": "evt_15",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80",
+      "category": "Cultural Program",
+      "city": "Tumkur",
+      "createdAt": "2026-11-07T11:02:34.138Z",
+      "date": "2026-11-26",
+      "description": "A grand 3-day cultural extravaganza honoring Karnataka’s rich theatrical heritage, Gubbi Veeranna Nataka legacy, live coastal Yakshagana ballets, Dollu Kunitha folk percussions, and local culinary delicacies. Gathering classical theatre troupes, Kannada folk artists, and drama lovers across Tumkur district.",
+      "dressCode": "Traditional South Indian / Mysore Peta & Silk Shawls Encouraged",
+      "endDate": "2026-11-28",
+      "endTime": "10:30 PM",
+      "highlights": [
+        "Live Gubbi Veeranna Style Historic Mythological Drama",
+        "Tenkutittu & Badagutittu Yakshagana All-Night Performances",
+        "Authentic Tumakuru Thatte Idli & Rural Food Bazaar",
+        "Folk Art Demonstrations by National Awardee Artists"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "rangotsav@gubbi.org",
+      "organizerId": "usr_organizer_02",
+      "organizerName": "Karnataka Janapada & Rangabhoomi Parishat",
+      "schedule": [
+        {
+          "time": "05:30 PM",
+          "activity": "Inaugural Nadaswaram & Dollu Kunitha Procession",
+          "description": "Festive welcome from Gubbi Gate to Rangamandira.",
+          "_id": "6aef054ace09b2dedf875894"
+        },
+        {
+          "time": "07:00 PM",
+          "activity": "Gubbi Veeranna Memorial Nataka Presentation",
+          "description": "Grand staging of classic Kannada historical drama.",
+          "_id": "6aef054ace09b2dedf875895"
+        },
+        {
+          "time": "09:00 PM",
+          "activity": "Yakshagana Prasanga & Folk Feast",
+          "description": "Vibrant costumed Yakshagana ballet with live chande rhythms.",
+          "_id": "6aef054ace09b2dedf875896"
+        }
+      ],
+      "state": "Karnataka",
+      "status": "approved",
+      "tagline": "Celebrating Karnataka’s Folk Theatre, Yakshagana & Gubbi Cultural Legacy",
+      "ticketTiers": [
+        {
+          "id": "tier_gubbi_free",
+          "name": "Janapada General Admission",
+          "price": 0,
+          "totalSeats": 1200,
+          "bookedSeats": 580,
+          "description": "Free public pass for evening Yakshagana ballets, drama shows, and traditional crafts expo",
+          "perks": [
+            "Open Amphitheater Seating",
+            "Free Entry",
+            "Folk Exhibition Access"
+          ],
+          "_id": "6aef054ace09b2dedf875897"
+        },
+        {
+          "id": "tier_gubbi_vip",
+          "name": "Kalakshetra VIP Front Row Pass",
+          "price": 299,
+          "totalSeats": 300,
+          "bookedSeats": 145,
+          "description": "Reserved auditorium cushioned front rows with complimentary traditional Karnataka sweet hamper and festival brochure",
+          "perks": [
+            "Reserved Front Rows",
+            "Festive Sweet Box",
+            "Fast-Track Gate Entry"
+          ],
+          "_id": "6aef054ace09b2dedf875898"
+        }
+      ],
+      "time": "05:30 PM",
+      "title": "Tumakuru Folk Heritage & Gubbi Veeranna Rangotsav 2026",
+      "totalCapacity": 1500,
+      "updatedAt": "2026-11-07T11:02:34.138Z",
+      "venueAddress": "B.H. Road, Gubbi Taluk, Tumakuru District, Karnataka 572216",
+      "venueName": "Gubbi Veeranna Kalakshetra & Rangamandira Grounds",
+      "viewsCount": 2850
+    },
+    {
+      "_id": "evt_16",
+      "__v": 0,
+      "bannerUrl": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&q=80",
+      "category": "College Fest",
+      "city": "Tumkur",
+      "createdAt": "2026-11-07T11:02:34.205Z",
+      "date": "2026-12-18",
+      "description": "The mega annual youth festival bringing together students from SIT Tumkur, Bangalore tech colleges, and universities across Karnataka. Experience 24-hr IoT & Agentic AI coding sprints, battle of the college indie bands, street dance battles, and a high-voltage open-air pro-nite concert under the stars.",
+      "dressCode": "College Casual / Band Merchandise",
+      "endDate": "2026-12-19",
+      "endTime": "11:00 PM",
+      "highlights": [
+        "National 24-Hour AI & IoT Hackathon with ₹2 Lakh Cash Prizes",
+        "Battle of the Bands featuring 20+ Top Campus Rock Groups",
+        "Starlight Pro-Nite Live Band Concert with Laser Lighting",
+        "Automotive & Robotics Showcase Expo"
+      ],
+      "isFeatured": true,
+      "organizerEmail": "youthfest@sit.ac.in",
+      "organizerId": "usr_organizer_03",
+      "organizerName": "Siddaganga Youth Council & Tech Forum",
+      "schedule": [
+        {
+          "time": "09:30 AM",
+          "activity": "Hackathon Coding Kickoff",
+          "description": "Sprint teams begin problem solution designs.",
+          "_id": "6aef054ace09b2dedf87589f"
+        },
+        {
+          "time": "02:00 PM",
+          "activity": "Inter-College Street Play & Dance Clash",
+          "description": "Cultural competitions on open amphitheater stage.",
+          "_id": "6aef054ace09b2dedf8758a0"
+        },
+        {
+          "time": "07:30 PM",
+          "activity": "Starlight Pro-Nite Rock & Fusion Concert",
+          "description": "Headline band performance with stadium sound & pyros.",
+          "_id": "6aef054ace09b2dedf8758a1"
+        }
+      ],
+      "state": "Karnataka",
+      "status": "approved",
+      "tagline": "Tumakuru’s Premier Inter-Collegiate AI Hackathon, Robotics & Indie Music Bash",
+      "ticketTiers": [
+        {
+          "id": "tier_student_pass",
+          "name": "Student Day Pass",
+          "price": 199,
+          "totalSeats": 2500,
+          "bookedSeats": 1240,
+          "description": "Access to all daytime events, coding tracks, gaming arena, and food truck alley",
+          "perks": [
+            "Hackathon Participation",
+            "College Kit & Badges",
+            "Food Alley Access"
+          ],
+          "_id": "6aef054ace09b2dedf8758a2"
+        },
+        {
+          "id": "tier_vip_pronite",
+          "name": "Pro-Nite Music VIP Pit",
+          "price": 499,
+          "totalSeats": 800,
+          "bookedSeats": 480,
+          "description": "Front concert stage fan pit access for the headline Kannada indie rock & Bollywood fusion band",
+          "perks": [
+            "VIP Concert Pit Access",
+            "Commemorative Fest T-Shirt",
+            "Fast QR Gate Check-in"
+          ],
+          "_id": "6aef054ace09b2dedf8758a3"
+        }
+      ],
+      "time": "09:30 AM",
+      "title": "Siddaganga Youth Tech Carnivale & Pro-Nite 2026 (Tumkur)",
+      "totalCapacity": 3300,
+      "updatedAt": "2026-11-07T11:02:34.205Z",
+      "venueAddress": "B.H. Road, Kyatsandra, Tumakuru, Karnataka 572103",
+      "venueName": "Siddaganga Silver Jubilee Open Air Grounds",
+      "viewsCount": 4100
+    }
+  ],
+  "bookings": [
+    {
+      "_id": "bkg_1793709810101xu0d",
+      "__v": 0,
+      "attendanceStatus": "pending",
+      "createdAt": "2026-11-07T11:02:34.266Z",
+      "eventDate": "2026-11-15",
+      "eventId": "evt_01",
+      "eventTitle": "Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "eventVenue": "Chomu Palace Heritage Courtyard, Jaipur",
+      "passId": "UM-PASS-8851",
+      "paymentMethod": "razorpay",
+      "paymentStatus": "paid",
+      "qrCodeDataUrl": "data:image/png;base64,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",
+      "quantity": 2,
+      "razorpayOrderId": "order_rzp_p0136h1v",
+      "razorpayPaymentId": "pay_rzp_mock_1793709810063",
+      "ticketTier": "Royal Sangeet Pass",
+      "totalAmount": 2998,
+      "unitPrice": 1499,
+      "updatedAt": "2026-11-07T11:02:34.266Z",
+      "userEmail": "aarav.sharma@gmail.com",
+      "userId": "usr_user_01",
+      "userName": "Aarav Sharma",
+      "userPhone": "+91 98765 11223"
+    },
+    {
+      "_id": "bkg_01",
+      "__v": 0,
+      "attendanceStatus": "checked_in",
+      "checkedInAt": "2026-11-02T11:30:00.000Z",
+      "checkedInBy": "usr_organizer_01",
+      "createdAt": "2026-11-07T11:02:34.327Z",
+      "eventDate": "2026-11-15",
+      "eventId": "evt_01",
+      "eventTitle": "Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "eventVenue": "Chomu Palace Heritage Courtyard, Jaipur",
+      "passId": "UM-PASS-8841",
+      "paymentMethod": "razorpay",
+      "paymentStatus": "paid",
+      "qrCodeDataUrl": "data:image/png;base64,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",
+      "quantity": 2,
+      "razorpayOrderId": "order_ORD_JaipurRoyal_101",
+      "razorpayPaymentId": "pay_RZP_JaipurRoyal_8841",
+      "ticketTier": "Royal Sangeet Pass",
+      "totalAmount": 2998,
+      "unitPrice": 1499,
+      "updatedAt": "2026-11-07T11:02:34.327Z",
+      "userEmail": "aarav.sharma@gmail.com",
+      "userId": "usr_user_01",
+      "userName": "Aarav Sharma",
+      "userPhone": "+91 98765 11223"
+    },
+    {
+      "_id": "bkg_02",
+      "__v": 0,
+      "attendanceStatus": "checked_in",
+      "checkedInAt": "2026-11-02T11:45:00.000Z",
+      "checkedInBy": "usr_organizer_02",
+      "createdAt": "2026-11-07T11:02:34.393Z",
+      "eventDate": "2026-11-20",
+      "eventId": "evt_02",
+      "eventTitle": "Maha Navratri Dandiya Raas 2026 – Falguni & Folk Symphony",
+      "eventVenue": "Karnavati Club Grand Lawns, Ahmedabad",
+      "passId": "UM-PASS-9923",
+      "paymentMethod": "razorpay",
+      "paymentStatus": "paid",
+      "qrCodeDataUrl": "data:image/png;base64,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",
+      "quantity": 1,
+      "razorpayOrderId": "order_ORD_Navratri_202",
+      "razorpayPaymentId": "pay_RZP_Navratri_9923",
+      "ticketTier": "VIP Circle & Celebrity Lawn",
+      "totalAmount": 1999,
+      "unitPrice": 1999,
+      "updatedAt": "2026-11-07T11:02:34.393Z",
+      "userEmail": "priya.patel@gmail.com",
+      "userId": "usr_user_02",
+      "userName": "Priya Patel",
+      "userPhone": "+91 99090 33445"
+    },
+    {
+      "_id": "bkg_03",
+      "__v": 0,
+      "attendanceStatus": "pending",
+      "checkedInAt": null,
+      "checkedInBy": null,
+      "createdAt": "2026-11-07T11:02:34.445Z",
+      "eventDate": "2026-12-05",
+      "eventId": "evt_03",
+      "eventTitle": "Mood Indigo 2026: Pan-India Youth Cultural & Tech Carnival",
+      "eventVenue": "Gymkhana Grounds, IIT Bombay Campus",
+      "passId": "UM-PASS-7734",
+      "paymentMethod": "razorpay",
+      "paymentStatus": "paid",
+      "qrCodeDataUrl": "data:image/png;base64,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",
+      "quantity": 1,
+      "razorpayOrderId": "order_ORD_MoodI_303",
+      "razorpayPaymentId": "pay_RZP_MoodI_7734",
+      "ticketTier": "All-Access + Concert Pass",
+      "totalAmount": 999,
+      "unitPrice": 999,
+      "updatedAt": "2026-11-07T11:02:34.445Z",
+      "userEmail": "aarav.sharma@gmail.com",
+      "userId": "usr_user_01",
+      "userName": "Aarav Sharma",
+      "userPhone": "+91 98765 11223"
+    },
+    {
+      "_id": "bkg_04",
+      "__v": 0,
+      "attendanceStatus": "pending",
+      "checkedInAt": null,
+      "checkedInBy": null,
+      "createdAt": "2026-11-07T11:02:34.514Z",
+      "eventDate": "2026-12-12",
+      "eventId": "evt_06",
+      "eventTitle": "Arijit Singh Symphony & Bollywood Pro-Nite Live 2026",
+      "eventVenue": "Palace Grounds, Gayathri Vihar, Bangalore",
+      "passId": "UM-PASS-6612",
+      "paymentMethod": "razorpay",
+      "paymentStatus": "paid",
+      "qrCodeDataUrl": "data:image/png;base64,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",
+      "quantity": 2,
+      "razorpayOrderId": "order_ORD_Arijit_404",
+      "razorpayPaymentId": "pay_RZP_Arijit_6612",
+      "ticketTier": "Gold Fan Pit",
+      "totalAmount": 4998,
+      "unitPrice": 2499,
+      "updatedAt": "2026-11-07T11:02:34.514Z",
+      "userEmail": "aarav.sharma@gmail.com",
+      "userId": "usr_user_01",
+      "userName": "Aarav Sharma",
+      "userPhone": "+91 98765 11223"
+    }
+  ],
+  "venues": [
+    {
+      "_id": "ven_01",
+      "__v": 0,
+      "address": "Chomu Fort, Near Jaipur-Sikar Highway, Jaipur 303702",
+      "amenities": [
+        "Royal Suites",
+        "Heritage Courtyards",
+        "In-house Shehnai Troupe",
+        "Helipad Access",
+        "Valet Parking for 300 Cars",
+        "Royal Marigold Decor Support"
+      ],
+      "capacity": 1200,
+      "city": "Jaipur",
+      "contactEmail": "weddings@chomupalace.com",
+      "contactPerson": "Thakur Mahendra Singh",
+      "contactPhone": "+91 98290 88123",
+      "createdAt": "2026-11-07T11:02:34.602Z",
+      "description": "A 300-year-old regal fort palace reflecting authentic Rajput grandeur with fresco-painted halls, sprawling lawns, and luxury suites fit for royalty.",
+      "images": [
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80"
+      ],
+      "inquiries": [
+        {
+          "userName": "Rohan Agarwal",
+          "userEmail": "rohan.agarwal@example.com",
+          "userPhone": "+91 98200 44556",
+          "eventType": "Grand Sangeet & Reception",
+          "eventDate": "2026-12-20",
+          "guestsCount": 500,
+          "message": "Interested in booking the main courtyard and 50 rooms for 2 nights. Please send package estimate.",
+          "status": "pending",
+          "createdAt": "2026-11-01T10:00:00.000Z",
+          "_id": "6aef054ace09b2dedf8758af"
+        }
+      ],
+      "name": "Chomu Palace Heritage Resort & Royal Darbar",
+      "pricePerDay": 450000,
+      "rating": 4.9,
+      "reviewsCount": 88,
+      "state": "Rajasthan",
+      "status": "available",
+      "type": "Palace / Heritage",
+      "updatedAt": "2026-11-07T11:02:34.602Z"
+    },
+    {
+      "_id": "ven_02",
+      "__v": 0,
+      "address": "Kovalam Beach Cliff, Thiruvananthapuram, Kerala 695527",
+      "amenities": [
+        "Arabian Sea Cliff View",
+        "Beachfront Mandap Area",
+        "Infinity Pool Lawn",
+        "Ayurvedic Spa for Guests",
+        "Dedicated Bridal Lounge"
+      ],
+      "capacity": 800,
+      "city": "Thiruvananthapuram",
+      "contactEmail": "events@leelakovalam.in",
+      "contactPerson": "Lakshmi Nair",
+      "contactPhone": "+91 94470 66554",
+      "createdAt": "2026-11-07T11:02:34.663Z",
+      "description": "Dramatic clifftop luxury venue offering breathtaking panoramic views of the Arabian Sea for romantic sunset ceremonies and destination weddings.",
+      "images": [
+        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80"
+      ],
+      "inquiries": [],
+      "name": "The Leela Kovalam & Seaside Banquet Lawns",
+      "pricePerDay": 350000,
+      "rating": 4.8,
+      "reviewsCount": 64,
+      "state": "Kerala",
+      "status": "available",
+      "type": "Lawn / Resort",
+      "updatedAt": "2026-11-07T11:02:34.663Z"
+    },
+    {
+      "_id": "ven_03",
+      "__v": 0,
+      "address": "Janpath, Connaught Place, New Delhi 110001",
+      "amenities": [
+        "Central Air Conditioning",
+        "Crystal Chandeliers",
+        "Pillarless 25,000 sq.ft Hall",
+        "Green Rooms for Artists",
+        "State of the art Acoustic Sound System"
+      ],
+      "capacity": 1500,
+      "city": "New Delhi",
+      "contactEmail": "banquets@grandimperialdelhi.com",
+      "contactPerson": "Siddharth Chadha",
+      "contactPhone": "+91 98100 22334",
+      "createdAt": "2026-11-07T11:02:34.723Z",
+      "description": "Lutyens Delhi premier address for corporate galas, high-profile wedding receptions, and celebrity concerts with cutting-edge production facilities.",
+      "images": [
+        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80",
+        "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80"
+      ],
+      "inquiries": [],
+      "name": "The Grand Imperial Convention & Ballroom",
+      "pricePerDay": 500000,
+      "rating": 4.7,
+      "reviewsCount": 112,
+      "state": "Delhi NCR",
+      "status": "available",
+      "type": "Banquet Hall",
+      "updatedAt": "2026-11-07T11:02:34.723Z"
+    },
+    {
+      "_id": "ven_04",
+      "__v": 0,
+      "address": "Kanakapura Road, Avalahalli, Bangalore, Karnataka 560062",
+      "amenities": [
+        "Ancient Banyan Courtyard",
+        "Stone Open-Air Amphitheater",
+        "Heritage Pavilions",
+        "Bridal Suite",
+        "Natural Pond",
+        "Green Rooms"
+      ],
+      "capacity": 1200,
+      "city": "Bangalore",
+      "contactEmail": "events@tamarindtree.in",
+      "contactPerson": "Meenakshi Sundaram",
+      "contactPhone": "+91 98450 11998",
+      "createdAt": "2026-11-07T11:02:34.782Z",
+      "description": "Enchanting Bangalore heritage venue with majestic trees, traditional stone mandaps, and serene lotus ponds perfect for South Indian and destination weddings.",
+      "images": [
+        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
+      ],
+      "inquiries": [],
+      "name": "The Tamarind Tree Heritage Courtyard & Lawns",
+      "pricePerDay": 480000,
+      "rating": 4.9,
+      "reviewsCount": 145,
+      "state": "Karnataka",
+      "status": "available",
+      "type": "Lawn / Resort",
+      "updatedAt": "2026-11-07T11:02:34.782Z"
+    },
+    {
+      "_id": "ven_05",
+      "__v": 0,
+      "address": "23, HAL Old Airport Rd, Kodihalli, Bengaluru, Karnataka 560008",
+      "amenities": [
+        "Vijayanagara Empire Inspired Architecture",
+        "Grand Crystal Ballroom",
+        "Outdoor Cascading Waterfalls",
+        "Michelin-Class Catering",
+        "Luxury Royal Suites",
+        "Valet Parking for 500 Cars"
+      ],
+      "capacity": 900,
+      "city": "Bangalore",
+      "contactEmail": "weddings.bangalore@theleela.com",
+      "contactPerson": "Kavitha Ramesh",
+      "contactPhone": "+91 98800 24680",
+      "createdAt": "2026-11-07T11:02:34.846Z",
+      "description": "Opulent palace hotel inspired by the grandeur of the Vijayanagara dynasty with ornate arches, gold leaf ceilings, and lush manicured gardens.",
+      "images": [
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80"
+      ],
+      "inquiries": [],
+      "name": "The Leela Palace Grand Ballroom & Royal Gardens",
+      "pricePerDay": 650000,
+      "rating": 5,
+      "reviewsCount": 198,
+      "state": "Karnataka",
+      "status": "available",
+      "type": "Palace / Heritage",
+      "updatedAt": "2026-11-07T11:02:34.846Z"
+    },
+    {
+      "_id": "ven_06",
+      "__v": 0,
+      "address": "Bellary Road, Jayamahal, Bengaluru, Karnataka 560006",
+      "amenities": [
+        "Mega 40,000 sq.ft Open Lawn",
+        "Pillarless Covered German Hangar",
+        "Ample Parking for 1500 Vehicles",
+        "Royal Tudor-style Facade",
+        "Separate Dining Pavilions"
+      ],
+      "capacity": 3500,
+      "city": "Bangalore",
+      "contactEmail": "princessshrine@palacegrounds.com",
+      "contactPerson": "Vinay Kumar",
+      "contactPhone": "+91 98440 99112",
+      "createdAt": "2026-11-07T11:02:34.912Z",
+      "description": "Iconic Bangalore venue renowned for mega wedding receptions, cultural carnivals, and live concerts surrounded by historic royal trees.",
+      "images": [
+        "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
+        "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80"
+      ],
+      "inquiries": [],
+      "name": "Palace Grounds Princess Shrine & Regal Lawns",
+      "pricePerDay": 750000,
+      "rating": 4.8,
+      "reviewsCount": 220,
+      "state": "Karnataka",
+      "status": "available",
+      "type": "Lawn / Resort",
+      "updatedAt": "2026-11-07T11:02:34.912Z"
+    },
+    {
+      "_id": "ven_07",
+      "__v": 0,
+      "address": "Near Town Hall, B.H. Road, Gubbi Taluk, Tumakuru, Karnataka 572216",
+      "amenities": [
+        "Historic Proscenium Theatre Stage",
+        "Acoustic Sound Treatment",
+        "Open-Air Lawn Pavilions",
+        "Spacious Green Rooms",
+        "Green Dining Courtyard",
+        "Ample Parking for 400 Vehicles"
+      ],
+      "capacity": 2500,
+      "city": "Tumkur",
+      "contactEmail": "kalakshetra@gubbi.org",
+      "contactPerson": "Shivakumar Swamy",
+      "contactPhone": "+91 98450 77112",
+      "createdAt": "2026-11-07T11:02:34.989Z",
+      "description": "Iconic heritage cultural venue in Gubbi, Tumakuru district, renowned for large traditional weddings, Yakshagana plays, and community conventions.",
+      "images": [
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80",
+        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80"
+      ],
+      "inquiries": [],
+      "name": "Gubbi Veeranna Heritage Kalakshetra & Convention Grounds",
+      "pricePerDay": 180000,
+      "rating": 4.8,
+      "reviewsCount": 94,
+      "state": "Karnataka",
+      "status": "available",
+      "type": "Banquet Hall / Convention Grounds",
+      "updatedAt": "2026-11-07T11:02:34.989Z"
+    }
+  ],
+  "invitations": [
+    {
+      "_id": "inv_1793623079729pd4c",
+      "__v": 0,
+      "coverImage": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+      "createdAt": "2026-11-07T11:02:35.043Z",
+      "createdBy": "usr_1793623045815ty3f",
+      "customMessage": "Together with our families, we joyfully invite you to celebrate music, dance, and love.",
+      "eventDate": "2026-11-28",
+      "eventTime": "06:30 PM onwards",
+      "eventType": "Wedding & Sangeet",
+      "hostName": "The Sharma & Patel Families",
+      "musicUrl": "",
+      "rsvpList": [],
+      "slug": "aarav-priya-s-royal-sangeet-785",
+      "theme": "royal-marigold",
+      "title": "Aarav & Priya’s Royal Sangeet",
+      "updatedAt": "2026-11-07T11:02:35.043Z",
+      "venue": "Chomu Palace Heritage Courtyard, Jaipur"
+    },
+    {
+      "_id": "inv_01",
+      "__v": 0,
+      "coverImage": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+      "createdAt": "2026-11-07T11:02:35.104Z",
+      "createdBy": "usr_user_01",
+      "customMessage": "Together with their families, Aarav & Priya cordially invite you to celebrate an evening of music, traditional dance, and eternal love under the starlit Rajasthani sky.",
+      "eventDate": "2026-11-28",
+      "eventTime": "06:30 PM onwards",
+      "eventType": "Wedding & Sangeet",
+      "hostName": "The Sharma & Patel Families",
+      "musicUrl": "",
+      "rsvpList": [
+        {
+          "guestName": "Kunal Kapoor",
+          "guestPhone": "+91 98201 11223",
+          "guestsCount": 2,
+          "status": "attending",
+          "message": "Can’t wait to dance on the dhol beats! Congratulations!",
+          "dietaryNotes": "Pure Vegetarian",
+          "submittedAt": "2026-10-27T10:00:00.000Z",
+          "_id": "6aef054bce09b2dedf8758b9"
+        },
+        {
+          "guestName": "Meera Deshmukh",
+          "guestPhone": "+91 98110 33445",
+          "guestsCount": 1,
+          "status": "attending",
+          "message": "Heartiest wishes to the lovely couple!",
+          "dietaryNotes": "Jain Meal preferred",
+          "submittedAt": "2026-10-28T14:30:00.000Z",
+          "_id": "6aef054bce09b2dedf8758ba"
+        }
+      ],
+      "slug": "aarav-priya-sangeet-2026",
+      "theme": "royal-marigold",
+      "title": "Aarav & Priya’s Shahi Sangeet Celebration",
+      "updatedAt": "2026-11-07T11:02:35.104Z",
+      "venue": "Chomu Palace Heritage Courtyard, Jaipur"
+    }
+  ],
+  "auditLogs": [
+    {
+      "_id": "aud_179414713483865k",
+      "actorId": "usr_superadmin_01",
+      "actorName": "Vikramaditya Rathore",
+      "actorRole": "super_admin",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_superadmin_01",
+      "details": "Logged in successfully as super_admin",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-11-08T14:12:14.839Z"
+    },
+    {
+      "_id": "aud_1794147123208m2s",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "targetType": "USER",
+      "targetId": "usr_admin_01",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-11-08T14:12:03.208Z"
+    },
+    {
+      "_id": "aud_1794051267174h5r",
+      "__v": 0,
+      "action": "USER_REGISTERED",
+      "actorId": "usr_1794051267168w4wb",
+      "actorName": "prabhu",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:34:27.184Z",
+      "details": "Registered as user",
+      "ipAddress": "127.0.0.1",
+      "targetId": "usr_1794051267168w4wb",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:34:27.184Z"
+    },
+    {
+      "_id": "aud_1794050670410qk0",
+      "__v": 0,
+      "action": "USER_REGISTERED",
+      "actorId": "usr_1794050670405fg58",
+      "actorName": "saritha",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:24:30.416Z",
+      "details": "Registered as user",
+      "ipAddress": "127.0.0.1",
+      "targetId": "usr_1794050670405fg58",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:24:30.416Z"
+    },
+    {
+      "_id": "aud_179404971864127l",
+      "__v": 0,
+      "action": "USER_REGISTERED",
+      "actorId": "usr_1794049718628em7u",
+      "actorName": "saritha",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:08:38.700Z",
+      "details": "Registered as user",
+      "ipAddress": "127.0.0.1",
+      "targetId": "usr_1794049718628em7u",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:08:38.700Z"
+    },
+    {
+      "_id": "aud_03",
+      "__v": 0,
+      "action": "QR_PASS_CHECKED_IN",
+      "actorId": "usr_organizer_01",
+      "actorName": "Rajesh Singhania",
+      "actorRole": "organizer",
+      "createdAt": "2026-11-07T11:02:36.361Z",
+      "details": "Scanned Pass ID UM-PASS-8841 at Gate #1 (Guest: Aarav Sharma). Entry permitted.",
+      "ipAddress": "192.168.1.45",
+      "targetId": "bkg_01",
+      "targetType": "BOOKING",
+      "updatedAt": "2026-11-07T11:02:36.361Z"
+    },
+    {
+      "_id": "aud_02",
+      "__v": 0,
+      "action": "EVENT_APPROVED",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "createdAt": "2026-11-07T11:02:36.309Z",
+      "details": "Approved Grand Royal Rajasthani Wedding Expo for public discovery and ticket sales.",
+      "ipAddress": "192.168.1.10",
+      "targetId": "evt_01",
+      "targetType": "EVENT",
+      "updatedAt": "2026-11-07T11:02:36.309Z"
+    },
+    {
+      "_id": "aud_01",
+      "__v": 0,
+      "action": "SYSTEM_INITIALIZED",
+      "actorId": "usr_superadmin_01",
+      "actorName": "Vikramaditya Rathore",
+      "actorRole": "super_admin",
+      "createdAt": "2026-11-07T11:02:36.245Z",
+      "details": "Platform core services initialized with Razorpay Gateway & QR verification active.",
+      "ipAddress": "127.0.0.1",
+      "targetId": "sys_core",
+      "targetType": "SYSTEM",
+      "updatedAt": "2026-11-07T11:02:36.245Z"
+    },
+    {
+      "_id": "aud_1793623045817kq3",
+      "__v": 0,
+      "action": "USER_REGISTERED",
+      "actorId": "usr_1793623045815ty3f",
+      "actorName": "praphu",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:36.188Z",
+      "details": "Registered as user",
+      "ipAddress": "::1",
+      "targetId": "usr_1793623045815ty3f",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:36.188Z"
+    },
+    {
+      "_id": "aud_17936230797485gq",
+      "__v": 0,
+      "action": "INVITATION_CREATED",
+      "actorId": "usr_1793623045815ty3f",
+      "actorName": "praphu",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:36.136Z",
+      "details": "Created e-invite: Aarav & Priya’s Royal Sangeet",
+      "ipAddress": "::1",
+      "targetId": "inv_1793623079729pd4c",
+      "targetType": "INVITATION",
+      "updatedAt": "2026-11-07T11:02:36.136Z"
+    },
+    {
+      "_id": "aud_17937074942291yc",
+      "__v": 0,
+      "action": "USER_LOGIN",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "createdAt": "2026-11-07T11:02:36.067Z",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "targetId": "usr_admin_01",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:36.067Z"
+    },
+    {
+      "_id": "aud_1793707527622n9p",
+      "__v": 0,
+      "action": "USER_LOGIN",
+      "actorId": "usr_superadmin_01",
+      "actorName": "Vikramaditya Rathore",
+      "actorRole": "super_admin",
+      "createdAt": "2026-11-07T11:02:36.002Z",
+      "details": "Logged in successfully as super_admin",
+      "ipAddress": "::1",
+      "targetId": "usr_superadmin_01",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:36.002Z"
+    },
+    {
+      "_id": "aud_1793709591182kz3",
+      "__v": 0,
+      "action": "USER_LOGIN",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "createdAt": "2026-11-07T11:02:35.938Z",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "targetId": "usr_admin_01",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.938Z"
+    },
+    {
+      "_id": "aud_1793709646643t9j",
+      "__v": 0,
+      "action": "USER_LOGIN",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "createdAt": "2026-11-07T11:02:35.882Z",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "targetId": "usr_admin_01",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.882Z"
+    },
+    {
+      "_id": "aud_1793709677789j13",
+      "__v": 0,
+      "action": "USER_LOGIN",
+      "actorId": "usr_admin_01",
+      "actorName": "Sunita Mehra",
+      "actorRole": "admin",
+      "createdAt": "2026-11-07T11:02:35.822Z",
+      "details": "Logged in successfully as admin",
+      "ipAddress": "::1",
+      "targetId": "usr_admin_01",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.822Z"
+    },
+    {
+      "_id": "aud_1793709810103ckl",
+      "__v": 0,
+      "action": "TICKET_BOOKED",
+      "actorId": "usr_user_01",
+      "actorName": "Aarav Sharma",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:35.762Z",
+      "details": "Booked 2x Royal Sangeet Pass for Grand Royal Rajasthani Wedding Expo & Sangeet Gala (₹2998)",
+      "ipAddress": "::1",
+      "targetId": "bkg_1793709810101xu0d",
+      "targetType": "BOOKING",
+      "updatedAt": "2026-11-07T11:02:35.762Z"
+    },
+    {
+      "_id": "aud_179370981012147m",
+      "__v": 0,
+      "action": "EVENT_CREATED",
+      "actorId": "usr_organizer_01",
+      "actorName": "Rajesh Singhania",
+      "actorRole": "organizer",
+      "createdAt": "2026-11-07T11:02:35.677Z",
+      "details": "Created event: Bangalore Tech & Cultural Fusion Fest 2026",
+      "ipAddress": "::1",
+      "targetId": "evt_1793709810120i0t3",
+      "targetType": "EVENT",
+      "updatedAt": "2026-11-07T11:02:35.677Z"
+    },
+    {
+      "_id": "aud_1793806198467wh0",
+      "__v": 0,
+      "action": "USER_REGISTERED",
+      "actorId": "usr_1793806198454108u",
+      "actorName": "chiranth",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:35.572Z",
+      "details": "Registered as user",
+      "ipAddress": "::1",
+      "targetId": "usr_1793806198454108u",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.572Z"
+    },
+    {
+      "_id": "aud_1793807456277bfp",
+      "__v": 0,
+      "action": "USER_LOGIN",
+      "actorId": "usr_1793806198454108u",
+      "actorName": "chiranth",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:35.510Z",
+      "details": "Logged in successfully as user",
+      "ipAddress": "::1",
+      "targetId": "usr_1793806198454108u",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.510Z"
+    },
+    {
+      "_id": "aud_1793939534938vu7",
+      "__v": 0,
+      "action": "USER_LOGIN_VIA_OTP",
+      "actorId": "usr_1793806198454108u",
+      "actorName": "chiranth",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:35.350Z",
+      "details": "Authenticated via Email OTP",
+      "ipAddress": "::1",
+      "targetId": "usr_1793806198454108u",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.350Z"
+    },
+    {
+      "_id": "aud_1793939534950lh1",
+      "__v": 0,
+      "action": "EVENT_UPDATE_BROADCAST",
+      "actorId": "usr_organizer_01",
+      "actorName": "Rajesh Singhania",
+      "actorRole": "organizer",
+      "createdAt": "2026-11-07T11:02:35.293Z",
+      "details": "Broadcast announcement \"Dinner Schedule Update: Dinner Buffet at 7:30 PM\" to 1 attendees",
+      "ipAddress": "::1",
+      "targetId": "evt_01",
+      "targetType": "EVENT",
+      "updatedAt": "2026-11-07T11:02:35.293Z"
+    },
+    {
+      "_id": "aud_1793940545152wa3",
+      "__v": 0,
+      "action": "USER_REGISTERED",
+      "actorId": "usr_1793940545146zsy5",
+      "actorName": "rahul",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:35.222Z",
+      "details": "Registered as user",
+      "ipAddress": "127.0.0.1",
+      "targetId": "usr_1793940545146zsy5",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.222Z"
+    },
+    {
+      "_id": "aud_1793940657158zc4",
+      "__v": 0,
+      "action": "USER_LOGIN_VIA_OTP",
+      "actorId": "usr_1793940545146zsy5",
+      "actorName": "rahul",
+      "actorRole": "user",
+      "createdAt": "2026-11-07T11:02:35.165Z",
+      "details": "Authenticated via Email OTP",
+      "ipAddress": "127.0.0.1",
+      "targetId": "usr_1793940545146zsy5",
+      "targetType": "USER",
+      "updatedAt": "2026-11-07T11:02:35.165Z"
+    }
+  ],
+  "systemSettings": {
     "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
-    "category": "Cultural Program",
-    "city": "Bangalore",
-    "createdAt": "2026-11-07T11:02:33.116Z",
-    "date": "2026-12-15",
-    "description": "A vibrant evening of traditional music fused with interactive digital art and festive cuisine.",
-    "dressCode": "Festive Indian / Smart Ethnic",
-    "endDate": "2026-12-15",
-    "endTime": "10:00 PM",
-    "highlights": [
-      "Live Music & Entertainment",
-      "Food & Refreshment Counters",
-      "Grand Celebration"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@jaipurfest.com",
-    "organizerId": "usr_organizer_01",
-    "organizerName": "Royal Rajputana Weddings & Events",
-    "schedule": [
-      {
-        "time": "18:00",
-        "activity": "Event Inauguration & Grand Welcome",
-        "description": "Doors open for guests.",
-        "_id": "6aef0549ce09b2dedf8757e5"
-      }
-    ],
-    "state": "Rajasthan",
-    "status": "approved",
-    "tagline": "",
-    "ticketTiers": [
-      {
-        "id": "gen",
-        "name": "General Entry",
-        "price": 499,
-        "totalSeats": 500,
-        "bookedSeats": 0,
-        "description": "",
-        "perks": [],
-        "_id": "6aef0549ce09b2dedf8757e6"
-      }
-    ],
-    "time": "18:00",
-    "title": "Bangalore Tech & Cultural Fusion Fest 2026",
-    "totalCapacity": 500,
-    "updatedAt": "2026-11-07T11:02:33.116Z",
-    "venueAddress": "Palace Grounds Gayatri Vihar, Bangalore",
-    "venueName": "Palace Grounds Gayatri Vihar",
-    "viewsCount": 1
+    "autoApproveEvents": false,
+    "createdAt": "2026-11-07T11:02:37.800Z",
+    "emergencyHelpline": "+91 1800 200 8822",
+    "maintenanceMode": false,
+    "platformFeePercent": 5,
+    "platformName": "UtsavMitra",
+    "razorpayTestMode": true,
+    "supportEmail": "support@utsavmitra.in",
+    "updatedAt": "2026-11-07T11:02:37.800Z",
+    "updatedBy": "Vikramaditya Rathore"
   },
-  {
-    "_id": "evt_01",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80",
-    "category": "Wedding",
-    "city": "Jaipur",
-    "createdAt": "2026-11-07T11:02:33.227Z",
-    "date": "2026-11-15",
-    "description": "Step into royal Indian opulence with heritage bridal showcases, live shehnai and sufi performances, royal marigold floral installations, and an exclusive culinary journey through 56 Bhog royal dishes. Meet top destination wedding planners, mehendi artisans, and royal jewelers.",
-    "dressCode": "Royal Ethnic / Traditional Rajasthani (Bandhani, Lehengas, Sherwanis)",
-    "endDate": "2026-11-16",
-    "endTime": "11:30 PM",
-    "highlights": [
-      "50+ Destination Wedding Planners & Royal Couturiers",
-      "Live Sufi & Bollywood Sangeet Night with Manganiyar Troupe",
-      "Live 56 Bhog Royal Feast Tasting",
-      "Bridal Jewellery Fashion Walk"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "organizer@jaipurfest.com",
-    "organizerId": "usr_organizer_01",
-    "organizerName": "Royal Rajputana Weddings & Events",
-    "schedule": [
-      {
-        "time": "05:30 PM",
-        "activity": "Shahi Nagada & Shehnai Welcome",
-        "description": "Traditional aarti welcome and royal turban tying at the courtyard gateway.",
-        "_id": "6aef0549ce09b2dedf8757ea"
+  "emailLogs": [
+    {
+      "_id": "eml_1794051275021jnh",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:34:35.036Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794051267168w4wb"
       },
-      {
-        "time": "07:00 PM",
-        "activity": "Bridal Couture Runway",
-        "description": "Showcasing traditional Zardozi and Gotapatti designer ensembles.",
-        "_id": "6aef0549ce09b2dedf8757eb"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] Account Created: prabhu (user)",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:34:35.036Z"
+    },
+    {
+      "_id": "eml_1794051272716vty",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:34:32.754Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794051267168w4wb"
       },
-      {
-        "time": "08:30 PM",
-        "activity": "Grand Sangeet & Folk Fusion Night",
-        "description": "Celebrated folk artists and live acoustic Sufi music performance.",
-        "_id": "6aef0549ce09b2dedf8757ec"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👤 [Admin Alert] New USER Registered: prabhu (prabhutp2@gmail.com)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:34:32.754Z"
+    },
+    {
+      "_id": "eml_1794051270088jz4",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:34:30.095Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794051267168w4wb",
+        "role": "user"
       },
-      {
-        "time": "10:00 PM",
-        "activity": "Royal Royal Dinner & Networking",
-        "description": "Authentic Dal Baati Churma, Gatte ki Sabzi, and assorted Indian mithais.",
-        "_id": "6aef0549ce09b2dedf8757ed"
-      }
-    ],
-    "state": "Rajasthan",
-    "status": "approved",
-    "tagline": "Experience Regal Indian Hospitality, Bridal Couturiers & Sangeet Nights",
-    "ticketTiers": [
-      {
-        "id": "tier_free_pass",
-        "name": "General Visitor Pass",
-        "price": 0,
-        "totalSeats": 300,
-        "bookedSeats": 145,
-        "description": "Access to royal bridal pavilions, exhibition stalls & evening shehnai concert",
-        "perks": [
-          "Free Entry",
-          "Welcome Drink (Thandai)",
-          "Exhibition Directory"
-        ],
-        "_id": "6aef0549ce09b2dedf8757ee"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (prabhu)",
+      "to": "prabhutp2@gmail.com",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "updatedAt": "2026-11-07T11:34:30.095Z"
+    },
+    {
+      "_id": "eml_1794050678035nck",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:24:38.045Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794050670405fg58"
       },
-      {
-        "id": "tier_royal_sangeet",
-        "name": "Royal Sangeet Pass",
-        "price": 1499,
-        "totalSeats": 150,
-        "bookedSeats": 91,
-        "description": "Front arena seating for Rajasthani folk dances, live Sufi troupe, and 56-Bhog dinner buffet",
-        "perks": [
-          "Reserved Front Rows",
-          "Royal Dinner Buffet",
-          "Gift Hamper",
-          "Fast-track QR entry"
-        ],
-        "_id": "6aef0549ce09b2dedf8757ef"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] Account Created: saritha (user)",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:24:38.045Z"
+    },
+    {
+      "_id": "eml_1794050675926w3a",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:24:35.931Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794050670405fg58"
       },
-      {
-        "id": "tier_vip_couple",
-        "name": "VIP Shahi Couple Pass",
-        "price": 3499,
-        "totalSeats": 50,
-        "bookedSeats": 32,
-        "description": "Exclusive lounge access with vintage car royal entry photo-op, turban tying ceremony, and royal hospitality",
-        "perks": [
-          "2-Person VIP Access",
-          "Valet Parking",
-          "Royal Turban & Dupatta Welcome",
-          "Private Champagne/Mocktail Table"
-        ],
-        "_id": "6aef0549ce09b2dedf8757f0"
-      }
-    ],
-    "time": "05:30 PM",
-    "title": "Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
-    "totalCapacity": 500,
-    "updatedAt": "2026-11-07T11:02:33.227Z",
-    "venueAddress": "Chomu Fort, Sikar Road, Jaipur, Rajasthan",
-    "venueName": "Chomu Palace Heritage Courtyard",
-    "viewsCount": 1420
-  },
-  {
-    "_id": "evt_02",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=1200&q=80",
-    "category": "Cultural Program",
-    "city": "Ahmedabad",
-    "createdAt": "2026-11-07T11:02:33.291Z",
-    "date": "2026-11-20",
-    "description": "Nine nights of divine devotion, high-energy dandiya swirls, and enchanting Gujarati folk rhythms under 100,000 fairy lights. Featuring 15-piece live traditional dholak, shehnai, and harmonium orchestration with 30,000+ dancers in full Chaniya Choli splendor.",
-    "dressCode": "Authentic Gujarati Garba Attire (Chaniya Choli / Kediyu Kurta)",
-    "endDate": "2026-11-20",
-    "endTime": "01:00 AM",
-    "highlights": [
-      "Live 15-Piece Dholak & Folk Orchestra",
-      "Prizes for Best Traditional Costume & Best Garba Couple",
-      "Over 40 Food Stalls serving Kutch & Kathiawadi delicacies",
-      "100% Family Safe Environment with High Security"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "organizer@mumbaiculture.in",
-    "organizerId": "usr_organizer_02",
-    "organizerName": "Aamchi Mumbai Utsav Mandali",
-    "schedule": [
-      {
-        "time": "07:00 PM",
-        "activity": "Aarti & Deepotsav",
-        "description": "Auspicious Maa Ambe Mahamangal Aarti with 108 diyas.",
-        "_id": "6aef0549ce09b2dedf8757f9"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👤 [Admin Alert] New USER Registered: saritha (sarithashree9535@gmail.com)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:24:35.931Z"
+    },
+    {
+      "_id": "eml_179405067332468q",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:24:33.330Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794050670405fg58",
+        "role": "user"
       },
-      {
-        "time": "07:45 PM",
-        "activity": "Traditional 3-Taali & Dodhiya",
-        "description": "Opening slow traditional Gujarati circle dances.",
-        "_id": "6aef0549ce09b2dedf8757fa"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (saritha)",
+      "to": "sarithashree9535@gmail.com",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "updatedAt": "2026-11-07T11:24:33.330Z"
+    },
+    {
+      "_id": "eml_17940497275704zg",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:08:47.576Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794049718628em7u"
       },
-      {
-        "time": "09:30 PM",
-        "activity": "High Tempo Dandiya Raas",
-        "description": "Live dhol beats and synchronized dandiya claps across all 4 zones.",
-        "_id": "6aef0549ce09b2dedf8757fb"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] Account Created: saritha (user)",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:08:47.576Z"
+    },
+    {
+      "_id": "eml_1794049724900nir",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:08:44.908Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794049718628em7u"
       },
-      {
-        "time": "11:45 PM",
-        "activity": "Sanedo & Awards Ceremony",
-        "description": "Energetic Sanedo rounds and presentation of the Utsav Trophy.",
-        "_id": "6aef0549ce09b2dedf8757fc"
-      }
-    ],
-    "state": "Gujarat",
-    "status": "approved",
-    "tagline": "Gujarat’s Largest Traditional Garba & Dandiya Mahotsav",
-    "ticketTiers": [
-      {
-        "id": "tier_early_dancer",
-        "name": "Dandiya Lover Pass",
-        "price": 499,
-        "totalSeats": 1000,
-        "bookedSeats": 620,
-        "description": "Single day entrance pass to main Garba lawn with pair of wooden dandiya sticks included",
-        "perks": [
-          "Pair of Dandiya Sticks",
-          "Access to Main Arena",
-          "Food Court Access"
-        ],
-        "_id": "6aef0549ce09b2dedf8757fd"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👤 [Admin Alert] New USER Registered: saritha (sarithasaru385@gmail.com)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:08:44.908Z"
+    },
+    {
+      "_id": "eml_1794049721775a99",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:08:41.788Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1794049718628em7u",
+        "role": "user"
       },
-      {
-        "id": "tier_season_pass",
-        "name": "VIP Circle & Celebrity Lawn",
-        "price": 1999,
-        "totalSeats": 200,
-        "bookedSeats": 165,
-        "description": "Elevated wooden dance deck near celebrity stage, air-cooled lounge, and unlimited snack counters",
-        "perks": [
-          "Elevated Deck Access",
-          "Unlimited Gujarati Chaat & Fafda-Jalebi",
-          "Dedicated QR Lane",
-          "Locker Facility"
-        ],
-        "_id": "6aef0549ce09b2dedf8757fe"
-      }
-    ],
-    "time": "07:00 PM",
-    "title": "Maha Navratri Dandiya Raas 2026 – Falguni & Folk Symphony",
-    "totalCapacity": 2000,
-    "updatedAt": "2026-11-07T11:02:33.291Z",
-    "venueAddress": "SG Highway, Bodakdev, Ahmedabad, Gujarat",
-    "venueName": "Karnavati Club Grand Lawns",
-    "viewsCount": 3100
-  },
-  {
-    "_id": "evt_03",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1200&q=80",
-    "category": "College Fest",
-    "city": "Mumbai",
-    "createdAt": "2026-11-07T11:02:33.354Z",
-    "date": "2026-12-05",
-    "description": "The mega annual inter-college celebration uniting over 120+ universities from across the nation. Experience 48-hour AI Hackathons, Street Dance Battles, Hindi Dramatics, Standup Comedy, and a mesmerizing open-air concert by India’s top indie rock and fusion artists.",
-    "dressCode": "College Casuals / Streetwear / Quirky Festival Fits",
-    "endDate": "2026-12-07",
-    "endTime": "11:00 PM",
-    "highlights": [
-      "Over ₹5,00,000 Cash Prizes across 35 Competitions",
-      "National Level 24hr Hackathon in partnership with Leading Tech Giants",
-      "Star Concert featuring Top Bollywood & Fusion Rock Band",
-      "Food Truck Alley with 30+ Global & Street Food Vendors"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "fest@iitb.ac.in",
-    "organizerId": "usr_organizer_03",
-    "organizerName": "IIT Fest Council & Youth Wing",
-    "schedule": [
-      {
-        "time": "10:00 AM",
-        "activity": "Opening Ceremony & Keynote",
-        "description": "Inauguration by celebrated alumni and keynote panel on youth innovation.",
-        "_id": "6aef0549ce09b2dedf875806"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (saritha)",
+      "to": "sarithasaru385@gmail.com",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "updatedAt": "2026-11-07T11:08:41.788Z"
+    },
+    {
+      "_id": "eml_1793709591231e2s",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.745Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "initiatedBy": "admin@utsavmitra.com"
       },
-      {
-        "time": "01:00 PM",
-        "activity": "Street Play & Battle of the Bands",
-        "description": "High-octane dramatic and musical competitions at the amphitheater.",
-        "_id": "6aef0549ce09b2dedf875807"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "🪔 UtsavMitra SendGrid Email Verification Test",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_TEST_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:37.745Z"
+    },
+    {
+      "_id": "eml_1793709810109b0w",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.683Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "eventId": "evt_01",
+        "totalAmount": 2998
       },
-      {
-        "time": "05:30 PM",
-        "activity": "Choreonite – Inter-College Dance Clash",
-        "description": "Synchronized Western, Bollywood, and Classical fusion choreography.",
-        "_id": "6aef0549ce09b2dedf875808"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "🎉 Booking Confirmed! Your UtsavMitra Pass #UM-PASS-8851 (Grand Royal Rajasthani Wedding Expo & Sangeet Gala)",
+      "to": "aarav.sharma@gmail.com",
+      "type": "USER_BOOKING_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:37.683Z"
+    },
+    {
+      "_id": "eml_1793709810112vot",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.607Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "eventId": "evt_01",
+        "organizerEmail": "organizer@jaipurfest.com"
       },
-      {
-        "time": "08:30 PM",
-        "activity": "Starlight Pro-Nite Live Concert",
-        "description": "Massive open-air stadium musical concert under spectacular laser lights.",
-        "_id": "6aef0549ce09b2dedf875809"
-      }
-    ],
-    "state": "Maharashtra",
-    "status": "approved",
-    "tagline": "Asia’s Premier College Fest – Battle of the Bands, Hackathon & Starlight Pro-Nite",
-    "ticketTiers": [
-      {
-        "id": "tier_student_pass",
-        "name": "Student Delegate Pass",
-        "price": 299,
-        "totalSeats": 1500,
-        "bookedSeats": 880,
-        "description": "Valid college ID required. Grants full 3-day access to workshops, competitions, and daytime events",
-        "perks": [
-          "Fest Goodie Kit",
-          "Campus Access",
-          "Competition Registrations"
-        ],
-        "_id": "6aef0549ce09b2dedf87580a"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "🎟️ New Booking Received: 2x Royal Sangeet Pass for Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "to": "organizer@jaipurfest.com",
+      "type": "ORGANIZER_SALE_ALERT",
+      "updatedAt": "2026-11-07T11:02:37.607Z"
+    },
+    {
+      "_id": "eml_1793709810114l6u",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.532Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "grossAmount": 2998,
+        "commission": "149.90"
       },
-      {
-        "id": "tier_pronite_concert",
-        "name": "All-Access + Concert Pass",
-        "price": 999,
-        "totalSeats": 600,
-        "bookedSeats": 410,
-        "description": "Includes evening entry to the main arena for EDM night, Bollywood Star Singer, and Battle of the Bands",
-        "perks": [
-          "VIP Pro-Nite Pit",
-          "Express Badge Pickup",
-          "Meet & Greet Raffle"
-        ],
-        "_id": "6aef0549ce09b2dedf87580b"
-      }
-    ],
-    "time": "10:00 AM",
-    "title": "Mood Indigo 2026: Pan-India Youth Cultural & Tech Carnival",
-    "totalCapacity": 3000,
-    "updatedAt": "2026-11-07T11:02:33.354Z",
-    "venueAddress": "Powai, Mumbai, Maharashtra 400076",
-    "venueName": "Gymkhana Grounds, IIT Bombay Campus",
-    "viewsCount": 4500
-  },
-  {
-    "_id": "evt_04",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?w=1200&q=80",
-    "category": "Religious",
-    "city": "Mathura",
-    "createdAt": "2026-11-07T11:02:33.415Z",
-    "date": "2026-12-18",
-    "description": "Celebrate the holy festival of colors in the divine traditional style with 5,000 kilograms of fragrant marigold, rose, and tesu petals. No chemical colors! Immerse yourself in Braj folk songs, traditional Rasleela performances, and unlimited authentic Mathura pedas & chilled Kesar Badam Thandai.",
-    "dressCode": "Crisp White Traditional Kurta-Pajama or White Salwar Kameez",
-    "endDate": "2026-12-18",
-    "endTime": "04:00 PM",
-    "highlights": [
-      "5,000 KG Fresh Rose & Marigold Petals showered from towers",
-      "Live Haveli Sangeet & Traditional Rasleela Actors from Mathura",
-      "Authentic Braj Khaja, Makhan Mishri & Kesar Thandai",
-      "Eco-Friendly & Completely Safe for Children and Senior Citizens"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@jaipurfest.com",
-    "organizerId": "usr_organizer_01",
-    "organizerName": "Royal Rajputana Weddings & Events",
-    "schedule": [
-      {
-        "time": "09:00 AM",
-        "activity": "Shankhnaad & Vedic Havan",
-        "description": "Invoking blessings for peace, joy, and spiritual harmony.",
-        "_id": "6aef0549ce09b2dedf875813"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "📊 [Admin Alert] Ticket Sale: ₹2,998 for Grand Royal Rajasthani Wedding Expo & Sangeet Gala (Pass #UM-PASS-8851)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_FINANCIAL_ALERT",
+      "updatedAt": "2026-11-07T11:02:37.532Z"
+    },
+    {
+      "_id": "eml_1793709810116lcn",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.461Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "passId": "UM-PASS-8851",
+        "grossAmount": 2998,
+        "commission": "149.90"
       },
-      {
-        "time": "10:30 AM",
-        "activity": "Mayur Dance & Braj Rasleela",
-        "description": "Traditional dramatic portrayal of Radha Krishna pastimes.",
-        "_id": "6aef0549ce09b2dedf875814"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] GMV Transaction: ₹2,998 for Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_GMV_ALERT",
+      "updatedAt": "2026-11-07T11:02:37.461Z"
+    },
+    {
+      "_id": "eml_1793709810123cqb",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.402Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "eventId": "evt_1793709810120i0t3"
       },
-      {
-        "time": "12:00 PM",
-        "activity": "Phoolon Ki Holi Maha Utsav",
-        "description": "Grand shower of flower petals across the arena with live nagada beats.",
-        "_id": "6aef0549ce09b2dedf875815"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "🪔 Event Listed Successfully: Bangalore Tech & Cultural Fusion Fest 2026 on UtsavMitra",
+      "to": "organizer@jaipurfest.com",
+      "type": "ORGANIZER_EVENT_CREATED",
+      "updatedAt": "2026-11-07T11:02:37.402Z"
+    },
+    {
+      "_id": "eml_179370981012561j",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.342Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "eventId": "evt_1793709810120i0t3"
       },
-      {
-        "time": "02:00 PM",
-        "activity": "Bhog Prasad & Kirtan Mandali",
-        "description": "Feast of 11 traditional Brajvasi delicacies and ecstatic kirtan.",
-        "_id": "6aef0549ce09b2dedf875816"
-      }
-    ],
-    "state": "Uttar Pradesh",
-    "status": "approved",
-    "tagline": "Pure Floral Ecstasy, Temple Bells & Vedic Celebrations",
-    "ticketTiers": [
-      {
-        "id": "tier_holi_general",
-        "name": "Flower Blessing Pass",
-        "price": 350,
-        "totalSeats": 800,
-        "bookedSeats": 520,
-        "description": "Includes organic flower basket, white cotton scarf, and traditional temple prasad",
-        "perks": [
-          "Organic Flower Kit",
-          "Braj Thandai Coupon",
-          "Vedic Aarti Seating"
-        ],
-        "_id": "6aef0549ce09b2dedf875817"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "✨ [Admin Alert] New Event Published: Bangalore Tech & Cultural Fusion Fest 2026 (Bangalore)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_EVENT_NOTIFICATION",
+      "updatedAt": "2026-11-07T11:02:37.342Z"
+    },
+    {
+      "_id": "eml_1793709810130mi8",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.287Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "eventId": "evt_1793709810120i0t3"
       },
-      {
-        "id": "tier_holi_family",
-        "name": "Kutumb Family Pass (4 Guests)",
-        "price": 1200,
-        "totalSeats": 100,
-        "bookedSeats": 74,
-        "description": "Special seating for families with elderly members, covered shamiana, and unlimited satvik brunch",
-        "perks": [
-          "Reserved Covered Seating",
-          "Satvik Royal Feast",
-          "Floral Garlands & Chadar Offering"
-        ],
-        "_id": "6aef0549ce09b2dedf875818"
-      }
-    ],
-    "time": "09:00 AM",
-    "title": "Vrindavan Phoolon Ki Holi & Braj Raas Mahotsav",
-    "totalCapacity": 1000,
-    "updatedAt": "2026-11-07T11:02:33.415Z",
-    "venueAddress": "Parikrama Marg, Raman Reti, Vrindavan, Uttar Pradesh",
-    "venueName": "Yamuna Riverfront Amphitheater",
-    "viewsCount": 2200
-  },
-  {
-    "_id": "evt_05",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&q=80",
-    "category": "Corporate",
-    "city": "Bangalore",
-    "createdAt": "2026-11-07T11:02:33.492Z",
-    "date": "2026-12-24",
-    "description": "The Garden City’s favorite open-air lifestyle celebration! Featuring 20 artisanal microbreweries, masterclasses by celebrity chefs, pet-friendly obstacle parks, flea market with 80 handcrafted Indian lifestyle brands, and an acoustic sundowner stage.",
-    "dressCode": "Chic Casual / Boho Festival Outfits",
-    "endDate": "2026-12-25",
-    "endTime": "10:30 PM",
-    "highlights": [
-      "20 Top Microbreweries & Mocktail Innovators",
-      "Live Cooking Battles with MasterChef Contestants",
-      "Pet Friendly Arena with Puppy Play Zones",
-      "Sundowner Acoustic Performances by Top Indie Artists"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@mumbaiculture.in",
-    "organizerId": "usr_organizer_02",
-    "organizerName": "Aamchi Mumbai Utsav Mandali",
-    "schedule": [
-      {
-        "time": "12:00 PM",
-        "activity": "Gates Open & Flea Market Browse",
-        "description": "Explore handcrafted ceramics, sustainable apparel, and artisanal spices.",
-        "_id": "6aef0549ce09b2dedf875820"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] New Event Created: Bangalore Tech & Cultural Fusion Fest 2026",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_EVENT_NOTIFICATION",
+      "updatedAt": "2026-11-07T11:02:37.287Z"
+    },
+    {
+      "_id": "eml_17938065654682jh",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.227Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "userId": "usr_1793806198454108u",
+        "role": "user"
       },
-      {
-        "time": "02:30 PM",
-        "activity": "Masterclass: Modern Indian Street Tapas",
-        "description": "Interactive culinary workshop by award-winning chefs.",
-        "_id": "6aef0549ce09b2dedf875821"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (chiranth)",
+      "to": "chiranthansiddu@gmail.com",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:37.227Z"
+    },
+    {
+      "_id": "eml_179380656547505o",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.162Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "userId": "usr_1793806198454108u"
       },
-      {
-        "time": "06:00 PM",
-        "activity": "Sunset Acoustic Sessions",
-        "description": "Soothing indie folk and jazz fusion music under fairy lit banyan trees.",
-        "_id": "6aef0549ce09b2dedf875822"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "👤 [Admin Alert] New USER Registered: chiranth (chiranthansiddu@gmail.com)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:02:37.162Z"
+    },
+    {
+      "_id": "eml_1793806565480j7u",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.102Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "userId": "usr_1793806198454108u"
       },
-      {
-        "time": "08:30 PM",
-        "activity": "Headliner Rock Act & Craft Brew Tasting",
-        "description": "Energetic rock performance to close out the culinary weekend.",
-        "_id": "6aef0549ce09b2dedf875823"
-      }
-    ],
-    "state": "Karnataka",
-    "status": "approved",
-    "tagline": "Modern Celebrations, Live Indie Bands & 100+ Gourmet Stalls",
-    "ticketTiers": [
-      {
-        "id": "tier_beer_single",
-        "name": "Day Explorer Pass",
-        "price": 599,
-        "totalSeats": 1200,
-        "bookedSeats": 430,
-        "description": "Access to all culinary stages, flea market, acoustic live concerts and 2 craft beverage tasters",
-        "perks": [
-          "2 Complimentary Beverage Tasters",
-          "Souvenir Cup",
-          "Stage Access"
-        ],
-        "_id": "6aef0549ce09b2dedf875824"
+      "provider": "SendGrid Simulator",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] Account Created: chiranth (user)",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:02:37.102Z"
+    },
+    {
+      "_id": "eml_1793939524804iqq",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:37.042Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "email": "chiranthansiddu@gmail.com",
+        "otpSentAt": "2026-11-06T04:32:04.803Z"
       },
-      {
-        "id": "tier_foodie_vip",
-        "name": "Gourmet VIP Lounge Pass",
-        "price": 1899,
-        "totalSeats": 150,
-        "bookedSeats": 92,
-        "description": "VIP shaded cabana seating with table service, chef tasting platter, and dedicated bar counter",
-        "perks": [
-          "Chef Curated 4-Course Tasting",
-          "Unlimited Craft Mocktails/Brew",
-          "VIP Restrooms",
-          "Valet Parking"
-        ],
-        "_id": "6aef0549ce09b2dedf875825"
-      }
-    ],
-    "time": "12:00 PM",
-    "title": "Bangalore Culinary & Craft Beer Carnival 2026",
-    "totalCapacity": 1500,
-    "updatedAt": "2026-11-07T11:02:33.492Z",
-    "venueAddress": "Near Cantonment Railway Station, Jayamahal, Bengaluru 560046",
-    "venueName": "Jaymahal Palace Lawns",
-    "viewsCount": 1890
-  },
-  {
-    "_id": "evt_06",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80",
-    "category": "Concert",
-    "city": "Bangalore",
-    "createdAt": "2026-11-07T11:02:33.552Z",
-    "date": "2026-12-12",
-    "description": "Experience an unforgettable musical evening in the Silicon Valley of India! The King of Romance, Arijit Singh, accompanied by a 60-piece international symphony orchestra performing his timeless chartbusters. Multi-tiered stadium seating, world-class acoustic engineering, and synchronized wristband light displays.",
-    "dressCode": "Concert Chic / Glam Casuals",
-    "endDate": "2026-12-12",
-    "endTime": "11:00 PM",
-    "highlights": [
-      "60-Piece Live International Classical & Bollywood Symphony Orchestra",
-      "State-of-the-Art L-Acoustics K1 Stadium Sound System",
-      "Over 3 Hours of Non-stop Soul-stirring Melodies",
-      "Over 50 Curated Food & Beverage Counters"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "organizer@mumbaiculture.in",
-    "organizerId": "usr_organizer_02",
-    "organizerName": "Aamchi Mumbai Utsav Mandali",
-    "schedule": [
-      {
-        "time": "05:00 PM",
-        "activity": "Gate Opening & QR Fast-Scan",
-        "description": "Attendees scan digital QR tickets at designated lanes.",
-        "_id": "6aef0549ce09b2dedf87582d"
+      "provider": "Simulation Ledger",
+      "status": "sent",
+      "subject": "🔐 Your UtsavMitra Sign-In Code: 238641",
+      "to": "chiranthansiddu@gmail.com",
+      "type": "LOGIN_OTP_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:37.042Z"
+    },
+    {
+      "_id": "eml_1793939534874wzo",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.982Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "email": "chiranthansiddu@gmail.com",
+        "otpSentAt": "2026-11-06T04:32:14.874Z"
       },
-      {
-        "time": "06:30 PM",
-        "activity": "Opening Acoustic Fusion Set",
-        "description": "Showcase by rising indie folk and classical sitar-fusion artists.",
-        "_id": "6aef0549ce09b2dedf87582e"
+      "provider": "Simulation Ledger",
+      "status": "sent",
+      "subject": "🔐 Your UtsavMitra Sign-In Code: 757006",
+      "to": "chiranthansiddu@gmail.com",
+      "type": "LOGIN_OTP_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:36.982Z"
+    },
+    {
+      "_id": "eml_1793939534948xii",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.927Z",
+      "dispatchStatus": "SIMULATED",
+      "error": null,
+      "from": "notifications@utsavmitra.com",
+      "metadata": {
+        "eventId": "evt_01",
+        "updateTitle": "Dinner Schedule Update: Dinner Buffet at 7:30 PM"
       },
-      {
-        "time": "07:45 PM",
-        "activity": "Arijit Singh & Symphony Grand Entry",
-        "description": "Massive opening sequence featuring full 60-piece orchestra.",
-        "_id": "6aef0549ce09b2dedf87582f"
+      "provider": "Simulation Ledger",
+      "status": "sent",
+      "subject": "📢 [Event Update] Dinner Schedule Update: Dinner Buffet at 7:30 PM - Grand Royal Rajasthani Wedding Expo & Sangeet Gala",
+      "to": "aarav.sharma@gmail.com",
+      "type": "CUSTOMER_EVENT_UPDATE",
+      "updatedAt": "2026-11-07T11:02:36.927Z"
+    },
+    {
+      "_id": "eml_1793940086095qfi",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.868Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1793806198454108u",
+        "role": "user"
       },
-      {
-        "time": "10:45 PM",
-        "activity": "Grand Finale & Confetti Shower",
-        "description": "Spectacular fireworks and laser display closing the musical night.",
-        "_id": "6aef0549ce09b2dedf875830"
-      }
-    ],
-    "state": "Karnataka",
-    "status": "approved",
-    "tagline": "Live 60-Piece Grand Symphony & Bollywood Melodies Under the Stars",
-    "ticketTiers": [
-      {
-        "id": "tier_concert_silver",
-        "name": "Silver Grandstand Pass",
-        "price": 999,
-        "totalSeats": 3000,
-        "bookedSeats": 1820,
-        "description": "Tiered bleacher seating with direct view of main stage and LED audio towers",
-        "perks": [
-          "Grandstand Access",
-          "LED Glow Wristband",
-          "Food Court Access"
-        ],
-        "_id": "6aef0549ce09b2dedf875831"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (chiranth)",
+      "to": "chiranthansiddu@gmail.com",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:36.868Z"
+    },
+    {
+      "_id": "eml_1793940089157t9j",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.800Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1793806198454108u"
       },
-      {
-        "id": "tier_concert_gold",
-        "name": "Gold Fan Pit",
-        "price": 2499,
-        "totalSeats": 1000,
-        "bookedSeats": 740,
-        "description": "Standing arena directly in front of main stage thrust for hardcore music enthusiasts",
-        "perks": [
-          "Front Fan Pit Access",
-          "Dedicated Fast-Track QR Lane",
-          "Concert Tour Lanyard"
-        ],
-        "_id": "6aef0549ce09b2dedf875832"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👤 [Admin Alert] New USER Registered: chiranth (chiranthansiddu@gmail.com)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:02:36.800Z"
+    },
+    {
+      "_id": "eml_1793940092411u9x",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.722Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1793806198454108u"
       },
-      {
-        "id": "tier_concert_vip",
-        "name": "Royal VIP Lounge with Hospitality",
-        "price": 5499,
-        "totalSeats": 250,
-        "bookedSeats": 190,
-        "description": "Elevated luxury deck with plush lounge seating, unlimited premium catering buffet and bar service",
-        "perks": [
-          "Elevated Private Deck",
-          "Unlimited Gourmet Food & Beverages",
-          "VIP Valet Parking",
-          "Artist Meet & Greet Raffle"
-        ],
-        "_id": "6aef0549ce09b2dedf875833"
-      }
-    ],
-    "time": "06:30 PM",
-    "title": "Arijit Singh Symphony & Bollywood Pro-Nite Live 2026",
-    "totalCapacity": 5000,
-    "updatedAt": "2026-11-07T11:02:33.552Z",
-    "venueAddress": "Bellary Road, Near Sadashivanagar, Bangalore, Karnataka 560080",
-    "venueName": "Palace Grounds, Gayathri Vihar",
-    "viewsCount": 6800
-  },
-  {
-    "_id": "evt_07",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&q=80",
-    "category": "Concert",
-    "city": "Goa",
-    "createdAt": "2026-11-07T11:02:33.630Z",
-    "date": "2026-12-28",
-    "description": "Dance on the sun-kissed sands of Vagator as world-renowned DJs spin high-octane electronic, progressive house, and trance tracks. Experience massive kinetic stage designs, flame projectors, laser visual shows, and beachside bohemian flea markets.",
-    "dressCode": "Beach Bohemian / Tropical Festival Fits",
-    "endDate": "2026-12-29",
-    "endTime": "02:00 AM",
-    "highlights": [
-      "Top Global & Indian EDM Headliners",
-      "Epic Sunset over the Arabian Sea with Fire Dancers",
-      "Water Sports & Sunset Volleyball Courts",
-      "Beach BBQ and Cocktail Shacks"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "fest@iitb.ac.in",
-    "organizerId": "usr_organizer_03",
-    "organizerName": "IIT Fest Council & Youth Wing",
-    "schedule": [
-      {
-        "time": "04:00 PM",
-        "activity": "Sundowner Deep House Set",
-        "description": "Relaxed grooves as the golden hour sun sets into the sea.",
-        "_id": "6aef0549ce09b2dedf87583c"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] Account Created: chiranth (user)",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:02:36.722Z"
+    },
+    {
+      "_id": "eml_1793940109090q2g",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.661Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "email": "chiranthansiddu@gmail.com",
+        "otpSentAt": "2026-11-06T04:41:46.752Z"
       },
-      {
-        "time": "07:00 PM",
-        "activity": "Bass & Pyro Stage Activation",
-        "description": "High tempo electronic and bass drops with flame throwers.",
-        "_id": "6aef0549ce09b2dedf87583d"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "🔐 Your UtsavMitra Sign-In Code: 478359",
+      "to": "chiranthansiddu@gmail.com",
+      "type": "LOGIN_OTP_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:36.661Z"
+    },
+    {
+      "_id": "eml_1793940553615r9a",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.608Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1793940545146zsy5",
+        "role": "user"
       },
-      {
-        "time": "09:30 PM",
-        "activity": "International Headliner Main Act",
-        "description": "Spectacular 2-hour headline set with synchronized laser beams.",
-        "_id": "6aef0549ce09b2dedf87583e"
-      }
-    ],
-    "state": "Goa",
-    "status": "approved",
-    "tagline": "Asia’s Biggest Open-Air Beach EDM & Sunset Electronic Music Festival",
-    "ticketTiers": [
-      {
-        "id": "tier_goa_early",
-        "name": "Sunburn Beach Pass",
-        "price": 1499,
-        "totalSeats": 2500,
-        "bookedSeats": 1420,
-        "description": "Full day access to beach dance arena, sunset chill-out zone, and food court",
-        "perks": [
-          "Beach Arena Access",
-          "Welcome Beer/Mocktail",
-          "Eco Wristband"
-        ],
-        "_id": "6aef0549ce09b2dedf87583f"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "🪔 Welcome to UtsavMitra! Your Account is Verified (rahul)",
+      "to": "rahullkrr1012@gmail.com",
+      "type": "USER_REGISTRATION_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:36.608Z"
+    },
+    {
+      "_id": "eml_1793940559074lnn",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.533Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1793940545146zsy5"
       },
-      {
-        "id": "tier_goa_vip",
-        "name": "VIP Shaded Cabana Deck",
-        "price": 3499,
-        "totalSeats": 300,
-        "bookedSeats": 240,
-        "description": "Elevated wooden deck overlooking the Arabian Sea sunset with private bar service and air-cooled cabanas",
-        "perks": [
-          "Private Cabana Table",
-          "Finger Foods Tasting Platter",
-          "Express QR Check-in",
-          "Private Restrooms"
-        ],
-        "_id": "6aef0549ce09b2dedf875840"
-      }
-    ],
-    "time": "04:00 PM",
-    "title": "Sunburn Arena Goa Sunset Beach Bash 2026",
-    "totalCapacity": 3000,
-    "updatedAt": "2026-11-07T11:02:33.630Z",
-    "venueAddress": "Ozran Beach Road, Vagator, Goa 403509",
-    "venueName": "Vagator Hilltop Beach Arena",
-    "viewsCount": 4100
-  },
-  {
-    "_id": "evt_08",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1200&q=80",
-    "category": "Birthday",
-    "city": "Jaipur",
-    "createdAt": "2026-11-07T11:02:33.684Z",
-    "date": "2026-12-08",
-    "description": "Celebrate a milestone 50th birthday fit for an emperor! Set in a frescoed heritage courtyard with traditional Nagada salutations, personalized turban tying for all guests, a mesmerizing live evening of Mehdi Hassan ghazals, and an elaborate candlelit royal dinner.",
-    "dressCode": "Royal Indian Ethnic (Bandhgala, Kurta-Churidar, Silk Sarees)",
-    "endDate": "2026-12-08",
-    "endTime": "11:45 PM",
-    "highlights": [
-      "Live Ghazal & Sufi Ensemble under illuminated palace arches",
-      "Spectacular 5-tier Royal Pistachio & Saffron Celebration Cake",
-      "Traditional Aarti & Marwar Turban tying ceremony for all attendees",
-      "Authentic 56-Bhog Royal Thali banquet"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@jaipurfest.com",
-    "organizerId": "usr_organizer_01",
-    "organizerName": "Royal Rajputana Weddings & Events",
-    "schedule": [
-      {
-        "time": "06:30 PM",
-        "activity": "Shahi Swagat & Turban Tying",
-        "description": "Guests welcomed with rose water sprinkling and Bandhani safas.",
-        "_id": "6aef0549ce09b2dedf875847"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👤 [Admin Alert] New USER Registered: rahul (rahullkrr1012@gmail.com)",
+      "to": "admin@utsavmitra.com",
+      "type": "ADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:02:36.533Z"
+    },
+    {
+      "_id": "eml_1793940564382mrm",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.484Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "userId": "usr_1793940545146zsy5"
       },
-      {
-        "time": "07:30 PM",
-        "activity": "Ghazal Mehfil & Family Tributes",
-        "description": "Soulful live ghazals and nostalgic family audiovisual journey.",
-        "_id": "6aef0549ce09b2dedf875848"
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "👑 [Super Admin HQ] Account Created: rahul (user)",
+      "to": "superadmin@utsavmitra.com",
+      "type": "SUPERADMIN_USER_REGISTERED_ALERT",
+      "updatedAt": "2026-11-07T11:02:36.484Z"
+    },
+    {
+      "_id": "eml_1793940632071t3j",
+      "__v": 0,
+      "createdAt": "2026-11-07T11:02:36.423Z",
+      "dispatchStatus": "SENT",
+      "error": null,
+      "from": "chiranthansiddu@gmail.com",
+      "metadata": {
+        "email": "rahullkrr1012@gmail.com",
+        "otpSentAt": "2026-11-06T04:50:25.525Z"
       },
-      {
-        "time": "09:00 PM",
-        "activity": "Royal Cake Cutting & Fireworks",
-        "description": "Sparklers and celebratory toasts in the central courtyard.",
-        "_id": "6aef0549ce09b2dedf875849"
-      },
-      {
-        "time": "09:30 PM",
-        "activity": "Shahi Dawat Banquet Opens",
-        "description": "Authentic Daal Baati Churma, Ker Sangri, and royal halwas.",
-        "_id": "6aef0549ce09b2dedf87584a"
-      }
-    ],
-    "state": "Rajasthan",
-    "status": "approved",
-    "tagline": "Regal Rajasthani Birthday Celebration with Ghazals, Royal Darbar & 56-Bhog",
-    "ticketTiers": [
-      {
-        "id": "tier_bday_guest",
-        "name": "Shahi Birthday Guest Pass",
-        "price": 999,
-        "totalSeats": 200,
-        "bookedSeats": 110,
-        "description": "Includes royal garland greeting, Ghazal recital seating, and full 5-course banquet",
-        "perks": [
-          "Ghazal Evening Access",
-          "Royal Rajasthani Buffet",
-          "Celebration Cake Slice",
-          "Custom Souvenir"
-        ],
-        "_id": "6aef0549ce09b2dedf87584b"
-      },
-      {
-        "id": "tier_bday_family",
-        "name": "Kutumb Family Table (4 Guests)",
-        "price": 3499,
-        "totalSeats": 30,
-        "bookedSeats": 22,
-        "description": "Reserved family round table with dedicated royal butler service and personalized silver gift memento",
-        "perks": [
-          "Reserved Front Table",
-          "Personalized Butler Service",
-          "Silver Memento Box",
-          "Valet Parking"
-        ],
-        "_id": "6aef0549ce09b2dedf87584c"
-      }
-    ],
-    "time": "06:30 PM",
-    "title": "Royal Rajwada 50th Golden Jubilee Birthday & Shahi Dawat",
-    "totalCapacity": 350,
-    "updatedAt": "2026-11-07T11:02:33.684Z",
-    "venueAddress": "Chomu Fort, Sikar Road, Jaipur, Rajasthan 303702",
-    "venueName": "Chomu Palace Heritage Courtyard",
-    "viewsCount": 1540
-  },
-  {
-    "_id": "evt_09",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80",
-    "category": "Birthday",
-    "city": "Mumbai",
-    "createdAt": "2026-11-07T11:02:33.745Z",
-    "date": "2026-12-19",
-    "description": "The ultimate coming-of-age celebration! A rooftop high-energy party drenched in blacklight UV neon glows, glow-in-the-dark face artists, unlimited gourmet sliders & woodfired pizzas, and live mixes by Mumbai’s favorite club DJs.",
-    "dressCode": "Neon Brights / White (Glows under Blacklight)",
-    "endDate": "2026-12-20",
-    "endTime": "01:00 AM",
-    "highlights": [
-      "Live UV Blacklight Art Studio for face and wrist designs",
-      "Resident Celebrity Club DJ spinning Hip-Hop, Pop & Bollywood Remixes",
-      "Custom 360-Degree Video Photobooth for TikTok & Instagram reels",
-      "Unlimited Mocktail Smoke Bar and Dessert Fondue Fountain"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@mumbaiculture.in",
-    "organizerId": "usr_organizer_02",
-    "organizerName": "Aamchi Mumbai Utsav Mandali",
-    "schedule": [
-      {
-        "time": "07:00 PM",
-        "activity": "Glow Station Open & Mocktails",
-        "description": "Guests get custom neon paint and glow bands upon arrival.",
-        "_id": "6aef0549ce09b2dedf875854"
-      },
-      {
-        "time": "08:30 PM",
-        "activity": "Grand Cake Reveal & Lightshow",
-        "description": "Illuminated neon birthday cake cutting with cold sparkler fountains.",
-        "_id": "6aef0549ce09b2dedf875855"
-      },
-      {
-        "time": "09:00 PM",
-        "activity": "DJ Club Set & Open Dance Floor",
-        "description": "High tempo party hits on the open-air rooftop deck.",
-        "_id": "6aef0549ce09b2dedf875856"
-      }
-    ],
-    "state": "Maharashtra",
-    "status": "approved",
-    "tagline": "Electrifying Neon Light Party with Celebrity DJ, Mocktail Bar & Photobooth",
-    "ticketTiers": [
-      {
-        "id": "tier_neon_party",
-        "name": "Neon Party Pass",
-        "price": 799,
-        "totalSeats": 300,
-        "bookedSeats": 195,
-        "description": "Includes neon glow accessories, UV body painting, mocktail coupon, and open dance floor",
-        "perks": [
-          "Glow Kit & Glasses",
-          "2 Signature Mocktails",
-          "Dance Floor Access"
-        ],
-        "_id": "6aef0549ce09b2dedf875857"
-      },
-      {
-        "id": "tier_neon_vip",
-        "name": "VIP Rooftop Cabana (Group of 5)",
-        "price": 3499,
-        "totalSeats": 25,
-        "bookedSeats": 18,
-        "description": "Private shaded rooftop cabana with dedicated server, chef snack platters, and 360-degree skyline views",
-        "perks": [
-          "Private Cabana Seating",
-          "Gourmet Tapas Platter",
-          "Priority DJ Song Requests",
-          "Fast-Track QR Entry"
-        ],
-        "_id": "6aef0549ce09b2dedf875858"
-      }
-    ],
-    "time": "07:00 PM",
-    "title": "Neon Glow Sky-Lounge 18th Milestone Birthday Bash",
-    "totalCapacity": 450,
-    "updatedAt": "2026-11-07T11:02:33.745Z",
-    "venueAddress": "Dr. Annie Besant Road, Worli, Mumbai 400018",
-    "venueName": "Skyline Rooftop Club & Lounge",
-    "viewsCount": 2300
-  },
-  {
-    "_id": "evt_10",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
-    "category": "Wedding",
-    "city": "Bangalore",
-    "createdAt": "2026-11-07T11:02:33.805Z",
-    "date": "2026-12-21",
-    "description": "Immerse yourself in timeless Dravidian wedding heritage! Featuring master Nadaswaram and Thavil artists from Thanjavur, authentic handwoven Kanjivaram silk bridal showcases, sacred floral Mandap inspirations crafted from jasmine and banana leaves, and an authentic 24-item traditional plantain leaf banquet.",
-    "dressCode": "Traditional South Indian (Pattu Sarees, Silk Dhotis with Angavastram)",
-    "endDate": "2026-12-21",
-    "endTime": "04:00 PM",
-    "highlights": [
-      "Live Temple Nadaswaram & Thavil Maestros from Tamil Nadu",
-      "Authentic 24-Dish Traditional Kalyana Sappadu on Banana Leaves",
-      "Exhibition of 40+ Certified Kanjivaram & Temple Jewellery Artisans",
-      "Live Temple Kolam & Fresh Jasmine Floral Mandap Workshops"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "organizer@jaipurfest.com",
-    "organizerId": "usr_organizer_01",
-    "organizerName": "Royal Rajputana Weddings & Events",
-    "schedule": [
-      {
-        "time": "08:00 AM",
-        "activity": "Mangala Nadaswaram & Filter Coffee",
-        "description": "Sacred morning musical awakening with piping hot Kumbakonam degree coffee.",
-        "_id": "6aef0549ce09b2dedf87585f"
-      },
-      {
-        "time": "10:00 AM",
-        "activity": "Kanjivaram Silk & Gold Jewelry Runway",
-        "description": "Showcasing heirloom bridal drapes and traditional Temple jewelry sets.",
-        "_id": "6aef0549ce09b2dedf875860"
-      },
-      {
-        "time": "12:30 PM",
-        "activity": "Royal Kalyana Elai Sappadu Banquet",
-        "description": "Traditional plantain leaf feast featuring Bisibelebath, Avial, Payasam & Poli.",
-        "_id": "6aef0549ce09b2dedf875861"
-      }
-    ],
-    "state": "Karnataka",
-    "status": "approved",
-    "tagline": "Traditional Nadaswaram, Kanjivaram Bridal Runway & Authentic Elai Sappadu Feast",
-    "ticketTiers": [
-      {
-        "id": "tier_kalyana_visitor",
-        "name": "General Exhibition Pass",
-        "price": 0,
-        "totalSeats": 500,
-        "bookedSeats": 260,
-        "description": "Free entrance to bridal pavilions, wedding vendor stalls, and classical Nadaswaram concerts",
-        "perks": [
-          "Free Entry",
-          "Filter Coffee Welcome",
-          "Wedding Planning Directory"
-        ],
-        "_id": "6aef0549ce09b2dedf875862"
-      },
-      {
-        "id": "tier_elai_sappadu",
-        "name": "Elai Sappadu Royal Feast Pass",
-        "price": 899,
-        "totalSeats": 300,
-        "bookedSeats": 185,
-        "description": "Reserved traditional seated lunch banquet served on banana leaves with 24 authentic South Indian delicacies",
-        "perks": [
-          "Authentic 24-Item Sadhya/Elai Feast",
-          "Front Seating for Bridal Show",
-          "Gift Pack of Mysore Pak"
-        ],
-        "_id": "6aef0549ce09b2dedf875863"
-      }
-    ],
-    "time": "08:00 AM",
-    "title": "South Indian Sacred Kalyana Mandapam & Bridal Showcase",
-    "totalCapacity": 800,
-    "updatedAt": "2026-11-07T11:02:33.805Z",
-    "venueAddress": "Kanakapura Road, Avalahalli, Bangalore, Karnataka 560062",
-    "venueName": "The Tamarind Tree Courtyard",
-    "viewsCount": 2900
-  },
-  {
-    "_id": "evt_11",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80",
-    "category": "Wedding",
-    "city": "Udaipur",
-    "createdAt": "2026-11-07T11:02:33.864Z",
-    "date": "2026-12-22",
-    "description": "Set against the shimmering waters of Lake Pichola with the illuminated City Palace as backdrop. Featuring arrival by illuminated royal barges, evening Sufi Qawwali night by renowned Nizami Brothers, and an unforgettable waterfront royal feast.",
-    "dressCode": "Royal Destination Ethnic (Sherwanis, Anarkalis, Regal Bandhgalas)",
-    "endDate": "2026-12-23",
-    "endTime": "01:00 AM",
-    "highlights": [
-      "Illuminated Royal Boat Transfer across Lake Pichola",
-      "Live Sufi Qawwali by Celebrated Nizami Troupe",
-      "Floating Diya Ceremony & Lakefront Pyrotechnics",
-      "Mewari Royal Culinary Feast"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@jaipurfest.com",
-    "organizerId": "usr_organizer_01",
-    "organizerName": "Royal Rajputana Weddings & Events",
-    "schedule": [
-      {
-        "time": "05:00 PM",
-        "activity": "Sunset Royal Boat Procession",
-        "description": "Baratis arrive via fairy-lit boats accompanied by live shehnai.",
-        "_id": "6aef0549ce09b2dedf87586a"
-      },
-      {
-        "time": "07:00 PM",
-        "activity": "Lakefront Sufi Mehfil",
-        "description": "Soulful acoustic Sufi musical poetry on the waterfront deck.",
-        "_id": "6aef0549ce09b2dedf87586b"
-      },
-      {
-        "time": "09:30 PM",
-        "activity": "Mewari Royal Dinner Buffet",
-        "description": "Gourmet Laal Maas, Dal Baati, and Ghevar dessert counters.",
-        "_id": "6aef0549ce09b2dedf87586c"
-      }
-    ],
-    "state": "Rajasthan",
-    "status": "approved",
-    "tagline": "Romantic Lake Pichola Twilight Celebrations with Sufi Troupes & Candlelit Mandap",
-    "ticketTiers": [
-      {
-        "id": "tier_udaipur_sufi",
-        "name": "Lakeside Sufi Delegate Pass",
-        "price": 1899,
-        "totalSeats": 250,
-        "bookedSeats": 160,
-        "description": "Includes royal barge transfer across the lake, Sufi mehfil front seating, and Mewari dinner banquet",
-        "perks": [
-          "Lake Boat Transfer",
-          "Live Sufi Mehfil",
-          "Mewari Royal Buffet",
-          "Welcome Garland"
-        ],
-        "_id": "6aef0549ce09b2dedf87586d"
-      }
-    ],
-    "time": "05:00 PM",
-    "title": "Lakeside Royal Destination Wedding & Sufi Sangeet Night",
-    "totalCapacity": 400,
-    "updatedAt": "2026-11-07T11:02:33.864Z",
-    "venueAddress": "Near Fateh Sagar Lake, Ambamata, Udaipur, Rajasthan 313001",
-    "venueName": "Radisson Blu Waterfront Lawn",
-    "viewsCount": 2100
-  },
-  {
-    "_id": "evt_12",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80",
-    "category": "Cultural Program",
-    "city": "New Delhi",
-    "createdAt": "2026-11-07T11:02:33.924Z",
-    "date": "2026-11-12",
-    "description": "Delhi’s largest traditional Diwali carnival celebrating the victory of light! Over 200 master craftsmen from 18 states showcasing handcrafted earthen lamps, brass idols, Zari textiles, and handloom gifts. Savor authentic Old Delhi street food with live folk dance and puppet shows.",
-    "dressCode": "Bright Indian Festive Wear (Kurtas, Sarees, Dupattas)",
-    "endDate": "2026-11-14",
-    "endTime": "10:00 PM",
-    "highlights": [
-      "100,000 Earthen Lamps lit synchronously at twilight",
-      "200+ Master Craftsmen from Rajasthan, Bengal, Kashmir & Gujarat",
-      "Authentic Chandni Chowk Jalebi, Rabdi & Dahi Bhalla food lane",
-      "Puppet Shows, Kalbelia Folk Dancers & Fire Acrobats"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@mumbaiculture.in",
-    "organizerId": "usr_organizer_02",
-    "organizerName": "Aamchi Mumbai Utsav Mandali",
-    "schedule": [
-      {
-        "time": "11:00 AM",
-        "activity": "Craft Bazaar & Food Street Opens",
-        "description": "Explore handloom stalls and savor regional snacks.",
-        "_id": "6aef0549ce09b2dedf875873"
-      },
-      {
-        "time": "06:00 PM",
-        "activity": "Maha Deepotsav Light-Up",
-        "description": "Lighting of 100,000 diyas with live Vedic chants.",
-        "_id": "6aef0549ce09b2dedf875874"
-      },
-      {
-        "time": "08:00 PM",
-        "activity": "Sufi & Folk Music Showcase",
-        "description": "Celebrated Rajasthani Manganiyar and Qawwali musical groups.",
-        "_id": "6aef0549ce09b2dedf875875"
-      }
-    ],
-    "state": "Delhi",
-    "status": "approved",
-    "tagline": "100,000 Handcrafted Diyas, Terracotta Artisans & Chandni Chowk Food Street",
-    "ticketTiers": [
-      {
-        "id": "tier_diwali_entry",
-        "name": "Festival Day Pass",
-        "price": 150,
-        "totalSeats": 3000,
-        "bookedSeats": 1950,
-        "description": "Full day entrance to all craft stalls, folk performances, and Diwali light displays",
-        "perks": [
-          "General Admission",
-          "Set of 4 Handcrafted Terracotta Diyas",
-          "Flea Market Access"
-        ],
-        "_id": "6aef0549ce09b2dedf875876"
-      },
-      {
-        "id": "tier_diwali_family",
-        "name": "Diwali Festive Hamper Pass (4 Guests)",
-        "price": 750,
-        "totalSeats": 400,
-        "bookedSeats": 310,
-        "description": "Entrance for 4 family members plus exclusive artisan Diwali gift box with assorted dry fruits and brass diya",
-        "perks": [
-          "4x Entry Passes",
-          "Artisan Brass Diya & Sweets Box",
-          "Reserved Evening Concert Seating"
-        ],
-        "_id": "6aef0549ce09b2dedf875877"
-      }
-    ],
-    "time": "11:00 AM",
-    "title": "Dilli Haat Grand Diwali Deepotsav & Craft Mela",
-    "totalCapacity": 4000,
-    "updatedAt": "2026-11-07T11:02:33.924Z",
-    "venueAddress": "INA Colony, Kidwai Nagar West, New Delhi 110023",
-    "venueName": "Dilli Haat Open Amphitheater",
-    "viewsCount": 3800
-  },
-  {
-    "_id": "evt_13",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?w=1200&q=80",
-    "category": "Cultural Program",
-    "city": "Kolkata",
-    "createdAt": "2026-11-07T11:02:33.992Z",
-    "date": "2026-10-18",
-    "description": "Experience the divine devotion and grand cultural fervor of Kolkata’s celebrated Durga Utsav! Featuring majestic hand-carved pandals, 108 lotus flower pushpanjali, mesmerizing Dhunuchi dance competitions with live Dhaakis, and traditional community Bhog.",
-    "dressCode": "Traditional Bengali Attire (Red & White Garad Sarees, Kurta-Dhoti)",
-    "endDate": "2026-10-21",
-    "endTime": "11:30 PM",
-    "highlights": [
-      "Mesmerizing Dhunuchi Dance Competition with 50+ Dhaakis",
-      "Consecrated Authentic Bengali Khichuri Bhog feast",
-      "Evening Rabindra Sangeet & Baul Folk Music concerts",
-      "Spectacular Eco-Friendly Idol Immersion Procession"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "organizer@mumbaiculture.in",
-    "organizerId": "usr_organizer_02",
-    "organizerName": "Aamchi Mumbai Utsav Mandali",
-    "schedule": [
-      {
-        "time": "07:00 AM",
-        "activity": "Mahashtami Pushpanjali & Aarti",
-        "description": "Offering of 108 lotuses and holy chants to Maa Durga.",
-        "_id": "6aef0549ce09b2dedf87587e"
-      },
-      {
-        "time": "01:00 PM",
-        "activity": "Community Maha Bhog Distribution",
-        "description": "Traditional sit-down feast served to all registered delegates.",
-        "_id": "6aef0549ce09b2dedf87587f"
-      },
-      {
-        "time": "06:30 PM",
-        "activity": "Sandhya Aarti & Dhunuchi Naach Clash",
-        "description": "High-energy clay pot incense dance accompanied by ecstatic dhaak rhythms.",
-        "_id": "6aef0549ce09b2dedf875880"
-      }
-    ],
-    "state": "West Bengal",
-    "status": "approved",
-    "tagline": "Traditional Sindoor Khela, Ecstatic Dhaak Beats & Authentic Bengali Khichuri Bhog",
-    "ticketTiers": [
-      {
-        "id": "tier_pandal_free",
-        "name": "General Pandal Darshan",
-        "price": 0,
-        "totalSeats": 5000,
-        "bookedSeats": 3200,
-        "description": "Free visitor pass for Maa Durga Pandal Darshan and evening cultural stage shows",
-        "perks": [
-          "Free Entry",
-          "Pushpanjali Access",
-          "Cultural Shows"
-        ],
-        "_id": "6aef0549ce09b2dedf875881"
-      },
-      {
-        "id": "tier_bhog_pass",
-        "name": "Maha Bhog & Aarti Pass",
-        "price": 450,
-        "totalSeats": 800,
-        "bookedSeats": 620,
-        "description": "Includes consecrated traditional Khichuri, Labra, Chutney & Payesh Mahaprasad seated luncheon",
-        "perks": [
-          "Mahaprasad Bhog Luncheon",
-          "VIP Pushpanjali Lane",
-          "Rosogolla Box"
-        ],
-        "_id": "6aef0549ce09b2dedf875882"
-      }
-    ],
-    "time": "07:00 AM",
-    "title": "Durga Puja Dhunuchi Naach & Grand Maha Aarti Mahotsav",
-    "totalCapacity": 6000,
-    "updatedAt": "2026-11-07T11:02:33.992Z",
-    "venueAddress": "JB Block, Sector III, Bidhannagar, Kolkata, West Bengal 700098",
-    "venueName": "Salt Lake Stadium Central Lawns",
-    "viewsCount": 4700
-  },
-  {
-    "_id": "evt_14",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80",
-    "category": "Corporate",
-    "city": "Bangalore",
-    "createdAt": "2026-11-07T11:02:34.064Z",
-    "date": "2026-12-16",
-    "description": "The definitive annual conclave uniting India’s visionary startup founders, AI researchers, and tech pioneers in the Silicon Valley of Asia. An evening of intellectual fireside debates, 5-course gourmet dining, and private deal-room lounges.",
-    "dressCode": "Business Formal / Smart Executive Western",
-    "endDate": "2026-12-16",
-    "endTime": "11:00 PM",
-    "highlights": [
-      "Keynote Panels with Top Unicorn Founders & AI Lab Directors",
-      "Gourmet 5-Course Plated Banquet by MasterChefs",
-      "Curated 1-on-1 Networking Deal Rooms",
-      "Annual UtsavMitra Tech Innovator Awards"
-    ],
-    "isFeatured": false,
-    "organizerEmail": "fest@iitb.ac.in",
-    "organizerId": "usr_organizer_03",
-    "organizerName": "IIT Fest Council & Youth Wing",
-    "schedule": [
-      {
-        "time": "06:00 PM",
-        "activity": "Executive Registration & Cocktails",
-        "description": "Fast QR badge pickup and networking over artisanal mocktails and hors d'oeuvres.",
-        "_id": "6aef054ace09b2dedf875889"
-      },
-      {
-        "time": "07:15 PM",
-        "activity": "Keynote Panel: The Future of Agentic AI",
-        "description": "Fireside discussion with leading Indian AI founders.",
-        "_id": "6aef054ace09b2dedf87588a"
-      },
-      {
-        "time": "08:45 PM",
-        "activity": "Awards Presentation & High-Table Dinner",
-        "description": "Honoring top innovators followed by multi-course plated dinner.",
-        "_id": "6aef054ace09b2dedf87588b"
-      }
-    ],
-    "state": "Karnataka",
-    "status": "approved",
-    "tagline": "High-Table Executive Dinner, Fireside Keynotes & Networking for 800+ Leaders",
-    "ticketTiers": [
-      {
-        "id": "tier_founder_pass",
-        "name": "Founder Delegate Pass",
-        "price": 2999,
-        "totalSeats": 400,
-        "bookedSeats": 280,
-        "description": "Full access to keynote stages, interactive AI debate panels, networking cocktails & 5-course dinner",
-        "perks": [
-          "Keynote & Panel Access",
-          "Cocktail Networking",
-          "Executive Dinner Banquet",
-          "Attendee Directory App"
-        ],
-        "_id": "6aef054ace09b2dedf87588c"
-      },
-      {
-        "id": "tier_cxo_vip",
-        "name": "CXO & Investor Lounge Pass",
-        "price": 6499,
-        "totalSeats": 100,
-        "bookedSeats": 82,
-        "description": "Private deal-making lounge with table service, pre-dinner investor roundtable, and valet parking",
-        "perks": [
-          "Private Investor Lounge",
-          "1-on-1 Deal Rooms",
-          "Top-Shelf Dining",
-          "Dedicated Concierge"
-        ],
-        "_id": "6aef054ace09b2dedf87588d"
-      }
-    ],
-    "time": "06:00 PM",
-    "title": "India AI & Tech Founders Gala Night 2026",
-    "totalCapacity": 500,
-    "updatedAt": "2026-11-07T11:02:34.064Z",
-    "venueAddress": "Old Airport Road, Kodihalli, Bangalore, Karnataka 560008",
-    "venueName": "The Leela Palace Grand Ballroom",
-    "viewsCount": 3200
-  },
-  {
-    "_id": "evt_15",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80",
-    "category": "Cultural Program",
-    "city": "Tumkur",
-    "createdAt": "2026-11-07T11:02:34.138Z",
-    "date": "2026-11-26",
-    "description": "A grand 3-day cultural extravaganza honoring Karnataka’s rich theatrical heritage, Gubbi Veeranna Nataka legacy, live coastal Yakshagana ballets, Dollu Kunitha folk percussions, and local culinary delicacies. Gathering classical theatre troupes, Kannada folk artists, and drama lovers across Tumkur district.",
-    "dressCode": "Traditional South Indian / Mysore Peta & Silk Shawls Encouraged",
-    "endDate": "2026-11-28",
-    "endTime": "10:30 PM",
-    "highlights": [
-      "Live Gubbi Veeranna Style Historic Mythological Drama",
-      "Tenkutittu & Badagutittu Yakshagana All-Night Performances",
-      "Authentic Tumakuru Thatte Idli & Rural Food Bazaar",
-      "Folk Art Demonstrations by National Awardee Artists"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "rangotsav@gubbi.org",
-    "organizerId": "usr_organizer_02",
-    "organizerName": "Karnataka Janapada & Rangabhoomi Parishat",
-    "schedule": [
-      {
-        "time": "05:30 PM",
-        "activity": "Inaugural Nadaswaram & Dollu Kunitha Procession",
-        "description": "Festive welcome from Gubbi Gate to Rangamandira.",
-        "_id": "6aef054ace09b2dedf875894"
-      },
-      {
-        "time": "07:00 PM",
-        "activity": "Gubbi Veeranna Memorial Nataka Presentation",
-        "description": "Grand staging of classic Kannada historical drama.",
-        "_id": "6aef054ace09b2dedf875895"
-      },
-      {
-        "time": "09:00 PM",
-        "activity": "Yakshagana Prasanga & Folk Feast",
-        "description": "Vibrant costumed Yakshagana ballet with live chande rhythms.",
-        "_id": "6aef054ace09b2dedf875896"
-      }
-    ],
-    "state": "Karnataka",
-    "status": "approved",
-    "tagline": "Celebrating Karnataka’s Folk Theatre, Yakshagana & Gubbi Cultural Legacy",
-    "ticketTiers": [
-      {
-        "id": "tier_gubbi_free",
-        "name": "Janapada General Admission",
-        "price": 0,
-        "totalSeats": 1200,
-        "bookedSeats": 580,
-        "description": "Free public pass for evening Yakshagana ballets, drama shows, and traditional crafts expo",
-        "perks": [
-          "Open Amphitheater Seating",
-          "Free Entry",
-          "Folk Exhibition Access"
-        ],
-        "_id": "6aef054ace09b2dedf875897"
-      },
-      {
-        "id": "tier_gubbi_vip",
-        "name": "Kalakshetra VIP Front Row Pass",
-        "price": 299,
-        "totalSeats": 300,
-        "bookedSeats": 145,
-        "description": "Reserved auditorium cushioned front rows with complimentary traditional Karnataka sweet hamper and festival brochure",
-        "perks": [
-          "Reserved Front Rows",
-          "Festive Sweet Box",
-          "Fast-Track Gate Entry"
-        ],
-        "_id": "6aef054ace09b2dedf875898"
-      }
-    ],
-    "time": "05:30 PM",
-    "title": "Tumakuru Folk Heritage & Gubbi Veeranna Rangotsav 2026",
-    "totalCapacity": 1500,
-    "updatedAt": "2026-11-07T11:02:34.138Z",
-    "venueAddress": "B.H. Road, Gubbi Taluk, Tumakuru District, Karnataka 572216",
-    "venueName": "Gubbi Veeranna Kalakshetra & Rangamandira Grounds",
-    "viewsCount": 2850
-  },
-  {
-    "_id": "evt_16",
-    "__v": 0,
-    "bannerUrl": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&q=80",
-    "category": "College Fest",
-    "city": "Tumkur",
-    "createdAt": "2026-11-07T11:02:34.205Z",
-    "date": "2026-12-18",
-    "description": "The mega annual youth festival bringing together students from SIT Tumkur, Bangalore tech colleges, and universities across Karnataka. Experience 24-hr IoT & Agentic AI coding sprints, battle of the college indie bands, street dance battles, and a high-voltage open-air pro-nite concert under the stars.",
-    "dressCode": "College Casual / Band Merchandise",
-    "endDate": "2026-12-19",
-    "endTime": "11:00 PM",
-    "highlights": [
-      "National 24-Hour AI & IoT Hackathon with ₹2 Lakh Cash Prizes",
-      "Battle of the Bands featuring 20+ Top Campus Rock Groups",
-      "Starlight Pro-Nite Live Band Concert with Laser Lighting",
-      "Automotive & Robotics Showcase Expo"
-    ],
-    "isFeatured": true,
-    "organizerEmail": "youthfest@sit.ac.in",
-    "organizerId": "usr_organizer_03",
-    "organizerName": "Siddaganga Youth Council & Tech Forum",
-    "schedule": [
-      {
-        "time": "09:30 AM",
-        "activity": "Hackathon Coding Kickoff",
-        "description": "Sprint teams begin problem solution designs.",
-        "_id": "6aef054ace09b2dedf87589f"
-      },
-      {
-        "time": "02:00 PM",
-        "activity": "Inter-College Street Play & Dance Clash",
-        "description": "Cultural competitions on open amphitheater stage.",
-        "_id": "6aef054ace09b2dedf8758a0"
-      },
-      {
-        "time": "07:30 PM",
-        "activity": "Starlight Pro-Nite Rock & Fusion Concert",
-        "description": "Headline band performance with stadium sound & pyros.",
-        "_id": "6aef054ace09b2dedf8758a1"
-      }
-    ],
-    "state": "Karnataka",
-    "status": "approved",
-    "tagline": "Tumakuru’s Premier Inter-Collegiate AI Hackathon, Robotics & Indie Music Bash",
-    "ticketTiers": [
-      {
-        "id": "tier_student_pass",
-        "name": "Student Day Pass",
-        "price": 199,
-        "totalSeats": 2500,
-        "bookedSeats": 1240,
-        "description": "Access to all daytime events, coding tracks, gaming arena, and food truck alley",
-        "perks": [
-          "Hackathon Participation",
-          "College Kit & Badges",
-          "Food Alley Access"
-        ],
-        "_id": "6aef054ace09b2dedf8758a2"
-      },
-      {
-        "id": "tier_vip_pronite",
-        "name": "Pro-Nite Music VIP Pit",
-        "price": 499,
-        "totalSeats": 800,
-        "bookedSeats": 480,
-        "description": "Front concert stage fan pit access for the headline Kannada indie rock & Bollywood fusion band",
-        "perks": [
-          "VIP Concert Pit Access",
-          "Commemorative Fest T-Shirt",
-          "Fast QR Gate Check-in"
-        ],
-        "_id": "6aef054ace09b2dedf8758a3"
-      }
-    ],
-    "time": "09:30 AM",
-    "title": "Siddaganga Youth Tech Carnivale & Pro-Nite 2026 (Tumkur)",
-    "totalCapacity": 3300,
-    "updatedAt": "2026-11-07T11:02:34.205Z",
-    "venueAddress": "B.H. Road, Kyatsandra, Tumakuru, Karnataka 572103",
-    "venueName": "Siddaganga Silver Jubilee Open Air Grounds",
-    "viewsCount": 4100
+      "provider": "Gmail SMTP",
+      "status": "sent",
+      "subject": "🔐 Your UtsavMitra Sign-In Code: 220622",
+      "to": "rahullkrr1012@gmail.com",
+      "type": "LOGIN_OTP_VERIFICATION",
+      "updatedAt": "2026-11-07T11:02:36.423Z"
+    }
+  ],
+  "otps": {
+    "chiranthansiddu@gmail.com": {
+      "otp": "478359",
+      "expiresAt": 1793940706750,
+      "attempts": 0
+    }
   }
-];
+};
 
-export const FALLBACK_VENUES = [
-  {
-    "_id": "ven_01",
-    "__v": 0,
-    "address": "Chomu Fort, Near Jaipur-Sikar Highway, Jaipur 303702",
-    "amenities": [
-      "Royal Suites",
-      "Heritage Courtyards",
-      "In-house Shehnai Troupe",
-      "Helipad Access",
-      "Valet Parking for 300 Cars",
-      "Royal Marigold Decor Support"
-    ],
-    "capacity": 1200,
-    "city": "Jaipur",
-    "contactEmail": "weddings@chomupalace.com",
-    "contactPerson": "Thakur Mahendra Singh",
-    "contactPhone": "+91 98290 88123",
-    "createdAt": "2026-11-07T11:02:34.602Z",
-    "description": "A 300-year-old regal fort palace reflecting authentic Rajput grandeur with fresco-painted halls, sprawling lawns, and luxury suites fit for royalty.",
-    "images": [
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80"
-    ],
-    "inquiries": [
-      {
-        "userName": "Rohan Agarwal",
-        "userEmail": "rohan.agarwal@example.com",
-        "userPhone": "+91 98200 44556",
-        "eventType": "Grand Sangeet & Reception",
-        "eventDate": "2026-12-20",
-        "guestsCount": 500,
-        "message": "Interested in booking the main courtyard and 50 rooms for 2 nights. Please send package estimate.",
-        "status": "pending",
-        "createdAt": "2026-11-01T10:00:00.000Z",
-        "_id": "6aef054ace09b2dedf8758af"
-      }
-    ],
-    "name": "Chomu Palace Heritage Resort & Royal Darbar",
-    "pricePerDay": 450000,
-    "rating": 4.9,
-    "reviewsCount": 88,
-    "state": "Rajasthan",
-    "status": "available",
-    "type": "Palace / Heritage",
-    "updatedAt": "2026-11-07T11:02:34.602Z"
-  },
-  {
-    "_id": "ven_02",
-    "__v": 0,
-    "address": "Kovalam Beach Cliff, Thiruvananthapuram, Kerala 695527",
-    "amenities": [
-      "Arabian Sea Cliff View",
-      "Beachfront Mandap Area",
-      "Infinity Pool Lawn",
-      "Ayurvedic Spa for Guests",
-      "Dedicated Bridal Lounge"
-    ],
-    "capacity": 800,
-    "city": "Thiruvananthapuram",
-    "contactEmail": "events@leelakovalam.in",
-    "contactPerson": "Lakshmi Nair",
-    "contactPhone": "+91 94470 66554",
-    "createdAt": "2026-11-07T11:02:34.663Z",
-    "description": "Dramatic clifftop luxury venue offering breathtaking panoramic views of the Arabian Sea for romantic sunset ceremonies and destination weddings.",
-    "images": [
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80"
-    ],
-    "inquiries": [],
-    "name": "The Leela Kovalam & Seaside Banquet Lawns",
-    "pricePerDay": 350000,
-    "rating": 4.8,
-    "reviewsCount": 64,
-    "state": "Kerala",
-    "status": "available",
-    "type": "Lawn / Resort",
-    "updatedAt": "2026-11-07T11:02:34.663Z"
-  },
-  {
-    "_id": "ven_03",
-    "__v": 0,
-    "address": "Janpath, Connaught Place, New Delhi 110001",
-    "amenities": [
-      "Central Air Conditioning",
-      "Crystal Chandeliers",
-      "Pillarless 25,000 sq.ft Hall",
-      "Green Rooms for Artists",
-      "State of the art Acoustic Sound System"
-    ],
-    "capacity": 1500,
-    "city": "New Delhi",
-    "contactEmail": "banquets@grandimperialdelhi.com",
-    "contactPerson": "Siddharth Chadha",
-    "contactPhone": "+91 98100 22334",
-    "createdAt": "2026-11-07T11:02:34.723Z",
-    "description": "Lutyens Delhi premier address for corporate galas, high-profile wedding receptions, and celebrity concerts with cutting-edge production facilities.",
-    "images": [
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80",
-      "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80"
-    ],
-    "inquiries": [],
-    "name": "The Grand Imperial Convention & Ballroom",
-    "pricePerDay": 500000,
-    "rating": 4.7,
-    "reviewsCount": 112,
-    "state": "Delhi NCR",
-    "status": "available",
-    "type": "Banquet Hall",
-    "updatedAt": "2026-11-07T11:02:34.723Z"
-  },
-  {
-    "_id": "ven_04",
-    "__v": 0,
-    "address": "Kanakapura Road, Avalahalli, Bangalore, Karnataka 560062",
-    "amenities": [
-      "Ancient Banyan Courtyard",
-      "Stone Open-Air Amphitheater",
-      "Heritage Pavilions",
-      "Bridal Suite",
-      "Natural Pond",
-      "Green Rooms"
-    ],
-    "capacity": 1200,
-    "city": "Bangalore",
-    "contactEmail": "events@tamarindtree.in",
-    "contactPerson": "Meenakshi Sundaram",
-    "contactPhone": "+91 98450 11998",
-    "createdAt": "2026-11-07T11:02:34.782Z",
-    "description": "Enchanting Bangalore heritage venue with majestic trees, traditional stone mandaps, and serene lotus ponds perfect for South Indian and destination weddings.",
-    "images": [
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80",
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
-    ],
-    "inquiries": [],
-    "name": "The Tamarind Tree Heritage Courtyard & Lawns",
-    "pricePerDay": 480000,
-    "rating": 4.9,
-    "reviewsCount": 145,
-    "state": "Karnataka",
-    "status": "available",
-    "type": "Lawn / Resort",
-    "updatedAt": "2026-11-07T11:02:34.782Z"
-  },
-  {
-    "_id": "ven_05",
-    "__v": 0,
-    "address": "23, HAL Old Airport Rd, Kodihalli, Bengaluru, Karnataka 560008",
-    "amenities": [
-      "Vijayanagara Empire Inspired Architecture",
-      "Grand Crystal Ballroom",
-      "Outdoor Cascading Waterfalls",
-      "Michelin-Class Catering",
-      "Luxury Royal Suites",
-      "Valet Parking for 500 Cars"
-    ],
-    "capacity": 900,
-    "city": "Bangalore",
-    "contactEmail": "weddings.bangalore@theleela.com",
-    "contactPerson": "Kavitha Ramesh",
-    "contactPhone": "+91 98800 24680",
-    "createdAt": "2026-11-07T11:02:34.846Z",
-    "description": "Opulent palace hotel inspired by the grandeur of the Vijayanagara dynasty with ornate arches, gold leaf ceilings, and lush manicured gardens.",
-    "images": [
-      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80"
-    ],
-    "inquiries": [],
-    "name": "The Leela Palace Grand Ballroom & Royal Gardens",
-    "pricePerDay": 650000,
-    "rating": 5,
-    "reviewsCount": 198,
-    "state": "Karnataka",
-    "status": "available",
-    "type": "Palace / Heritage",
-    "updatedAt": "2026-11-07T11:02:34.846Z"
-  },
-  {
-    "_id": "ven_06",
-    "__v": 0,
-    "address": "Bellary Road, Jayamahal, Bengaluru, Karnataka 560006",
-    "amenities": [
-      "Mega 40,000 sq.ft Open Lawn",
-      "Pillarless Covered German Hangar",
-      "Ample Parking for 1500 Vehicles",
-      "Royal Tudor-style Facade",
-      "Separate Dining Pavilions"
-    ],
-    "capacity": 3500,
-    "city": "Bangalore",
-    "contactEmail": "princessshrine@palacegrounds.com",
-    "contactPerson": "Vinay Kumar",
-    "contactPhone": "+91 98440 99112",
-    "createdAt": "2026-11-07T11:02:34.912Z",
-    "description": "Iconic Bangalore venue renowned for mega wedding receptions, cultural carnivals, and live concerts surrounded by historic royal trees.",
-    "images": [
-      "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
-      "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80"
-    ],
-    "inquiries": [],
-    "name": "Palace Grounds Princess Shrine & Regal Lawns",
-    "pricePerDay": 750000,
-    "rating": 4.8,
-    "reviewsCount": 220,
-    "state": "Karnataka",
-    "status": "available",
-    "type": "Lawn / Resort",
-    "updatedAt": "2026-11-07T11:02:34.912Z"
-  },
-  {
-    "_id": "ven_07",
-    "__v": 0,
-    "address": "Near Town Hall, B.H. Road, Gubbi Taluk, Tumakuru, Karnataka 572216",
-    "amenities": [
-      "Historic Proscenium Theatre Stage",
-      "Acoustic Sound Treatment",
-      "Open-Air Lawn Pavilions",
-      "Spacious Green Rooms",
-      "Green Dining Courtyard",
-      "Ample Parking for 400 Vehicles"
-    ],
-    "capacity": 2500,
-    "city": "Tumkur",
-    "contactEmail": "kalakshetra@gubbi.org",
-    "contactPerson": "Shivakumar Swamy",
-    "contactPhone": "+91 98450 77112",
-    "createdAt": "2026-11-07T11:02:34.989Z",
-    "description": "Iconic heritage cultural venue in Gubbi, Tumakuru district, renowned for large traditional weddings, Yakshagana plays, and community conventions.",
-    "images": [
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80",
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80"
-    ],
-    "inquiries": [],
-    "name": "Gubbi Veeranna Heritage Kalakshetra & Convention Grounds",
-    "pricePerDay": 180000,
-    "rating": 4.8,
-    "reviewsCount": 94,
-    "state": "Karnataka",
-    "status": "available",
-    "type": "Banquet Hall / Convention Grounds",
-    "updatedAt": "2026-11-07T11:02:34.989Z"
-  }
-];
+export const FALLBACK_EVENTS = FALLBACK_STORE.events;
+export const FALLBACK_VENUES = FALLBACK_STORE.venues;
+export const FALLBACK_USERS = FALLBACK_STORE.users;
+export const FALLBACK_BOOKINGS = FALLBACK_STORE.bookings;
+export const FALLBACK_INVITATIONS = FALLBACK_STORE.invitations;
+export const FALLBACK_AUDIT_LOGS = FALLBACK_STORE.auditLogs;
+export const FALLBACK_SETTINGS = FALLBACK_STORE.systemSettings;

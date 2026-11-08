@@ -90,35 +90,62 @@ export const Login = () => {
         <p className="text-xs text-slate-400">Sign in to your UtsavMitra account</p>
       </div>
 
-      {/* 1-Click Access for User & Organizer */}
+      {/* 1-Click Access for All 4 Personas */}
       <div className="p-4 rounded-3xl bg-slate-900 border border-saffron-500/30 space-y-3 shadow-xl">
-        <div className="flex items-center gap-1.5 text-xs font-bold text-saffron-400">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Quick Sign-In Portals:</span>
+        <div className="flex items-center justify-between text-xs font-bold text-saffron-400">
+          <div className="flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Instant 1-Click Sign-In:</span>
+          </div>
+          <span className="text-[10px] text-slate-500 font-normal">All 4 Roles Available</span>
         </div>
         <div className="grid grid-cols-2 gap-2 text-xs">
           <button
             type="button"
             onClick={() => handleQuickLogin('user', '/user/dashboard')}
-            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
+            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all group"
           >
-            <div className="flex items-center gap-1 text-slate-200 font-bold">
-              <User className="w-3.5 h-3.5 text-saffron-400" />
-              <span>Attendee / User</span>
+            <div className="flex items-center gap-1.5 text-slate-200 font-bold group-hover:text-amber-400">
+              <User className="w-3.5 h-3.5 text-amber-400" />
+              <span>Attendee</span>
             </div>
-            <div className="text-[10px] text-slate-400 mt-0.5">Aarav Sharma</div>
+            <div className="text-[10px] text-slate-400 mt-0.5 truncate">Aarav Sharma</div>
           </button>
 
           <button
             type="button"
             onClick={() => handleQuickLogin('organizer', '/organizer/dashboard')}
-            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all"
+            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition-all group"
           >
-            <div className="flex items-center gap-1 text-rose-300 font-bold">
+            <div className="flex items-center gap-1.5 text-rose-300 font-bold group-hover:text-rose-400">
               <Calendar className="w-3.5 h-3.5 text-rose-400" />
-              <span>Event Organizer</span>
+              <span>Organizer</span>
             </div>
-            <div className="text-[10px] text-slate-400 mt-0.5">Rajesh Singhania</div>
+            <div className="text-[10px] text-slate-400 mt-0.5 truncate">Rajesh Singhania</div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleQuickLogin('admin', '/admin/dashboard')}
+            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-indigo-500/30 text-left transition-all group"
+          >
+            <div className="flex items-center gap-1.5 text-indigo-300 font-bold group-hover:text-indigo-400">
+              <Shield className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Admin Portal</span>
+            </div>
+            <div className="text-[10px] text-slate-400 mt-0.5 truncate">Sunita Mehra</div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleQuickLogin('super_admin', '/super-admin/dashboard')}
+            className="p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-amber-500/30 text-left transition-all group"
+          >
+            <div className="flex items-center gap-1.5 text-amber-300 font-bold group-hover:text-amber-400">
+              <Crown className="w-3.5 h-3.5 text-amber-400" />
+              <span>Super Admin HQ</span>
+            </div>
+            <div className="text-[10px] text-slate-400 mt-0.5 truncate">Vikramaditya (HQ)</div>
           </button>
         </div>
       </div>
@@ -243,6 +270,34 @@ export const Login = () => {
         {/* METHOD 2: STANDARD PASSWORD SIGN IN */}
         {authMode === 'password' && (
           <form onSubmit={handlePasswordSubmit} className="space-y-4 text-xs">
+            {/* Quick Autofill Pills */}
+            <div className="space-y-1.5 pb-1">
+              <span className="text-[11px] font-bold text-slate-400">Click to autofill credentials:</span>
+              <div className="flex flex-wrap gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => { setEmail('superadmin@utsavmitra.com'); setPassword('Super@123'); }}
+                  className="px-2 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[11px] font-semibold cursor-pointer"
+                >
+                  👑 Super Admin
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setEmail('admin@utsavmitra.com'); setPassword('Admin@123'); }}
+                  className="px-2 py-1 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-[11px] font-semibold cursor-pointer"
+                >
+                  🛡️ Admin
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setEmail('organizer@jaipurfest.com'); setPassword('Org@123'); }}
+                  className="px-2 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 text-[11px] font-semibold cursor-pointer"
+                >
+                  🎪 Organizer
+                </button>
+              </div>
+            </div>
+
             <div>
               <label className="block text-slate-300 font-semibold mb-1">Email Address</label>
               <input
